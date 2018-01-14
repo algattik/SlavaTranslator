@@ -12,13 +12,99 @@
         '=': '&#x3D;',
     };
 
+    var accent = '\u0301';
+    var re = /[\wа-я\-\u0301]+/ig;
+
     function escapeHtml(string) {
         return String(string).replace(/[&<>"'`=\/]/g, function (s) {
             return entityMap[s];
         });
     }
 
-    function parse_wiki(dom, page_url, freq) {
+    function parse_table(table) {
+        var rows = table.children('tbody').children('tr');
+        var t = [];
+        for (var i = 0; i < rows.length; i++) {
+            var r = [];
+            var row = rows[i];
+            var td = $(row).children('td,th');
+            for (var j = 0; j < td.length; j++) {
+                var c = td.get(j);
+                // apply colspan
+                for (var j2 = 0; j2 < c.colSpan; j2++) {
+                    r.push([c, c.rowSpan, $(c).text()]);
+                }
+            }
+            t.push(r);
+        }
+        for (var i = 0; i < t.length; i++) {
+            var r = t[i];
+            for (var j = 0; j < r.length; j++) {
+                var c = r[j];
+                var c0 = $(c[0]);
+                // apply rowspan
+                if (c[1] > 1) {
+                    t[i + 1].splice(j, 0, [c[0], c[1] - 1, c[2]]);
+                }
+                // remove span e.g. animate / inanimate in Владимир
+                if (c[0].tagName == 'TH') {
+                    c0.children('span[style]').remove();
+                }
+            }
+        }
+        return t;
+    }
+
+    function add_grammar(grammar, element) {
+        var text = $(element).text();
+        if (!grammar.includes(text)) {
+            grammar.push(text);
+        }
+    }
+
+    function grammar_from_table(table, element, cases) {
+        var t = parse_table(table);
+
+        for (var i = 0; i < t.length; i++) {
+            for (var j = 0; j < t[i].length; j++) {
+                var c = t[i][j];
+                //multiple elements can match because of colspan
+                if (c[0] != element) { continue; }
+
+                var grammar_tokens = [];
+                var in_th = false;
+                for (var j2 = j - 1; j2 >= 0; j2--) {
+                    if (t[i][j2][0].tagName == 'TH') {
+                        add_grammar(grammar_tokens, t[i][j2][0]);
+                        in_th = true;
+                    }
+                    else if (in_th) {
+                        break;
+                    }
+                }
+                in_th = false;
+                for (var i2 = i - 1; i2 >= 0; i2--) {
+                    if (t[i2][j][0].tagName == 'TH') {
+                        add_grammar(grammar_tokens, t[i2][j][0]);
+                        in_th = true;
+                    }
+                    else if (in_th) {
+                        break;
+                    }
+                }
+                if (grammar_tokens) {
+                    var grammarText = grammar_tokens.reverse().join(" ");
+                    if (!cases.includes(grammarText)) {
+                        cases.push(grammarText);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    function parse_wiki(dom, word, page_url, freq) {
         var langspan = dom.find("h2 > span#Russian.mw-headline");
         var langsection = langspan.parent().nextUntil('h2');
 
@@ -61,12 +147,35 @@
         // Add word class within definition (since word class heading is removed)
         // Add frequency within definition
         wordClassHeadings.each(function () {
-            var s = $('<span class="wordclass">' + $(this).text() + '</span>');
+            var s = $('<span class="slava-wordclass">' + $(this).text() + '</span>');
             $(this).parent().next().children(':first-child').after(s).after(' ');
-            s.after(' <span class="wordfreq">' + freq + '</span>');
+            s.after(' <span class="slava-wordfreq">' + freq + '</span>');
         });
 
+
         var defn = wordClassHeadings.parent().nextUntil('hr,h1,h2,h3,h4,h5'); // e.g. with hr: после
+        var full_def = wordClassHeadings.parent().nextUntil(wordClassHeadings.prop('tagName'));
+
+        var cases = [];
+        $.each(full_def.get(), function (i, e) {
+            // JQuery can't understand this XPath query - use DOM XPath instead
+            var expr = '//td/span[@lang="ru"][translate(.,"' + accent + '", "")=translate("' + escapeHtml(word) + '","' + accent + '", "")]';
+            expr = expr + '/..';
+            var pa = wordClassHeadings.parent().get(0);
+            var iterator = document.evaluate(expr, e, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+            var thisNode = iterator.iterateNext();
+            var nodes = [];
+            while (thisNode) {
+                nodes.push(thisNode);
+                thisNode = iterator.iterateNext();
+            }
+
+            $.each(nodes, function (i, thisNode) {
+                grammar_from_table($(thisNode).closest('table'), thisNode, cases);
+            });
+        });
+
+
 
         // Remove transliterations
 
@@ -123,8 +232,24 @@
             return defn;
         });
 
+        // Remove images
+        defn.find('img').remove();
 
-        return defn;
+
+
+        // Add cases
+        var casesdiv = $("<div class='slava-cases'/>");
+        $.each(cases, function (i, e) {
+            var casediv = $("<div class='slava-case'/>");
+            casediv.append(e);
+            casesdiv.append(casediv);
+        });
+
+        // Build output structure
+        var res = $("<div class='slava-res'/>");
+        res.append(defn);
+        res.append(casesdiv);
+        return res;
 
     }
 
@@ -138,7 +263,7 @@
 
 
             $('head').prepend('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />');
-            $('head').append('<style>div.h-usage-example {font-size:80%} span.wordclass{font-variant:small-caps} span.wordfreq{font-size:70%} a.tm-pop {color:inherit; text-decoration: none;} a.tm-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
+            $('head').append('<style>div.h-usage-example {font-size:80%} span.slava-wordclass{font-variant:small-caps} span.slava-wordfreq{font-size:70%} .slava-cases{font-size:70%; color:gray} a.slava-pop {color:inherit; text-decoration: none;} a.slava-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
 
             function getTextNodesIn(node, includeWhitespaceNodes) {
                 var textNodes = [], nonWhitespaceMatcher = /\S/;
@@ -160,8 +285,6 @@
             }
             var v = getTextNodesIn(document.body);
 
-            var accent = '\u0301';
-            var re = /[\wа-я\u0301]+/ig;
             $.each(v, function (i, val) {
                 var t1 = $(val).text();
                 if (!t1.includes("Миха")) {
@@ -214,7 +337,7 @@
 
                         var slemmas = JSON.stringify(lemmasf);
                         // a and tabindex required, seee https://v4-alpha.getbootstrap.com/components/popovers/#dismiss-on-next-click
-                        return "</span>" + '<a tabindex="0" class="tm-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</a><span>';
+                        return "</span>" + '<a tabindex="0" class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</a><span>';
                     }
                     else {
                         return match;
@@ -227,14 +350,14 @@
 
             // });
 
-            $("body").on("mouseover", "a.tm-pop", function (event) {
+            $("body").on("mouseover", "a.slava-pop", function (event) {
                 $(".popover").css("display", "none");
                 event.target.setAttribute("data-popover_on", "1");
                 setTimeout(function () {
                     if (!event.target.getAttribute("data-popover_on")) {
                         return;
                     }
-                    var data = { "words": [event.target.textContent] };
+                    var word = event.target.textContent;
                     var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
                     if (lemmas) {
                         var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
@@ -257,7 +380,7 @@
                                 var dom = $(html);
                                 var page_url = 'https://en.wiktionary.org/wiki/' + parsed.title;
                                 var freq = lemmas[parsed.title];
-                                dom = parse_wiki(dom, page_url, freq);
+                                dom = parse_wiki(dom, word, page_url, freq);
                                 odom.append(dom);
                             });
                             var tgt = $(event.target);
@@ -274,9 +397,9 @@
 
             }); // on mouseover
 
-            $("body").on("mouseout", "a.tm-pop", function (event) {
+            $("body").on("mouseout", "a.slava-pop", function (event) {
                 event.target.removeAttribute("data-popover_on");
-                setTimeout(function(){$(event.target).popover("hide");}, 10000);
+                setTimeout(function () { $(event.target).popover("hide"); }, 10000);
             }); // on mouseout
 
         }); // document.ready
