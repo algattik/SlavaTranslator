@@ -1,22 +1,27 @@
 {
   "manifest_version": 2,
-
-  "name": "Slava",
+  "name": "Slava Russian Translator",
   "description": "This extension writes accents on Russian words, and adds a popup to each word with its definition.",
   "version": "1.0",
-
   "browser_action": {
     "default_title": "Enrich text with accents and translation popups",
-    "default_icon": "icon.png"
+    "default_icon": "owl_16.png"
+  },
+  "icons": {
+    "16": "owl_16.png",
+    "48": "owl_48.png",
+    "128": "owl_128.png"
   },
   "permissions": [
     "activeTab"
   ],
- "background": {
-    "scripts": ["background.js"],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
     "persistent": false
   },
-"web_accessible_resources": [
+  "web_accessible_resources": [
     "generated/resources/*"
   ]
 }
