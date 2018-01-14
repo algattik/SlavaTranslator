@@ -264,6 +264,7 @@
                             tgt.popover({
                                 trigger: 'manual',
                                 content: odom,
+                                container: 'body',
                                 html: true
                             });
                             $(event.target).popover("show");
