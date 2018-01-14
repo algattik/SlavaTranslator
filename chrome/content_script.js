@@ -227,41 +227,56 @@
 
             // });
 
-            $("body").on("click", "a.tm-pop", function (event) {
-                var data = { "words": [event.target.textContent] };
-                var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
-                if (lemmas) {
-                    var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
-                        var url = 'https://en.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
-                        return $.getJSON(url);
-                    });
-
-                    $.when.apply($, ajax_queries).done(function () {
-                        var odom = $('<div/>');
-                        var res = arguments;
-                        if (ajax_queries.length < 2) {
-                            res = [arguments];
-                        }
-                        $.each(res, function (i, a1) {
-                            var parsed = a1[0].parse;
-                            var html = parsed.text['*'];
-                            var dom = $(html);
-                            var page_url = 'https://en.wiktionary.org/wiki/' + parsed.title;
-                            var freq = lemmas[parsed.title];
-                            dom = parse_wiki(dom, page_url, freq);
-                            odom.append(dom);
+            $("body").on("mouseover", "a.tm-pop", function (event) {
+                $(".popover").css("display", "none");
+                event.target.setAttribute("data-popover_on", "1");
+                setTimeout(function () {
+                    if (!event.target.getAttribute("data-popover_on")) {
+                        return;
+                    }
+                    var data = { "words": [event.target.textContent] };
+                    var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
+                    if (lemmas) {
+                        var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
+                            var url = 'https://en.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
+                            return $.getJSON(url);
                         });
-                        var tgt = $(event.target);
-                        tgt.popover({
-                            trigger: 'focus',
-                            content: odom,
-                            html: true
-                        });
-                        tgt.popover("show");
-                    });
-                }
 
-            }); // on click
+                        $.when.apply($, ajax_queries).done(function () {
+                            if (!event.target.getAttribute("data-popover_on")) {
+                                return;
+                            }
+                            var odom = $('<div/>');
+                            var res = arguments;
+                            if (ajax_queries.length < 2) {
+                                res = [arguments];
+                            }
+                            $.each(res, function (i, a1) {
+                                var parsed = a1[0].parse;
+                                var html = parsed.text['*'];
+                                var dom = $(html);
+                                var page_url = 'https://en.wiktionary.org/wiki/' + parsed.title;
+                                var freq = lemmas[parsed.title];
+                                dom = parse_wiki(dom, page_url, freq);
+                                odom.append(dom);
+                            });
+                            var tgt = $(event.target);
+                            tgt.popover({
+                                trigger: 'manual',
+                                content: odom,
+                                html: true
+                            });
+                            $(event.target).popover("show");
+                        });
+                    }
+                }, 100);
+
+            }); // on mouseover
+
+            $("body").on("mouseout", "a.tm-pop", function (event) {
+                event.target.removeAttribute("data-popover_on");
+                setTimeout(function(){$(event.target).popover("hide");}, 10000);
+            }); // on mouseout
 
         }); // document.ready
     });
