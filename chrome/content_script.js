@@ -18,7 +18,7 @@
         });
     }
 
-    function parse_wiki(dom, page_url) {
+    function parse_wiki(dom, page_url, freq) {
         var langspan = dom.find("h2 > span#Russian.mw-headline");
         var langsection = langspan.parent().nextUntil('h2');
 
@@ -59,8 +59,11 @@
 
 
         // Add word class within definition (since word class heading is removed)
+        // Add frequency within definition
         wordClassHeadings.each(function () {
-            $(this).parent().next().children(':first-child').after(' <span class="wordclass">' + $(this).text() + '</span>');
+            var s = $('<span class="wordclass">' + $(this).text() + '</span>');
+            $(this).parent().next().children(':first-child').after(s).after(' ');
+            s.after(' <span class="wordfreq">' + freq + '</span>');
         });
 
         var defn = wordClassHeadings.parent().nextUntil('hr,h1,h2,h3,h4,h5'); // e.g. with hr: после
@@ -135,7 +138,7 @@
 
 
             $('head').prepend('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />');
-            $('head').append('<style>div.h-usage-example {font-size:80%} span.wordclass{font-variant:small-caps} a.tm-pop {color:inherit; text-decoration: none;} a.tm-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
+            $('head').append('<style>div.h-usage-example {font-size:80%} span.wordclass{font-variant:small-caps} span.wordfreq{font-size:70%} a.tm-pop {color:inherit; text-decoration: none;} a.tm-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
 
             function getTextNodesIn(node, includeWhitespaceNodes) {
                 var textNodes = [], nonWhitespaceMatcher = /\S/;
@@ -178,8 +181,8 @@
                         $.each(entry0, function (i, entry) {
                             var word_idx = entry[0];
                             var stress_char = entry[1];
-                            var word = lemmas[word_idx];
-                            lemmasf[word] = 1;
+                            var lemma_entry = lemmas[word_idx];
+                            lemmasf[lemma_entry[0]] = lemma_entry[1];
                             if (stress_char) {
                                 stress_chars.push(stress_char);
                             }
@@ -209,7 +212,7 @@
                             ref = accented;
                         }
 
-                        var slemmas = JSON.stringify(_.keys(lemmasf));
+                        var slemmas = JSON.stringify(lemmasf);
                         // a and tabindex required, seee https://v4-alpha.getbootstrap.com/components/popovers/#dismiss-on-next-click
                         return "</span>" + '<a tabindex="0" class="tm-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</a><span>';
                     }
@@ -228,7 +231,7 @@
                 var data = { "words": [event.target.textContent] };
                 var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
                 if (lemmas) {
-                    var ajax_queries = $.map(lemmas, function (lemma) {
+                    var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
                         var url = 'https://en.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
                         return $.getJSON(url);
                     });
@@ -244,7 +247,8 @@
                             var html = parsed.text['*'];
                             var dom = $(html);
                             var page_url = 'https://en.wiktionary.org/wiki/' + parsed.title;
-                            dom = parse_wiki(dom, page_url);
+                            var freq = lemmas[parsed.title];
+                            dom = parse_wiki(dom, page_url, freq);
                             odom.append(dom);
                         });
                         var tgt = $(event.target);
