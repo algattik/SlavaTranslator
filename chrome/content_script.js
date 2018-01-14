@@ -224,7 +224,7 @@
 
             // });
 
-            $("body").on("mouseover", "a.tm-pop", function (event) {
+            $("body").on("click", "a.tm-pop", function (event) {
                 var data = { "words": [event.target.textContent] };
                 var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
                 if (lemmas) {
@@ -253,6 +253,7 @@
                             content: odom,
                             html: true
                         });
+                        tgt.popover("show");
                     });
                 }
 
