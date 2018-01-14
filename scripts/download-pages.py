@@ -18,15 +18,15 @@ def toHex(x):
     return "".join([hex(ord(c))[2:].zfill(4) for c in x])
 
 include_cats = [
-    ["Russian_lemmas", 1],
-    ["Russian_proper_nouns", 0],
+    ["Russian lemmas", 1],
+    ["Russian proper nouns", 0],
 ]
 
 exclude_cats = [
-    ["Russian_spellings_with_е_instead_of_ё", 0],
-    ["Russian_phrases", 0],
-    ["Russian_proverbs", 0],
-    ["Russian_obsolete_forms", 0]
+    ["Russian spellings with е instead of ё", 0],
+    ["Russian phrases", 0],
+    ["Russian proverbs", 0],
+    ["Russian obsolete forms", 0]
 ]
 
 def download_cat(catName, recurse, callback):
@@ -47,6 +47,8 @@ for e in include_cats:
     def download_page(page):
         title = page.title()
 
+        if title in excluded_pages:
+            return
         if len(title) > 63:
             return
 

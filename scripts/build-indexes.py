@@ -23,8 +23,8 @@ for lang in ['ru']:
 
         word_counter = 0
         for parsed_i, parsed in enumerate(parsed_dir.glob('*.dat')):
-            if f_i % 1000 == 0:
-                print("%s..." % f_i)
+            if parsed_i % 1000 == 0:
+                print("%s..." % parsed_i)
             with open(parsed) as p:
                 for line in p:
                     s = line.rstrip('\n')
