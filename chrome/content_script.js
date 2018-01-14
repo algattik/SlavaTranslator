@@ -73,9 +73,9 @@
 
                 var grammar_tokens = [];
                 var in_th = false;
-                for (var j2 = j - 1; j2 >= 0; j2--) {
-                    if (t[i][j2][0].tagName == 'TH') {
-                        add_grammar(grammar_tokens, t[i][j2][0]);
+                for (var i2 = i - 1; i2 >= 0; i2--) {
+                    if (t[i2][j][0].tagName == 'TH') {
+                        add_grammar(grammar_tokens, t[i2][j][0]);
                         in_th = true;
                     }
                     else if (in_th) {
@@ -83,9 +83,9 @@
                     }
                 }
                 in_th = false;
-                for (var i2 = i - 1; i2 >= 0; i2--) {
-                    if (t[i2][j][0].tagName == 'TH') {
-                        add_grammar(grammar_tokens, t[i2][j][0]);
+                for (var j2 = j - 1; j2 >= 0; j2--) {
+                    if (t[i][j2][0].tagName == 'TH') {
+                        add_grammar(grammar_tokens, t[i][j2][0]);
                         in_th = true;
                     }
                     else if (in_th) {
