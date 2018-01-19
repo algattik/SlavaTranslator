@@ -7,9 +7,6 @@ import json
 download_dir = Path("../build/download")
 parsed_dir = Path("../build/parsed")
 
-marker_dir = Path(parsed_dir, "_done")
-marker_dir.mkdir(parents=True, exist_ok=True)
-
 def normalize_string(s):
    noacc = ''.join(c for c in unicodedata.normalize('NFC', s.lower())
                   if unicodedata.category(c) != 'Mn' #'Mark, Nonspacing' = accents
@@ -33,19 +30,8 @@ def add_norm(forms, html, xpath):
 
 langref = languages.inverted
 
-files = sorted(download_dir.glob("*.json"))
+def parse_file(f, destdir):
 
-new_pages = 0
-
-for f_i, f in enumerate(files):
-    if f_i % 1000 == 0:
-        print("%s..." % f_i)
-
-    marker = Path(marker_dir, Path(f).name)
-    if marker.is_file():
-        continue
-
-    new_pages = new_pages + 1
     pageJson=json.load(open(f))
     of=pageJson['html']
     title = pageJson['title']
@@ -65,7 +51,7 @@ for f_i, f in enumerate(files):
         add_norm(forms, html, "//*[preceding-sibling::h2[1]/span[@id='%s']]//table[contains(@class,'inflection-table')]/tr/td/span[@lang='%s']" % (langid, langcode))
         add_norm(forms, html, "//*[preceding-sibling::h2[1]/span[@id='%s']]//strong[contains(@class,'headword') and @lang='%s']" % (langid, langcode))
 
-        dir = Path(parsed_dir, langcode)
+        dir = Path(destdir, langcode)
         dir.mkdir(parents=True, exist_ok=True)
         file = Path(dir, Path(f).with_suffix('.dat').name)
         s = ''.join(["%s\t%s\t%s\n" % (form[0], title, form[1] if form[1] else 0) for form in forms])
@@ -73,4 +59,30 @@ for f_i, f in enumerate(files):
 
         marker.write_bytes(b'')
 
+
+for lang_dir in download_dir.iterdir():
+    if not lang_dir.is_dir():
+        continue
+
+    destdir = Path(parsed_dir, lang_dir.name)
+    marker_dir = Path(destdir, "_done")
+    marker_dir.mkdir(parents=True, exist_ok=True)
+
+    files = sorted(lang_dir.glob("*.json"))
+
+    new_pages = 0
+
+    for f_i, f in enumerate(files):
+        if f_i % 1000 == 0:
+            print("%s..." % f_i)
+
+        marker = Path(marker_dir, Path(f).name)
+        if marker.is_file():
+            continue
+
+        new_pages = new_pages + 1
+
+        parse_file(f, destdir)
+
 print("Parsed %d new pages out of %d total pages." % (new_pages, len(files)))
+

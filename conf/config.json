@@ -1,0 +1,36 @@
+{
+  "langpairs": [
+    {
+      "src_lang": "en",
+      "target_lang": "ru",
+      "include": [
+        {
+          "category": "Russian lemmas",
+          "recurse": 1
+        },
+        {
+          "category": "Russian proper nouns"
+        }
+      ],
+      "exclude": [
+        {
+          "category": "Russian spellings with е instead of ё"
+        },
+        {
+          "category": "Russian phrases"
+        },
+        {
+          "category": "Russian proverbs"
+        },
+        {
+          "category": "Russian obsolete forms"
+        }
+      ]
+    }
+  ],
+  "languages": {
+    "ru": {
+      "frequency_file": "https://github.com/Baksalyar/mc.hertzbeat.ru-Frequency-Dictionaries/raw/master/mc.hertzbeat.ru_frequency_dict.txt"
+    }
+  }
+}

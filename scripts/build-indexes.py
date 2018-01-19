@@ -6,14 +6,20 @@ parsed_top_dir = Path("../build/parsed")
 index_top_dir = Path("../build/index")
 resources_dir = Path("../build/resources")
 
-for lang in ['ru']:
-        index_dir=Path(index_top_dir, lang)
-        parsed_dir=Path(parsed_top_dir, lang)
+config = json.load(open("../conf/config.json"))
+
+for langpair in config["langpairs"]:
+        src_lang = langpair["src_lang"]
+        target_lang = langpair["target_lang"]
+
+        print("%s => %s" % (src_lang, target_lang))
+        index_dir=Path(index_top_dir, src_lang, target_lang)
+        parsed_dir=Path(parsed_top_dir, src_lang, target_lang)
         index_dir.mkdir(parents=True, exist_ok=True)
         words = dict()
         forms = defaultdict(lambda : defaultdict(set))
 
-        freqfile = Path(resources_dir, "mc.hertzbeat.ru_frequency_dict.txt")
+        freqfile = Path(resources_dir, target_lang + ".freq.txt")
         freq2 = defaultdict(lambda : 0)
         with open(freqfile) as p:
             for line in p:
@@ -23,7 +29,7 @@ for lang in ['ru']:
 
         word_counter = 0
         for parsed_i, parsed in enumerate(parsed_dir.glob('*.dat')):
-            if parsed_i % 1000 == 0:
+            if parsed_i % 5000 == 0:
                 print("%s..." % parsed_i)
             with open(parsed) as p:
                 for line in p:
