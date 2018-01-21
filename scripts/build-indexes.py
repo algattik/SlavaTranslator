@@ -28,7 +28,7 @@ for langpair in config["langpairs"]:
                 freq2[form] = freq2[form] + c
 
         word_counter = 0
-        for parsed_i, parsed in enumerate(parsed_dir.glob('*.dat')):
+        for parsed_i, parsed in enumerate(sorted(parsed_dir.glob('*.dat'))):
             if parsed_i % 5000 == 0:
                 print("%s..." % parsed_i)
             with open(parsed) as p:
@@ -42,8 +42,7 @@ for langpair in config["langpairs"]:
                     word_i = b[0]
                     if stress != "0":
                         forms[declined][word_i][0].add(int(stress))
-                    if canonical != declined:
-                        forms[declined][word_i][1].add(canonical)
+                    forms[declined][word_i][1].add(canonical)
                     if declined in freq2:
                         b[1] = b[1] + freq2[declined]
 
@@ -57,6 +56,8 @@ for langpair in config["langpairs"]:
             words_new = []
             for word_i, entry in d.items():
                 (stresses, canonicals) = entry
+                if len(canonicals) == 1 and next(iter(canonicals)) == declined:
+                    canonicals = []
                 words_new.append([word_i, list(stresses), list(canonicals)])
             forms[declined] = words_new
 

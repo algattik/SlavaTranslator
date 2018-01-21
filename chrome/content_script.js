@@ -129,6 +129,13 @@
     }
 
 
+    function genCharArray(charA, charZ) {
+        var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
+        for (; i <= j; ++i) {
+            a.push(String.fromCharCode(i));
+        }
+        return a.join("");
+    }
 
     function parse_wiki(dom, word, page_url, freq) {
         var langspan = dom.find("h2 > span#Russian.mw-headline");
@@ -184,8 +191,10 @@
 
         var cases = [];
         $.each(full_def.get(), function (i, e) {
+            var upper = genCharArray('A', 'Z') + genCharArray('А', 'Я') + 'Ë';
+            var lower = upper.toLowerCase();
             // JQuery can't understand this XPath query - use DOM XPath instead
-            var expr = '//td/span[@lang="ru"][translate(.,"' + accent + '", "")=translate("' + escapeHtml(word) + '","' + accent + '", "")]';
+            var expr = '//td/span[@lang="ru"][translate(.,"' + upper + accent + '", "' + lower + '")=translate("' + escapeHtml(word) + '","' + upper + accent + '", "' + lower + '")]';
             expr = expr + '/..';
             var pa = wordClassHeadings.parent().get(0);
             var iterator = document.evaluate(expr, e, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
@@ -302,25 +311,30 @@
                     var normalized_word = normalize(match);
                     if (forms[normalized_word]) {
                         var entry0 = forms[normalized_word];
-                        var ref = match.replace(accent, '');
                         var stress_chars = Array();
                         var lemmasf = {};
+                        var spellings = {};
                         $.each(entry0, function (i, entry) {
                             var lemma_entry = entry[0];
                             stress_chars = stress_chars.concat(entry[1]);
                             lemmasf[lemma_entry[0]] = lemma_entry[1];
-                            if (entry[2].length) {
-                                ref = entry[2][0];
-                            }
+                            var spelling = entry[2].length ? entry[2][0] : normalized_word;
+                            spellings[spelling] = 1;
                         });
+                        var matchn = match.replace(accent, '');
+                        var ref;
+                        if (!spellings || spellings[matchn]) { ref = matchn }
+                        else {
+                            ref = _.keys(spellings)[0];
 
-                        // match capitalization
-                        if (match[0].toLowerCase() != match[0]) {
-                            if (match.length > 1 && match[1].toLowerCase() != match[1]) {
-                                ref = ref.toUpperCase();
-                            }
-                            else {
-                                ref = ref.charAt(0).toUpperCase() + ref.slice(1);
+                            // match capitalization
+                            if (match[0].toLowerCase() != match[0]) {
+                                if (match.length > 1 && match[1].toLowerCase() != match[1]) {
+                                    ref = ref.toUpperCase();
+                                }
+                                else {
+                                    ref = ref.charAt(0).toUpperCase() + ref.slice(1);
+                                }
                             }
                         }
 
