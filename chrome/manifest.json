@@ -8,18 +8,24 @@
     "default_icon": "owl_16.png",
     "default_popup": "popup.html"
   },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
   "icons": {
     "16": "owl_16.png",
     "48": "owl_48.png",
     "128": "owl_128.png"
   },
   "permissions": [
+    "storage",
     "activeTab",
     "<all_urls>"
   ],
   "background": {
     "scripts": [
       "generated/jquery.js",
+      "generated/slavaConfig.js",
       "background.js"
     ],
     "persistent": false

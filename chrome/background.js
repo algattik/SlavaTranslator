@@ -1,3 +1,21 @@
+
+var language_pref = Array();
+function set_language_pref(lp) {
+  chrome.storage.sync.set({ 'language_pref': lp });
+  language_pref = lp;
+}
+chrome.storage.sync.get('language_pref', function (response) {
+  language_pref = response.language_pref;
+  console.log(language_pref);
+  for (var key in slavaConfig.wiktionary) {
+    console.log(key);
+    if (!language_pref.includes(key)) {
+      console.log("p", key);
+      language_pref.push(key);
+    }
+    console.log(language_pref);
+  }
+});
 console.log("loading dictionary data");
 var forms_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/forms.json'));
 var lemmas_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/words.json'));
@@ -9,6 +27,7 @@ function load(unload) {
       chrome.tabs.executeScript(null, { file: "generated/underscore.js" });
       chrome.tabs.executeScript(null, { file: "generated/jquery.js" });
       chrome.tabs.executeScript(null, { file: "generated/bootstrap.js" });
+      chrome.tabs.executeScript(null, { file: "generated/slavaConfig.js" });
       chrome.tabs.executeScript(null, { file: "content_script.js" });
       chrome.tabs.insertCSS(null, { file: "generated/bootstrap.css" });
     }
@@ -59,7 +78,6 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
       }
       else if (request.type == "set-enabled") {
         apply_to_tab(function (tab) {
-          console.log("Set", tab.id)
           active_tabs[tab.id] = request.payload
         });
         load(true);
@@ -67,6 +85,12 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
       }
       else if (request.type == "load") {
         load(false);
+      }
+      else if (request.type == "set-language_pref") {
+        set_language_pref(request.payload);
+      }
+      else if (request.type == "get-language_pref") {
+        sendResponse(language_pref);
       }
     });
 

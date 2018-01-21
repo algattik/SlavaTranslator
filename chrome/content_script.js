@@ -137,52 +137,31 @@
         return a.join("");
     }
 
-    function parse_wiki(dom, word, page_url, freq) {
-        var langspan = dom.find("h2 > span#Russian.mw-headline");
-        var langsection = langspan.parent().nextUntil('h2');
+    function parse_wiki(dom, word, lemma, freq, lang_pair) {
+        var page_url = 'https://' + lang_pair.src_lang + '.wiktionary.org/wiki/' + lemma;
+        var lang_span_id = lang_pair.lang_span_id;
+        var lang_conf = slavaConfig.wiktionary[lang_pair.src_lang];
+        var language_heading = lang_conf.language_heading;
+        var langspan = dom.find(language_heading + " > span#" + lang_span_id + ".mw-headline");
+        var langsection = langspan.parent().nextUntil(language_heading);
 
-        var wordClasses = _.object(_.map([
-            "Circumfix",
-            "Interfix",
-            "Prefix",
-            "Affix",
-            "Suffix",
-            "Abbreviation",
-            "Adjective",
-            "Adverb",
-            "Conjunction",
-            "Combining form",
-            "Diacritical mark",
-            "Determiner",
-            "Interjection",
-            "Idiom",
-            "Morpheme",
-            "Letter",
-            "Noun",
-            "Numeral",
-            "Particle",
-            "Participle",
-            "Phrase",
-            "Predicative",
-            "Preposition",
-            "Prepositional phrase",
-            "Pronoun",
-            "Proper noun",
-            "Proverb",
-            "Symbol",
-            "Verb"
-        ], function (v) { return [v, 1]; }));
+        var wordClasses = _.object(_.map(lang_conf.definition_headings, function (v) { return [v, 1]; }));
         //Words may have multiple classes, e.g. под
         //Will be h3, or h4 if multiple etymologies, e.g. погрузиться
-        var wordClassHeadings = langsection.find("span.mw-headline").filter(function () { return wordClasses[$(this).text()]; });
-
+        var wordClassHeadings = langsection.find("span.mw-headline").filter(function () { return wordClasses[$(this).text().trim()]; });
 
         // Add word class within definition (since word class heading is removed)
         // Add frequency within definition
+        var freq_span = ' <span class="slava-wordfreq">' + freq + '</span>';
         wordClassHeadings.each(function () {
             var s = $('<span class="slava-wordclass">' + $(this).text() + '</span>');
-            $(this).parent().next().children(':first-child').after(s).after(' ');
-            s.after(' <span class="slava-wordfreq">' + freq + '</span>');
+            if (lang_conf.heading_is_class) {
+                $(this).parent().next().children(':first-child').after(s).after(' ');
+                s.after(freq_span);
+            }
+            else {
+                $(this).parent().next().prepend(freq_span);
+            }
         });
 
 
@@ -210,7 +189,7 @@
             });
         });
 
-
+        defn = defn.filter(":not(table.flextable)");
 
         // Remove transliterations
 
@@ -245,7 +224,12 @@
         var page_link = document.createElement('a');
         page_link.href = page_url;
         var headword = defn.find("strong.headword");
-        headword.wrap(page_link);
+        if (headword.length) {
+            headword.wrap(page_link);
+        } else {
+            page_link.innerText = lemma;
+            defn.prepend('<br/>').prepend(page_link);
+        }
 
 
         // Change relative hyperlinks to absolute
@@ -288,10 +272,53 @@
 
     }
 
+    function generate_popup(target, lemmas) {
+        return function (response) {
+            var word = target.text;
+            var src_lang = response[0];
+            var target_lang = 'ru';
+            var lang_pair = $.grep(slavaConfig.langpairs, function (n) {
+                return n.src_lang === src_lang && n.target_lang === target_lang;
+            })[0];
+            var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
+                var url = 'https://' + src_lang + '.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
+                return $.getJSON(url);
+            });
+
+            $.when.apply($, ajax_queries).done(function () {
+                if (!target.attr("data-popover_on")) {
+                    return;
+                }
+                var odom = $('<div/>');
+                var res = arguments;
+                if (ajax_queries.length < 2) {
+                    res = [arguments];
+                }
+                $.each(res, function (i, a1) {
+                    var parsed = a1[0].parse;
+                    if (parsed) {
+                        var html = parsed.text['*'];
+                        var dom = $(html);
+                        var freq = lemmas[parsed.title];
+                        dom = parse_wiki(dom, word, parsed.title, freq, lang_pair);
+                        odom.append(dom);
+                    }
+                });
+                target.popover({
+                    trigger: 'manual',
+                    content: odom,
+                    container: 'body',
+                    html: true
+                });
+                target.popover("show");
+            });
+        }
+    }
+
     $(document).ready(function () {
 
 
-        $('head').append('<style>div.h-usage-example {font-size:80%} span.slava-wordclass{font-variant:small-caps} span.slava-wordfreq{font-size:70%} .slava-cases{font-size:70%; color:gray} .slava-pop {color:inherit; text-decoration: none;} .slava-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
+        $('head').append('<style>div.h-usage-example {font-size:80%} .mw-empty-elt{display:none} span.slava-wordclass{font-variant:small-caps} span.slava-wordfreq{font-size:70%} .slava-cases{font-size:70%; color:gray} .slava-pop {color:inherit; text-decoration: none;} .slava-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
 
         var v = getTextNodesIn(document.body);
 
@@ -372,41 +399,9 @@
                 if (!event.target.getAttribute("data-popover_on")) {
                     return;
                 }
-                var word = event.target.textContent;
                 var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
                 if (lemmas) {
-                    var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
-                        var url = 'https://en.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
-                        return $.getJSON(url);
-                    });
-
-                    $.when.apply($, ajax_queries).done(function () {
-                        if (!event.target.getAttribute("data-popover_on")) {
-                            return;
-                        }
-                        var odom = $('<div/>');
-                        var res = arguments;
-                        if (ajax_queries.length < 2) {
-                            res = [arguments];
-                        }
-                        $.each(res, function (i, a1) {
-                            var parsed = a1[0].parse;
-                            var html = parsed.text['*'];
-                            var dom = $(html);
-                            var page_url = 'https://en.wiktionary.org/wiki/' + parsed.title;
-                            var freq = lemmas[parsed.title];
-                            dom = parse_wiki(dom, word, page_url, freq);
-                            odom.append(dom);
-                        });
-                        var tgt = $(event.target);
-                        tgt.popover({
-                            trigger: 'manual',
-                            content: odom,
-                            container: 'body',
-                            html: true
-                        });
-                        $(event.target).popover("show");
-                    });
+                    chrome.runtime.sendMessage({ type: "get-language_pref" }, generate_popup($(event.target), lemmas));
                 }
             }, 100);
 

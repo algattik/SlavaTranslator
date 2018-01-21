@@ -14,8 +14,10 @@ config = json.load(open("../conf/config.json"))
 includes = defaultdict(list)
 excludes = defaultdict(list)
 for langpairs in config["langpairs"]:
-    includes[langpairs["src_lang"]].extend(langpairs["include"])
-    excludes[langpairs["src_lang"]].extend(langpairs["exclude"])
+    if "include" in langpairs:
+        includes[langpairs["src_lang"]].extend(langpairs["include"])
+    if "exclude" in langpairs:
+        excludes[langpairs["src_lang"]].extend(langpairs["exclude"])
 
 def toHex(x):
     return "".join([hex(ord(c))[2:].zfill(4) for c in x])
@@ -30,6 +32,7 @@ def download_cat(site, cat, callback):
 
 
 for src_lang, incl in includes.items():
+    print("Language: %s" % src_lang)
     site = pywikibot.Site(code=src_lang, fam='wiktionary')
     
     download_lang_dir = Path(download_dir, src_lang)

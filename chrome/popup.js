@@ -13,4 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#container').css('visibility', 'visible');
   });
 
+  $('#go-to-options').click(function () {
+    chrome.runtime.openOptionsPage();
+  });
 })

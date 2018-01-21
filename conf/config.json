@@ -3,6 +3,7 @@
     {
       "src_lang": "en",
       "target_lang": "ru",
+      "lang_span_id": "Russian",
       "include": [
         {
           "category": "Russian lemmas",
@@ -26,11 +27,100 @@
           "category": "Russian obsolete forms"
         }
       ]
+    },
+    {
+      "src_lang": "ru",
+      "target_lang": "ru",
+      "lang_span_id": "Русский"
+    },
+    {
+      "src_lang": "fr",
+      "target_lang": "ru",
+      "lang_span_id": "Russe"
     }
   ],
   "languages": {
     "ru": {
       "frequency_file": "https://github.com/Baksalyar/mc.hertzbeat.ru-Frequency-Dictionaries/raw/master/mc.hertzbeat.ru_frequency_dict.txt"
+    }
+  },
+  "wiktionary": {
+    "en": {
+      "name": "English",
+      "language_heading": "h2",
+      "heading_is_class": true,
+      "definition_headings": [
+        "Circumfix",
+        "Interfix",
+        "Prefix",
+        "Affix",
+        "Suffix",
+        "Abbreviation",
+        "Adjective",
+        "Adverb",
+        "Conjunction",
+        "Combining form",
+        "Diacritical mark",
+        "Determiner",
+        "Interjection",
+        "Idiom",
+        "Morpheme",
+        "Letter",
+        "Noun",
+        "Numeral",
+        "Particle",
+        "Participle",
+        "Phrase",
+        "Predicative",
+        "Preposition",
+        "Prepositional phrase",
+        "Pronoun",
+        "Proper noun",
+        "Proverb",
+        "Symbol",
+        "Verb"
+      ]
+    },
+    "ru": {
+      "name": "Russian (русский)",
+      "language_heading": "h1",
+      "heading_is_class": false,
+      "definition_headings": [
+        "Значение"
+      ]
+    },
+    "fr": {
+      "name": "French (français)",
+      "language_heading": "h2",
+      "heading_is_class": true,
+      "definition_headings": [
+        "Circonfixe",
+        "Interfixe",
+        "Préfixe",
+        "Affixe",
+        "Suffixe",
+        "Abréviation",
+        "Adjectif",
+        "Adverbe",
+        "Conjonction",
+        "Déterminant",
+        "Interjection",
+        "Idiome",
+        "Morphème",
+        "Lettre",
+        "Nom commun",
+        "Adjectif numéral",
+        "Particule",
+        "Participe",
+        "Phrase",
+        "Prédicatif",
+        "Préposition",
+        "Pronom",
+        "Nom propre",
+        "Proverbe",
+        "Symbole",
+        "Verbe"
+      ]
     }
   }
 }
