@@ -291,7 +291,7 @@
     $(document).ready(function () {
 
 
-        $('head').append('<style>div.h-usage-example {font-size:80%} span.slava-wordclass{font-variant:small-caps} span.slava-wordfreq{font-size:70%} .slava-cases{font-size:70%; color:gray} a.slava-pop {color:inherit; text-decoration: none;} a.slava-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
+        $('head').append('<style>div.h-usage-example {font-size:80%} span.slava-wordclass{font-variant:small-caps} span.slava-wordfreq{font-size:70%} .slava-cases{font-size:70%; color:gray} .slava-pop {color:inherit; text-decoration: none;} .slava-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
 
         var v = getTextNodesIn(document.body);
 
@@ -353,8 +353,7 @@
                         }
 
                         var slemmas = JSON.stringify(lemmasf);
-                        // a and tabindex required, seee https://v4-alpha.getbootstrap.com/components/popovers/#dismiss-on-next-click
-                        return "</span>" + '<a tabindex="0" class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</a><span>';
+                        return "</span>" + '<span class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</span><span>';
                     }
                     else {
                         return match;
@@ -366,7 +365,7 @@
             });
         });
 
-        $("body").on("mouseenter", "a.slava-pop", function (event) {
+        $("body").on("mouseenter", ".slava-pop", function (event) {
             $(".popover").css("display", "none");
             event.target.setAttribute("data-popover_on", "1");
             setTimeout(function () {
@@ -413,7 +412,7 @@
 
         }); // on mouseenter
 
-        $("body").on("mouseleave", "a.slava-pop", function (event) {
+        $("body").on("mouseleave", ".slava-pop", function (event) {
             event.target.removeAttribute("data-popover_on");
             setTimeout(function () { $(event.target).popover("hide"); }, 10000);
         }); // on mouseleave
