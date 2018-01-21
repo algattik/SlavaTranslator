@@ -272,38 +272,38 @@
 
     }
 
-    function generate_popup(target, lemmas) {
-        return function (response) {
-            var word = target.text;
-            var src_lang = response[0];
-            var target_lang = 'ru';
-            var lang_pair = $.grep(slavaConfig.langpairs, function (n) {
-                return n.src_lang === src_lang && n.target_lang === target_lang;
-            })[0];
-            var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
-                var url = 'https://' + src_lang + '.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
-                return $.getJSON(url);
-            });
+    function generate_popup(target, lemmas, langs) {
+        var src_lang = langs[0];
+        var word = target.text;
+        var target_lang = 'ru';
+        var lang_pair = $.grep(slavaConfig.langpairs, function (n) {
+            return n.src_lang === src_lang && n.target_lang === target_lang;
+        })[0];
+        var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
+            var url = 'https://' + src_lang + '.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
+            return $.getJSON(url);
+        });
 
-            $.when.apply($, ajax_queries).done(function () {
-                if (!target.attr("data-popover_on")) {
-                    return;
+        $.when.apply($, ajax_queries).done(function () {
+            if (!target.attr("data-popover_on")) {
+                return;
+            }
+            var odom = $('<div/>');
+            var res = arguments;
+            if (ajax_queries.length < 2) {
+                res = [arguments];
+            }
+            $.each(res, function (i, a1) {
+                var parsed = a1[0].parse;
+                if (parsed) {
+                    var html = parsed.text['*'];
+                    var dom = $(html);
+                    var freq = lemmas[parsed.title];
+                    dom = parse_wiki(dom, word, parsed.title, freq, lang_pair);
+                    odom.append(dom);
                 }
-                var odom = $('<div/>');
-                var res = arguments;
-                if (ajax_queries.length < 2) {
-                    res = [arguments];
-                }
-                $.each(res, function (i, a1) {
-                    var parsed = a1[0].parse;
-                    if (parsed) {
-                        var html = parsed.text['*'];
-                        var dom = $(html);
-                        var freq = lemmas[parsed.title];
-                        dom = parse_wiki(dom, word, parsed.title, freq, lang_pair);
-                        odom.append(dom);
-                    }
-                });
+            });
+            if (odom.children().length) {
                 target.popover({
                     trigger: 'manual',
                     content: odom,
@@ -311,8 +311,11 @@
                     html: true
                 });
                 target.popover("show");
-            });
-        }
+            }
+            else if (langs.length > 1) {
+                generate_popup(target, lemmas, langs.slice(1));
+            }
+        });
     }
 
     $(document).ready(function () {
@@ -401,7 +404,7 @@
                 }
                 var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
                 if (lemmas) {
-                    chrome.runtime.sendMessage({ type: "get-language_pref" }, generate_popup($(event.target), lemmas));
+                    chrome.runtime.sendMessage({ type: "get-language_pref" }, function (response) { generate_popup($(event.target), lemmas, response) });
                 }
             }, 100);
 

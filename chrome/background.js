@@ -6,14 +6,10 @@ function set_language_pref(lp) {
 }
 chrome.storage.sync.get('language_pref', function (response) {
   language_pref = response.language_pref;
-  console.log(language_pref);
   for (var key in slavaConfig.wiktionary) {
-    console.log(key);
     if (!language_pref.includes(key)) {
-      console.log("p", key);
       language_pref.push(key);
     }
-    console.log(language_pref);
   }
 });
 console.log("loading dictionary data");
