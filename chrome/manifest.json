@@ -5,7 +5,8 @@
   "version": "0.0.0.1",
   "browser_action": {
     "default_title": "Enrich text with accents and translation popups",
-    "default_icon": "owl_16.png"
+    "default_icon": "owl_16.png",
+    "default_popup": "popup.html"
   },
   "icons": {
     "16": "owl_16.png",
@@ -13,7 +14,9 @@
     "128": "owl_128.png"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "<all_urls>",
+    "storage"
   ],
   "background": {
     "scripts": [
@@ -22,6 +25,12 @@
     ],
     "persistent": false
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["loader.js"]
+    }
+  ],
   "web_accessible_resources": [
     "generated/resources/*"
   ]

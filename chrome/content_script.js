@@ -275,7 +275,6 @@
     $(document).ready(function () {
 
 
-        $('head').prepend('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />');
         $('head').append('<style>div.h-usage-example {font-size:80%} span.slava-wordclass{font-variant:small-caps} span.slava-wordfreq{font-size:70%} .slava-cases{font-size:70%; color:gray} a.slava-pop {color:inherit; text-decoration: none;} a.slava-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
 
         var v = getTextNodesIn(document.body);

@@ -25,12 +25,26 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
         });
         sendResponse({ payload: { forms: retval } });
       }
+      else if (request.type == "load") {
+
+        chrome.tabs.query({
+          "currentWindow": true,
+          "status": 'complete',
+          "active": true //Add any parameters you want
+        }, function (tabs) {//It returns an array
+          for (tab in tabs) {
+            chrome.tabs.executeScript(null, { file: "generated/underscore.js" });
+            chrome.tabs.executeScript(null, { file: "generated/jquery.js" });
+            chrome.tabs.executeScript(null, { file: "generated/bootstrap.js" });
+            chrome.tabs.executeScript(null, { file: "content_script.js" });
+            chrome.tabs.insertCSS(null, { file: "generated/bootstrap.css" });
+            //Do your stuff here
+          }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+
+        });
+      }
     });
 
-  chrome.browserAction.onClicked.addListener(function (tab) {
-    chrome.tabs.executeScript(null, { file: "generated/underscore.js" });
-    chrome.tabs.executeScript(null, { file: "generated/jquery.js" });
-    chrome.tabs.executeScript(null, { file: "generated/bootstrap.js" });
-    chrome.tabs.executeScript(null, { file: "content_script.js" });
-  });
 });
