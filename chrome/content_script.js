@@ -366,7 +366,7 @@
             });
         });
 
-        $("body").on("mouseover", "a.slava-pop", function (event) {
+        $("body").on("mouseenter", "a.slava-pop", function (event) {
             $(".popover").css("display", "none");
             event.target.setAttribute("data-popover_on", "1");
             setTimeout(function () {
@@ -411,12 +411,12 @@
                 }
             }, 100);
 
-        }); // on mouseover
+        }); // on mouseenter
 
-        $("body").on("mouseout", "a.slava-pop", function (event) {
+        $("body").on("mouseleave", "a.slava-pop", function (event) {
             event.target.removeAttribute("data-popover_on");
             setTimeout(function () { $(event.target).popover("hide"); }, 10000);
-        }); // on mouseout
+        }); // on mouseleave
 
     }); // document.ready
 
