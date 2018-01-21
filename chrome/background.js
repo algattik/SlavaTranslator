@@ -1,6 +1,34 @@
 console.log("loading dictionary data");
 var forms_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/forms.json'));
 var lemmas_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/words.json'));
+var active_tabs = {}
+
+function load(unload) {
+  apply_to_tab(function (tab) {
+    if (active_tabs[tab.id]) {
+      chrome.tabs.executeScript(null, { file: "generated/underscore.js" });
+      chrome.tabs.executeScript(null, { file: "generated/jquery.js" });
+      chrome.tabs.executeScript(null, { file: "generated/bootstrap.js" });
+      chrome.tabs.executeScript(null, { file: "content_script.js" });
+      chrome.tabs.insertCSS(null, { file: "generated/bootstrap.css" });
+    }
+    else if (unload) {
+      chrome.tabs.executeScript(null, { code: "location.reload()" });
+    }
+  });
+}
+
+function apply_to_tab(f) {
+  chrome.tabs.query({
+    "currentWindow": true,
+    "active": true //Add any parameters you want
+  }, function (tabs) {//It returns an array
+    $.each(tabs, function (i, tab) {
+      f(tab);
+    });
+  });
+}
+
 
 $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
   console.log("loaded dictionary data");
@@ -23,25 +51,22 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
         });
         sendResponse({ payload: { forms: retval } });
       }
+      else if (request.type == "get-enabled") {
+        apply_to_tab(function (tab) {
+          sendResponse(active_tabs[tab.id])
+        });
+        return true; // mark message response as async
+      }
+      else if (request.type == "set-enabled") {
+        apply_to_tab(function (tab) {
+          console.log("Set", tab.id)
+          active_tabs[tab.id] = request.payload
+        });
+        load(true);
+
+      }
       else if (request.type == "load") {
-
-        chrome.tabs.query({
-          "currentWindow": true,
-          "status": 'complete',
-          "active": true //Add any parameters you want
-        }, function (tabs) {//It returns an array
-          for (tab in tabs) {
-            chrome.tabs.executeScript(null, { file: "generated/underscore.js" });
-            chrome.tabs.executeScript(null, { file: "generated/jquery.js" });
-            chrome.tabs.executeScript(null, { file: "generated/bootstrap.js" });
-            chrome.tabs.executeScript(null, { file: "content_script.js" });
-            chrome.tabs.insertCSS(null, { file: "generated/bootstrap.css" });
-            //Do your stuff here
-          }
-        });
-        document.addEventListener("DOMContentLoaded", function () {
-
-        });
+        load(false);
       }
     });
 

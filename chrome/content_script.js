@@ -302,7 +302,7 @@
                     var normalized_word = normalize(match);
                     if (forms[normalized_word]) {
                         var entry0 = forms[normalized_word];
-                        var ref = match;
+                        var ref = match.replace(accent, '');
                         var stress_chars = Array();
                         var lemmasf = {};
                         $.each(entry0, function (i, entry) {
