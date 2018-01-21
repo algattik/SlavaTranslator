@@ -13,14 +13,12 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
         var retval = {};
         $.each(request.payload, function (entry_i, entry) {
           var forms_for_entry = forms[entry];
-          console.log(forms_for_entry);
           if (forms_for_entry) {
             var return_entries = Array();
             $.each(forms_for_entry, function (form_i, form) {
-              return_entries.push([lemmas[form[0]], form[1]]);
+              return_entries.push([lemmas[form[0]], form[1], form[2]]);
             });
             retval[entry] = return_entries;
-
           }
         });
         sendResponse({ payload: { forms: retval } });

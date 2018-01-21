@@ -17,7 +17,7 @@ for langpair in config["langpairs"]:
         parsed_dir=Path(parsed_top_dir, src_lang, target_lang)
         index_dir.mkdir(parents=True, exist_ok=True)
         words = dict()
-        forms = defaultdict(lambda : defaultdict(set))
+        forms = defaultdict(lambda : defaultdict(lambda : [set(), set()]))
 
         freqfile = Path(resources_dir, target_lang + ".freq.txt")
         freq2 = defaultdict(lambda : 0)
@@ -34,13 +34,16 @@ for langpair in config["langpairs"]:
             with open(parsed) as p:
                 for line in p:
                     s = line.rstrip('\n')
-                    (declined, base, stress) = s.split('\t')
+                    (declined, base, stress, canonical) = s.split('\t')
                     if not base in words:
                         words[base] = [word_counter, 0]
                         word_counter = word_counter + 1
                     b = words[base]
                     word_i = b[0]
-                    forms[declined][word_i].add(int(stress))
+                    if stress != "0":
+                        forms[declined][word_i][0].add(int(stress))
+                    if canonical != declined:
+                        forms[declined][word_i][1].add(canonical)
                     if declined in freq2:
                         b[1] = b[1] + freq2[declined]
 
@@ -52,12 +55,9 @@ for langpair in config["langpairs"]:
 
         for declined, d in forms.items():
             words_new = []
-            for word_i, stresses in d.items():
-                ct = [word_i]
-                if 0 in stresses:
-                    stresses.remove(0)
-                ct.extend(stresses)
-                words_new.append(ct)
+            for word_i, entry in d.items():
+                (stresses, canonicals) = entry
+                words_new.append([word_i, list(stresses), list(canonicals)])
             forms[declined] = words_new
 
         print("Writing output...")

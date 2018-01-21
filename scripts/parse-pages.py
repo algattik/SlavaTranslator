@@ -6,21 +6,26 @@ import json
 
 download_dir = Path("../build/download")
 parsed_dir = Path("../build/parsed")
+normalize_char_map = {'ё':'е', 'Ё':'Е'}
 
 def normalize_string(s):
-   noacc = ''.join(c for c in unicodedata.normalize('NFC', s.lower())
+   norms = unicodedata.normalize('NFC', s)
+   noacc =        [c
+                  for c in norms
                   if unicodedata.category(c) != 'Mn' #'Mark, Nonspacing' = accents
                   and (
-                      not unicodedata.category(c).startswith('P')) #Punctuation
+                      not unicodedata.category(c).startswith('P') #Punctuation
                       or c == '-'
-                  )
+                  )]
+   normalized = ''.join(normalize_char_map[c] if c in normalize_char_map else c
+                  for c in noacc).lower()
    stress=None
-   for p, c in enumerate(s):
+   for p, c in enumerate(norms):
        if unicodedata.category(c) == 'Mn':  # 'Mark, Nonspacing' = accents
            stress = p
            break
 
-   return tuple([noacc, stress])
+   return tuple([normalized, stress, ''.join(noacc)])
 
 def add_norm(forms, html, xpath):
     inflected = html.xpath(xpath)
@@ -54,7 +59,7 @@ def parse_file(f, destdir):
         dir = Path(destdir, langcode)
         dir.mkdir(parents=True, exist_ok=True)
         file = Path(dir, Path(f).with_suffix('.dat').name)
-        s = ''.join(["%s\t%s\t%s\n" % (form[0], title, form[1] if form[1] else 0) for form in forms])
+        s = ''.join(["%s\t%s\t%s\t%s\n" % (form[0], title, form[1] if form[1] else 0, form[2]) for form in forms])
         file.write_text(s, encoding='utf8')
 
         marker.write_bytes(b'')

@@ -13,7 +13,14 @@
     };
 
     var accent = '\u0301';
-    var re = /[\wа-я\-\u0301]+/ig;
+    var re = /[\wА-яЁё\-\u0301]+/g;
+
+    function normalize(str) {
+        str = str.replace(accent, '');
+        str = str.toLowerCase();
+        str = str.replace('ё', 'е');
+        return str;
+    }
 
     function escapeHtml(string) {
         return String(string).replace(/[&<>"'`=\/]/g, function (s) {
@@ -285,34 +292,31 @@
             var allWords = Array();
             var match;
             while (match = re.exec(t1)) {
-                var matched_word = match[0].replace(accent, '');
-                var normalized_word = matched_word.toLowerCase();
-                allWords.push(normalized_word);
+                allWords.push(normalize(match[0]));
             }
 
-            chrome.runtime.sendMessage({ type: "resolve", payload: allWords }, function (response) {
+            chrome.runtime.sendMessage({ type: "resolve", payload: _.unique(allWords) }, function (response) {
                 var forms = response.payload.forms;
 
                 var str = t1.replace(re, function (match, group) {
-                    var matched_word = match.replace(accent, '');
-                    var normalized_word = matched_word.toLowerCase();
+                    var normalized_word = normalize(match);
                     if (forms[normalized_word]) {
                         var entry0 = forms[normalized_word];
-                        var ref = matched_word;
+                        var ref = match;
                         var stress_chars = Array();
                         var lemmasf = {};
                         $.each(entry0, function (i, entry) {
                             var lemma_entry = entry[0];
-                            var stress_char = entry[1];
+                            stress_chars = stress_chars.concat(entry[1]);
                             lemmasf[lemma_entry[0]] = lemma_entry[1];
-                            if (stress_char) {
-                                stress_chars.push(stress_char);
+                            if (entry[2].length) {
+                                ref = entry[2][0];
                             }
                         });
 
                         // match capitalization
-                        if (matched_word[0].toLowerCase() != matched_word[0]) {
-                            if (matched_word.length > 1 && matched_word[1].toLowerCase() != matched_word[1]) {
+                        if (match[0].toLowerCase() != match[0]) {
+                            if (match.length > 1 && match[1].toLowerCase() != match[1]) {
                                 ref = ref.toUpperCase();
                             }
                             else {
