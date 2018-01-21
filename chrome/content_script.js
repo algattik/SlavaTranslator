@@ -21,6 +21,25 @@
         });
     }
 
+    function getTextNodesIn(node, includeWhitespaceNodes) {
+        var textNodes = [], nonWhitespaceMatcher = /\S/;
+
+        function getTextNodes(node) {
+            if (node.nodeType == 3) {
+                if (includeWhitespaceNodes || nonWhitespaceMatcher.test(node.nodeValue)) {
+                    textNodes.push(node);
+                }
+            } else {
+                for (var i = 0, len = node.childNodes.length; i < len; ++i) {
+                    getTextNodes(node.childNodes[i]);
+                }
+            }
+        }
+
+        getTextNodes(node);
+        return textNodes;
+    }
+
     function parse_table(table) {
         var rows = table.children('tbody').children('tr');
         var t = [];
@@ -253,58 +272,39 @@
 
     }
 
-    var forms_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/forms.json'));
-    var lemmas_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/words.json'));
-
-    $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
-        var forms = forms_r[0];
-        var lemmas = lemmas_r[0];
-        $(document).ready(function () {
+    $(document).ready(function () {
 
 
-            $('head').prepend('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />');
-            $('head').append('<style>div.h-usage-example {font-size:80%} span.slava-wordclass{font-variant:small-caps} span.slava-wordfreq{font-size:70%} .slava-cases{font-size:70%; color:gray} a.slava-pop {color:inherit; text-decoration: none;} a.slava-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
+        $('head').prepend('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />');
+        $('head').append('<style>div.h-usage-example {font-size:80%} span.slava-wordclass{font-variant:small-caps} span.slava-wordfreq{font-size:70%} .slava-cases{font-size:70%; color:gray} a.slava-pop {color:inherit; text-decoration: none;} a.slava-pop:hover { text-decoration: none; border-bottom: #666666; border-width: 0px 0px 1px 0px; border-style: none none dotted none;}</style>');
 
-            function getTextNodesIn(node, includeWhitespaceNodes) {
-                var textNodes = [], nonWhitespaceMatcher = /\S/;
+        var v = getTextNodesIn(document.body);
 
-                function getTextNodes(node) {
-                    if (node.nodeType == 3) {
-                        if (includeWhitespaceNodes || nonWhitespaceMatcher.test(node.nodeValue)) {
-                            textNodes.push(node);
-                        }
-                    } else {
-                        for (var i = 0, len = node.childNodes.length; i < len; ++i) {
-                            getTextNodes(node.childNodes[i]);
-                        }
-                    }
-                }
+        $.each(v, function (i, val) {
+            var t1 = $(val).text();
 
-                getTextNodes(node);
-                return textNodes;
+            var allWords = Array();
+            var match;
+            while (match = re.exec(t1)) {
+                var matched_word = match[0].replace(accent, '');
+                var normalized_word = matched_word.toLowerCase();
+                allWords.push(normalized_word);
             }
-            var v = getTextNodesIn(document.body);
 
-            $.each(v, function (i, val) {
-                var t1 = $(val).text();
-                if (!t1.includes("Миха")) {
-                    //  return;
-                }
-
+            chrome.runtime.sendMessage({ type: "resolve", payload: allWords }, function (response) {
+                var forms = response.payload.forms;
 
                 var str = t1.replace(re, function (match, group) {
-                    var match2 = match.replace(accent, '');
-                    var vk = match2.toLowerCase();
-                    if (forms[vk]) {
-                        var entry0 = forms[vk];
-                        var ref = match2;
-                        var lemma = null;
+                    var matched_word = match.replace(accent, '');
+                    var normalized_word = matched_word.toLowerCase();
+                    if (forms[normalized_word]) {
+                        var entry0 = forms[normalized_word];
+                        var ref = matched_word;
                         var stress_chars = Array();
                         var lemmasf = {};
                         $.each(entry0, function (i, entry) {
-                            var word_idx = entry[0];
+                            var lemma_entry = entry[0];
                             var stress_char = entry[1];
-                            var lemma_entry = lemmas[word_idx];
                             lemmasf[lemma_entry[0]] = lemma_entry[1];
                             if (stress_char) {
                                 stress_chars.push(stress_char);
@@ -312,8 +312,8 @@
                         });
 
                         // match capitalization
-                        if (match2[0].toLowerCase() != match2[0]) {
-                            if (match2.length > 1 && match2[1].toLowerCase() != match2[1]) {
+                        if (matched_word[0].toLowerCase() != matched_word[0]) {
+                            if (matched_word.length > 1 && matched_word[1].toLowerCase() != matched_word[1]) {
                                 ref = ref.toUpperCase();
                             }
                             else {
@@ -347,62 +347,60 @@
                 var span = $(str);
                 $(val).replaceWith(span);
             });
+        });
 
-            // });
+        $("body").on("mouseover", "a.slava-pop", function (event) {
+            $(".popover").css("display", "none");
+            event.target.setAttribute("data-popover_on", "1");
+            setTimeout(function () {
+                if (!event.target.getAttribute("data-popover_on")) {
+                    return;
+                }
+                var word = event.target.textContent;
+                var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
+                if (lemmas) {
+                    var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
+                        var url = 'https://en.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
+                        return $.getJSON(url);
+                    });
 
-            $("body").on("mouseover", "a.slava-pop", function (event) {
-                $(".popover").css("display", "none");
-                event.target.setAttribute("data-popover_on", "1");
-                setTimeout(function () {
-                    if (!event.target.getAttribute("data-popover_on")) {
-                        return;
-                    }
-                    var word = event.target.textContent;
-                    var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
-                    if (lemmas) {
-                        var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
-                            var url = 'https://en.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
-                            return $.getJSON(url);
+                    $.when.apply($, ajax_queries).done(function () {
+                        if (!event.target.getAttribute("data-popover_on")) {
+                            return;
+                        }
+                        var odom = $('<div/>');
+                        var res = arguments;
+                        if (ajax_queries.length < 2) {
+                            res = [arguments];
+                        }
+                        $.each(res, function (i, a1) {
+                            var parsed = a1[0].parse;
+                            var html = parsed.text['*'];
+                            var dom = $(html);
+                            var page_url = 'https://en.wiktionary.org/wiki/' + parsed.title;
+                            var freq = lemmas[parsed.title];
+                            dom = parse_wiki(dom, word, page_url, freq);
+                            odom.append(dom);
                         });
-
-                        $.when.apply($, ajax_queries).done(function () {
-                            if (!event.target.getAttribute("data-popover_on")) {
-                                return;
-                            }
-                            var odom = $('<div/>');
-                            var res = arguments;
-                            if (ajax_queries.length < 2) {
-                                res = [arguments];
-                            }
-                            $.each(res, function (i, a1) {
-                                var parsed = a1[0].parse;
-                                var html = parsed.text['*'];
-                                var dom = $(html);
-                                var page_url = 'https://en.wiktionary.org/wiki/' + parsed.title;
-                                var freq = lemmas[parsed.title];
-                                dom = parse_wiki(dom, word, page_url, freq);
-                                odom.append(dom);
-                            });
-                            var tgt = $(event.target);
-                            tgt.popover({
-                                trigger: 'manual',
-                                content: odom,
-                                container: 'body',
-                                html: true
-                            });
-                            $(event.target).popover("show");
+                        var tgt = $(event.target);
+                        tgt.popover({
+                            trigger: 'manual',
+                            content: odom,
+                            container: 'body',
+                            html: true
                         });
-                    }
-                }, 100);
+                        $(event.target).popover("show");
+                    });
+                }
+            }, 100);
 
-            }); // on mouseover
+        }); // on mouseover
 
-            $("body").on("mouseout", "a.slava-pop", function (event) {
-                event.target.removeAttribute("data-popover_on");
-                setTimeout(function () { $(event.target).popover("hide"); }, 10000);
-            }); // on mouseout
+        $("body").on("mouseout", "a.slava-pop", function (event) {
+            event.target.removeAttribute("data-popover_on");
+            setTimeout(function () { $(event.target).popover("hide"); }, 10000);
+        }); // on mouseout
 
-        }); // document.ready
-    });
+    }); // document.ready
 
 })(); //outer function

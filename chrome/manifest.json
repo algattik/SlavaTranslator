@@ -17,6 +17,7 @@
   ],
   "background": {
     "scripts": [
+      "generated/jquery.js",
       "background.js"
     ],
     "persistent": false
