@@ -12,7 +12,7 @@ pip3 install pipenv
 cd scripts
 pipenv install
 
-./download-resources.sh
+pipenv run python3 download-resources.py
 pipenv run python3 download-pages.py
 pipenv run python3 parse-pages.py
 pipenv run python3 build-indexes.py

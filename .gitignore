@@ -1,5 +1,5 @@
 generated/
 build/
-apicache-*/
+apicache*/
 throttle.ctrl
 Pipfile.lock
