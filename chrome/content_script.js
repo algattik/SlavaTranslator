@@ -13,7 +13,7 @@
     };
 
     var accent = '\u0301';
-    var re = /[\wА-яЁё\-\u0301]+/g;
+    var re = /[А-яЁё\-\u0301]+/g;
 
     function normalize(str) {
         str = str.replace(accent, '');
@@ -32,11 +32,11 @@
         var textNodes = [], nonWhitespaceMatcher = /\S/;
 
         function getTextNodes(node) {
-            if (node.nodeType == 3) {
+            if (node.nodeType == Node.TEXT_NODE) {
                 if (includeWhitespaceNodes || nonWhitespaceMatcher.test(node.nodeValue)) {
                     textNodes.push(node);
                 }
-            } else {
+            } else if (!["SCRIPT", "STYLE", "NOSCRIPT"].includes(node.nodeName)) {
                 for (var i = 0, len = node.childNodes.length; i < len; ++i) {
                     getTextNodes(node.childNodes[i]);
                 }
@@ -82,7 +82,7 @@
     }
 
     function add_grammar(grammar, element) {
-        var text = $(element).text();
+        var text = $(element).text().trim();
         if (!grammar.includes(text)) {
             grammar.push(text);
         }
@@ -139,7 +139,7 @@
 
     function parse_wiki(dom, word, lemma, freq, lang_pair) {
         var page_url = 'https://' + lang_pair.src_lang + '.wiktionary.org/wiki/' + lemma;
-        var lang_span_id = lang_pair.lang_span_id;
+        var lang_span_id = lang_pair.lang_span_id; // FIXME may be _1
         var lang_conf = slavaConfig.wiktionary[lang_pair.src_lang];
         var language_heading = lang_conf.language_heading;
         var langspan = dom.find(language_heading + " > span#" + lang_span_id + ".mw-headline");
@@ -274,7 +274,7 @@
 
     function generate_popup(target, lemmas, langs) {
         var src_lang = langs[0];
-        var word = target.text;
+        var word = target.text();
         var target_lang = 'ru';
         var lang_pair = $.grep(slavaConfig.langpairs, function (n) {
             return n.src_lang === src_lang && n.target_lang === target_lang;
@@ -386,6 +386,9 @@
                         return "</span>" + '<span class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</span><span>';
                     }
                     else {
+                        if (match.length > 3) {
+                            console.log("[Slava] No match:" + match);
+                        }
                         return match;
                     }
                 }); // replace
