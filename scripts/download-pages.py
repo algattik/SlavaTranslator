@@ -13,11 +13,12 @@ config = json.load(open("../conf/config.json"))
 
 includes = defaultdict(list)
 excludes = defaultdict(list)
-for langpairs in config["langpairs"]:
-    if "include" in langpairs:
-        includes[langpairs["src_lang"]].extend(langpairs["include"])
-    if "exclude" in langpairs:
-        excludes[langpairs["src_lang"]].extend(langpairs["exclude"])
+for src_lang, targets in config["langpairs"].items():
+    for target_lang, langpair in targets.items():
+        if "include" in langpair:
+            includes[src_lang].extend(langpair["include"])
+        if "exclude" in langpair:
+            excludes[src_lang].extend(langpair["exclude"])
 
 def toHex(x):
     return "".join([hex(ord(c))[2:].zfill(4) for c in x])
@@ -25,7 +26,7 @@ def toHex(x):
 def download_cat(site, cat, callback):
     catName = cat["category"]
     recurse = cat["recurse"] if "recurse" in cat else None
-    print(catName)
+    print("Downloading pages for category [%s]" % catName)
     cat = pywikibot.Category(site, catName)
     for page in pagegenerators.CategorizedPageGenerator(cat, recurse=recurse, namespaces="0"):
         callback(page)

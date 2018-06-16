@@ -15,6 +15,9 @@
     var accent = '\u0301';
     var re = /[А-яЁё\-\u0301]+/g;
 
+    // parse document without loading images. See https://stackoverflow.com/questions/15113910
+    var virtualDocument = document.implementation.createHTMLDocument('virtual');
+
     function normalize(str) {
         str = str.replace(accent, '');
         str = str.toLowerCase();
@@ -137,10 +140,10 @@
         return a.join("");
     }
 
-    function parse_wiki(dom, word, lemma, freq, lang_pair) {
-        var page_url = 'https://' + lang_pair.src_lang + '.wiktionary.org/wiki/' + lemma;
+    function parse_wiki(dom, word, lemma, freq, src_lang, lang_pair) {
+        var page_url = 'https://' + src_lang + '.wiktionary.org/wiki/' + lemma;
         var lang_span_id = lang_pair.lang_span_id; // FIXME may be _1
-        var lang_conf = slavaConfig.wiktionary[lang_pair.src_lang];
+        var lang_conf = slavaConfig.wiktionary[src_lang];
         var language_heading = lang_conf.language_heading;
         var langspan = dom.find(language_heading + " > span#" + lang_span_id + ".mw-headline");
         var langsection = langspan.parent().nextUntil(language_heading);
@@ -206,7 +209,7 @@
                     prev.textContent = prev.textContent.slice(0, -1);
                     next.textContent = next.textContent.slice(1);
                 }
-                if (prev.textContent == " ― ") { //e.g. свет
+                if (prev.textContent.trim() == "―") { //e.g. свет
                     prev.textContent = "";
                 }
                 if (next.textContent.slice(0, 2) == ", ") { //e.g. погрузиться
@@ -254,8 +257,6 @@
         // Remove images
         defn.find('img').remove();
 
-
-
         // Add cases
         var casesdiv = $("<div class='slava-cases'/>");
         $.each(cases, function (i, e) {
@@ -276,9 +277,7 @@
         var src_lang = langs[0];
         var word = target.text();
         var target_lang = 'ru';
-        var lang_pair = $.grep(slavaConfig.langpairs, function (n) {
-            return n.src_lang === src_lang && n.target_lang === target_lang;
-        })[0];
+        var lang_pair = slavaConfig.langpairs[src_lang][target_lang];
         var ajax_queries = $.map(_.keys(lemmas), function (lemma) {
             var url = 'https://' + src_lang + '.wiktionary.org/w/api.php?action=parse&format=json&page=' + lemma + '&prop=text&origin=*';
             return $.getJSON(url);
@@ -297,9 +296,9 @@
                 var parsed = a1[0].parse;
                 if (parsed) {
                     var html = parsed.text['*'];
-                    var dom = $(html);
+                    var dom = $(html, virtualDocument);
                     var freq = lemmas[parsed.title];
-                    dom = parse_wiki(dom, word, parsed.title, freq, lang_pair);
+                    dom = parse_wiki(dom, word, parsed.title, freq, src_lang, lang_pair);
                     odom.append(dom);
                 }
             });
@@ -407,7 +406,16 @@
                 }
                 var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
                 if (lemmas) {
-                    chrome.runtime.sendMessage({ type: "get-language_pref" }, function (response) { generate_popup($(event.target), lemmas, response) });
+                    chrome.runtime.sendMessage({ type: "get-language_pref" }, function (response) {
+
+                        if (response) {
+                            generate_popup($(event.target), lemmas, response);
+                        }
+                        else {
+                            // TODO fix race condition producing this probably when extension is automatically uploaded
+                            console.log("No response to get-language_pref");
+                        }
+                    });
                 }
             }, 100);
 

@@ -1,8 +1,10 @@
 from lxml import etree
-from iso639 import languages
 import unicodedata
 from pathlib import Path
+from progressbar import progressbar
 import json
+
+config = json.load(open("../conf/config.json"))
 
 download_dir = Path("../build/download")
 parsed_dir = Path("../build/parsed")
@@ -33,30 +35,29 @@ def add_norm(forms, html, xpath):
         t = s.xpath("string(.)")
         forms.add(normalize_string(t))
 
-langref = languages.inverted
 
-def parse_file(f, destdir):
+def parse_file(f, src_lang, destdir):
 
-    pageJson=json.load(open(f))
+    pageJson=json.load(open(str(f)))
     of=pageJson['html']
     title = pageJson['title']
     html = etree.fromstring(of)
-    langs = html.xpath("//h2/span[contains(@class,'mw-headline')]")
 
-    for lang in langs:
-        langid = lang.get("id");
-        langn = lang.text
-        if not langn in langref: #e.g. Translingual
+    for target_lang, langpair in config["langpairs"][src_lang].items():
+        lang_name = langpair["lang_span_name"]
+        langs = html.xpath("//h2/span[text()='%s' and contains(@class,'mw-headline')]" % lang_name)
+        if not langs: #does not work for Serbo-Croatian
             continue
-        langcode = langref[langn].part1
         forms = set()
-        if not langcode: #does not work for Serbo-Croatian
-            continue
 
-        add_norm(forms, html, "//*[preceding-sibling::h2[1]/span[@id='%s']]//table[contains(@class,'inflection-table')]/tr/td/span[@lang='%s']" % (langid, langcode))
-        add_norm(forms, html, "//*[preceding-sibling::h2[1]/span[@id='%s']]//strong[contains(@class,'headword') and @lang='%s']" % (langid, langcode))
+        span_selector = "//*[preceding-sibling::h2[1]/span[text()='%s']]" % lang_name
+        td_selector_template = "%s//table[contains(@class,'inflection-table')]/%s/tr/td//span[@lang='%s']"
+        for tbody_selector in ['tbody', '.']:
+            td_selector = td_selector_template % (span_selector, tbody_selector, target_lang)
+            add_norm(forms, html, td_selector)
+        add_norm(forms, html, "%s//strong[contains(@class,'headword') and @lang='%s']" % (span_selector, target_lang))
 
-        dir = Path(destdir, langcode)
+        dir = Path(destdir, target_lang)
         dir.mkdir(parents=True, exist_ok=True)
         file = Path(dir, Path(f).with_suffix('.dat').name)
         s = ''.join(["%s\t%s\t%s\t%s\n" % (form[0], title, form[1] if form[1] else 0, form[2]) for form in forms])
@@ -65,21 +66,21 @@ def parse_file(f, destdir):
         marker.write_bytes(b'')
 
 
-for lang_dir in download_dir.iterdir():
-    if not lang_dir.is_dir():
-        continue
+for src_lang, targets in config["langpairs"].items():
+    lang_dir = Path(download_dir, src_lang)
 
-    destdir = Path(parsed_dir, lang_dir.name)
+    destdir = Path(parsed_dir, src_lang)
     marker_dir = Path(destdir, "_done")
     marker_dir.mkdir(parents=True, exist_ok=True)
 
+    print("Source language: [%s]" % src_lang)
+    print("Listing files...")
     files = sorted(lang_dir.glob("*.json"))
 
     new_pages = 0
 
-    for f_i, f in enumerate(files):
-        if f_i % 1000 == 0:
-            print("%s..." % f_i)
+    print("Parsing files...")
+    for f in progressbar(files):
 
         marker = Path(marker_dir, Path(f).name)
         if marker.is_file():
@@ -87,7 +88,7 @@ for lang_dir in download_dir.iterdir():
 
         new_pages = new_pages + 1
 
-        parse_file(f, destdir)
+        parse_file(f, src_lang, destdir)
 
-print("Parsed %d new pages out of %d total pages." % (new_pages, len(files)))
+    print("Parsed %d new pages out of %d total pages." % (new_pages, len(files)))
 

@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+from progressbar import progressbar
 from collections import defaultdict
 
 parsed_top_dir = Path("../build/parsed")
@@ -8,9 +9,8 @@ resources_dir = Path("../build/resources")
 
 config = json.load(open("../conf/config.json"))
 
-for langpair in config["langpairs"]:
-        src_lang = langpair["src_lang"]
-        target_lang = langpair["target_lang"]
+for src_lang, targets in config["langpairs"].items():
+    for target_lang, langpair in targets.items():
 
         print("%s => %s" % (src_lang, target_lang))
         index_dir=Path(index_top_dir, src_lang, target_lang)
@@ -28,9 +28,10 @@ for langpair in config["langpairs"]:
                 freq2[form] = freq2[form] + c
 
         word_counter = 0
-        for parsed_i, parsed in enumerate(sorted(parsed_dir.glob('*.dat'))):
-            if parsed_i % 5000 == 0:
-                print("%s..." % parsed_i)
+        print("Listing files...")
+        files = sorted(parsed_dir.glob('*.dat'))
+        print("Parsing files...")
+        for parsed in progressbar(files):
             with open(parsed) as p:
                 for line in p:
                     s = line.rstrip('\n')
@@ -46,13 +47,15 @@ for langpair in config["langpairs"]:
                     if declined in freq2:
                         b[1] = b[1] + freq2[declined]
 
-        print("Processing...")
+        print("Assembling words...")
         all_freqs = sorted((f[1] for f in words.values()), reverse=True)
-
         words_arr = sorted(list(words.items()), key = lambda e: e[1][0])
-        words_arr = [[i[0], next(j+1 for j,x in enumerate(all_freqs) if i[1][1]>=x)] for i in words_arr]
 
-        for declined, d in forms.items():
+        print("Computing frequency ranks...")
+        words_arr = [[i[0], next(j+1 for j,x in enumerate(all_freqs) if i[1][1]>=x)] for i in progressbar(words_arr)]
+
+        print("Assembling index...")
+        for declined, d in progressbar(forms.items()):
             words_new = []
             for word_i, entry in d.items():
                 (stresses, canonicals) = entry
@@ -61,7 +64,7 @@ for langpair in config["langpairs"]:
                 words_new.append([word_i, list(stresses), list(canonicals)])
             forms[declined] = words_new
 
-        print("Writing output...")
+        print("Writing output in [%s]..." % index_dir)
         with open(Path(index_dir, "words.json"), "w") as f:
             json.dump(words_arr, f, ensure_ascii=False, separators=(',', ':'))
         with open(Path(index_dir, "forms.json"), "w") as f:
