@@ -3,6 +3,7 @@ import json
 import os
 import re
 from collections import defaultdict
+import progressbar
 
 os.environ['PYWIKIBOT2_NO_USER_CONFIG']='1'
 import pywikibot
@@ -26,10 +27,14 @@ def toHex(x):
 def download_cat(site, cat, callback):
     catName = cat["category"]
     recurse = cat["recurse"] if "recurse" in cat else None
-    print("Downloading pages for category [%s]" % catName)
-    cat = pywikibot.Category(site, catName)
-    for page in pagegenerators.CategorizedPageGenerator(cat, recurse=recurse, namespaces="0"):
+    category = pywikibot.Category(site, catName)
+    bar = progressbar.ProgressBar(max_value=category.categoryinfo['pages'])
+    count = 0
+    for page in pagegenerators.CategorizedPageGenerator(category, recurse=recurse, namespaces="0"):
+        count = count + 1
+        bar.update(count)
         callback(page)
+    bar.finish()
 
 
 for src_lang, incl in includes.items():
@@ -40,11 +45,11 @@ for src_lang, incl in includes.items():
     download_lang_dir.mkdir(parents=True, exist_ok=True)
     
     excluded_pages = set()
-    for e in excludes[src_lang]:
-        download_cat(site, e, lambda page: excluded_pages.add(page.title()))
-        print("Total %d excluded pages" % len(excluded_pages))
+    for excluded_cat in excludes[src_lang]:
+        print("Excluding pages from category [%s]" % excluded_cat['category'])
+        download_cat(site, excluded_cat, lambda page: excluded_pages.add(page.title()))
     
-    for e in incl:
+    for included_cat in incl:
     
         def download_page(page):
             title = page.title()
@@ -65,5 +70,6 @@ for src_lang, incl in includes.items():
     
             my_file.write_text(json.dumps({'title':title, 'text':page.text, 'html':html}, ensure_ascii=False), 'utf-8')
     
-        download_cat(site, e, download_page)
+        print("Including pages from category [%s]" % included_cat['category'])
+        download_cat(site, included_cat, download_page)
 
