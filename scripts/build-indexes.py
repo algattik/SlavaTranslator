@@ -9,6 +9,40 @@ resources_dir = Path("../build/resources")
 
 config = json.load(open("../conf/config.json"))
 
+# ranking, adapted from https://stackoverflow.com/a/30801799
+
+def rank_simple(vector, reverse):
+    return sorted(range(len(vector)), key=vector.__getitem__, reverse=reverse)
+
+def rankdata(a, method='average', reverse=False):
+    n = len(a)
+    ivec=rank_simple(a, reverse)
+    svec=[a[rank] for rank in ivec]
+    sumranks = 0
+    dupcount = 0
+    newarray = [0]*n
+    for i in range(n):
+        sumranks += i
+        dupcount += 1
+        if i==n-1 or svec[i] != svec[i+1]:
+            for j in range(i-dupcount+1,i+1):
+                if method=='average':
+                    averank = sumranks / float(dupcount) + 1
+                    newarray[ivec[j]] = averank
+                elif method=='max':
+                    newarray[ivec[j]] = i+1
+                elif method=='min':
+                    newarray[ivec[j]] = i+1 -dupcount+1
+                else:
+                    raise NameError('Unsupported method')
+
+            sumranks = 0
+            dupcount = 0
+
+
+    return newarray
+
+
 for src_lang, targets in config["langpairs"].items():
     for target_lang, langpair in targets.items():
 
@@ -27,10 +61,11 @@ for src_lang, targets in config["langpairs"].items():
                 c = int(count)
                 freq2[form] = freq2[form] + c
 
-        word_counter = 0
         print("Listing files...")
         files = sorted(parsed_dir.glob('*.dat'))
+
         print("Parsing files...")
+        word_counter = 0
         for parsed in progressbar(files):
             with open(parsed) as p:
                 for line in p:
@@ -48,13 +83,13 @@ for src_lang, targets in config["langpairs"].items():
                         b[1] = b[1] + freq2[declined]
 
         print("Assembling words...")
-        all_freqs = sorted((f[1] for f in words.values()), reverse=True)
         words_arr = sorted(list(words.items()), key = lambda e: e[1][0])
 
         print("Computing frequency ranks...")
-        words_arr = [[i[0], next(j+1 for j,x in enumerate(all_freqs) if i[1][1]>=x)] for i in progressbar(words_arr)]
+        freq_ranks = rankdata([f[1] for f in words.values()], method='min', reverse=True)
+        words_with_freq = list(zip([w[0] for w in words_arr], freq_ranks))
 
-        print("Assembling index...")
+        print("Assembling forms...")
         for declined, d in progressbar(forms.items()):
             words_new = []
             for word_i, entry in d.items():
@@ -66,7 +101,7 @@ for src_lang, targets in config["langpairs"].items():
 
         print("Writing output in [%s]..." % index_dir)
         with open(Path(index_dir, "words.json"), "w") as f:
-            json.dump(words_arr, f, ensure_ascii=False, separators=(',', ':'))
+            json.dump(words_with_freq, f, ensure_ascii=False, separators=(',', ':'))
         with open(Path(index_dir, "forms.json"), "w") as f:
             json.dump(forms, f, ensure_ascii=False, separators=(',', ':'))
 
