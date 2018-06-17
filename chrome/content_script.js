@@ -12,7 +12,9 @@
         '=': '&#x3D;',
     };
 
+    // Unicode COMBINING ACUTE ACCENT character, used to mark stress on Russian words
     var accent = '\u0301';
+    // Regexp for matching Russian words
     var re = /[А-яЁё\-\u0301]+/g;
 
     // parse document without loading images. See https://stackoverflow.com/questions/15113910
@@ -140,6 +142,20 @@
         return a.join("");
     }
 
+    function xpath_list(jquery_elements, expr) {
+
+        var nodes = [];
+        $.each(jquery_elements.get(), function (i, e) {
+            var iterator = document.evaluate(expr, e, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+            var thisNode = iterator.iterateNext();
+            while (thisNode) {
+                nodes.push(thisNode);
+                thisNode = iterator.iterateNext();
+            }
+        });
+        return nodes;
+    }
+
     function parse_wiki(dom, word, lemma, freq, src_lang, lang_pair) {
         var page_url = 'https://' + src_lang + '.wiktionary.org/wiki/' + lemma;
         var lang_span_id = lang_pair.lang_span_id; // FIXME may be _1
@@ -173,25 +189,36 @@
         var defn = wordClassHeadings.parent().nextUntil('hr,h1,h2,h3,h4,h5'); // e.g. with hr: после
         var full_def = wordClassHeadings.parent().nextUntil(wordClassHeadings.prop('tagName'));
 
-        var cases = [];
-        $.each(full_def.get(), function (i, e) {
-            var upper = genCharArray('A', 'Z') + genCharArray('А', 'Я') + 'Ë';
-            var lower = upper.toLowerCase();
-            // JQuery can't understand this XPath query - use DOM XPath instead
-            var expr = '//td/span[@lang="ru"][translate(.,"' + upper + accent + '", "' + lower + '")=translate("' + escapeHtml(word) + '","' + upper + accent + '", "' + lower + '")]';
-            expr = expr + '/..';
-            var pa = wordClassHeadings.parent().get(0);
-            var iterator = document.evaluate(expr, e, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
-            var thisNode = iterator.iterateNext();
-            var nodes = [];
-            while (thisNode) {
-                nodes.push(thisNode);
-                thisNode = iterator.iterateNext();
-            }
 
-            $.each(nodes, function (i, thisNode) {
-                grammar_from_table($(thisNode).closest('table'), thisNode, cases);
-            });
+
+        var upper = genCharArray('A', 'Z') + genCharArray('А', 'Я') + 'Ë';
+        var lower = upper.toLowerCase();
+        var expr = '//td/span[@lang="ru"][translate(.,"' + upper + accent + '", "' + lower + '")=translate("' + escapeHtml(word) + '","' + upper + accent + '", "' + lower + '")]/..';
+        var nodes = xpath_list(full_def, expr);
+
+        var cases = [];
+        $.each(nodes, function (i, element) {
+            grammar_from_table($(element).closest('table'), element, cases);
+        });
+
+        var comparatives = xpath_list(full_def, "b[@lang='ru' and preceding-sibling::*[1][name()='i' and text()='comparative']]");
+        $.each(comparatives, function (i, element) {
+            var comparative = element.textContent;
+            var prefix = "по";
+            var test;
+            if (comparative.startsWith("(" + prefix + ")")) {
+                comparative = comparative.slice(prefix.length + 2);
+                test = [comparative, prefix + comparative];
+            }
+            else {
+                test = [comparative];
+            }
+            for (var i = 0; i < test.length; i++) {
+                if (test[i] == word) {
+                    cases.push("comparative");
+                    break;
+                }
+            }
         });
 
         defn = defn.filter(":not(table.flextable)");
@@ -392,7 +419,7 @@
                         return generate_popup_link(lemmasf, ref);
                     }
                     else {
-                        if (match.length > 3) {
+                        if (match.length > 3 && match[0] === match[0].toLowerCase()) {
                             console.log("[Slava] No match:" + match);
                         }
                         var lemmasf = {}; lemmasf[match] = 0;
