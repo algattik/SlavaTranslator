@@ -155,17 +155,19 @@
 
         // Add word class within definition (since word class heading is removed)
         // Add frequency within definition
-        var freq_span = ' <span class="slava-wordfreq">' + freq + '</span>';
-        wordClassHeadings.each(function () {
-            var s = $('<span class="slava-wordclass">' + $(this).text() + '</span>');
-            if (lang_conf.heading_is_class) {
-                $(this).parent().next().children(':first-child').after(s).after(' ');
-                s.after(freq_span);
-            }
-            else {
-                $(this).parent().next().prepend(freq_span);
-            }
-        });
+        if (freq) {
+            var freq_span = ' <span class="slava-wordfreq">' + freq + '</span>';
+            wordClassHeadings.each(function () {
+                var s = $('<span class="slava-wordclass">' + $(this).text() + '</span>');
+                if (lang_conf.heading_is_class) {
+                    $(this).parent().next().children(':first-child').after(s).after(' ');
+                    s.after(freq_span);
+                }
+                else {
+                    $(this).parent().next().prepend(freq_span);
+                }
+            });
+        }
 
 
         var defn = wordClassHeadings.parent().nextUntil('hr,h1,h2,h3,h4,h5'); // e.g. with hr: после
@@ -273,6 +275,12 @@
 
     }
 
+
+    function generate_popup_link(lemmasf, word) {
+        var slemmas = JSON.stringify(lemmasf);
+        return "</span>" + '<span class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + word + '</span><span>';
+    }
+
     function generate_popup(target, lemmas, langs) {
         var src_lang = langs[0];
         var word = target.text();
@@ -302,7 +310,7 @@
                     odom.append(dom);
                 }
             });
-            if (odom.children().length) {
+            if (odom.children().children().children().length) {
                 target.popover({
                     trigger: 'manual',
                     content: odom,
@@ -381,14 +389,15 @@
                             ref = accented;
                         }
 
-                        var slemmas = JSON.stringify(lemmasf);
-                        return "</span>" + '<span class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</span><span>';
+                        return generate_popup_link(lemmasf, ref);
                     }
                     else {
                         if (match.length > 3) {
                             console.log("[Slava] No match:" + match);
                         }
-                        return match;
+                        var lemmasf = {}; lemmasf[match] = 0;
+                        var slemmas = JSON.stringify(lemmasf);
+                        return generate_popup_link(lemmasf, match);
                     }
                 }); // replace
                 str = "<span>" + str + "</span>";
