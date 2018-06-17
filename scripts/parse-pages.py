@@ -9,6 +9,7 @@ config = json.load(open("../conf/config.json"))
 download_dir = Path("../build/download")
 parsed_dir = Path("../build/parsed")
 normalize_char_map = {'ё':'е', 'Ё':'Е'}
+vowels = 'аэыуояеёюи'
 
 def normalize_string(s):
    norms = unicodedata.normalize('NFC', s)
@@ -22,10 +23,11 @@ def normalize_string(s):
    normalized = ''.join(normalize_char_map[c] if c in normalize_char_map else c
                   for c in noacc).lower()
    stress=None
-   for p, c in enumerate(norms):
-       if unicodedata.category(c) == 'Mn':  # 'Mark, Nonspacing' = accents
-           stress = p
-           break
+   if vowel_count(normalized) > 1:
+       for p, c in enumerate(norms):
+           if unicodedata.category(c) == 'Mn':  # 'Mark, Nonspacing' = accents
+               stress = p
+               break
 
    return tuple([normalized, stress, ''.join(noacc)])
 
@@ -35,6 +37,12 @@ def add_norm(forms, html, xpath):
         t = s.xpath("string(.)")
         forms.add(normalize_string(t))
 
+def vowel_count(txt):
+    count = 0
+    txt = txt.lower()
+    for vowel in vowels:
+        count = count + txt.count(vowel)
+    return count
 
 def parse_file(f, src_lang, destdir):
 
