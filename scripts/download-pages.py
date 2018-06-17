@@ -64,7 +64,6 @@ for src_lang, incl in includes.items():
             if my_file.is_file():
                 return
     
-            print(title)
             html = site.get_parsed_page(title)
             html = re.sub("<!--.*?-->", "", html, flags=re.DOTALL)
     
