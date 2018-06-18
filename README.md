@@ -18,7 +18,7 @@ pipenv run python3 parse-pages.py
 pipenv run python3 build-indexes.py
 ./package-extension.sh
 
-```bash
+```
 
 # License
 
