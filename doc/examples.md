@@ -1,4 +1,4 @@
-| Feature | Example | Example word |
-| :---         |     ---:      |          ---: |
-| | | свет |
-| | | четырехсот |
+| Example word | Example | Feature |
+| ---         |     ---      |          --- |
+| свет | | |
+| четырехсот | | |
