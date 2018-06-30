@@ -193,12 +193,17 @@
 
         var upper = genCharArray('A', 'Z') + genCharArray('А', 'Я') + 'Ë';
         var lower = upper.toLowerCase();
-        var expr = '//td/span[@lang="ru"][translate(.,"' + upper + accent + '", "' + lower + '")=translate("' + escapeHtml(word) + '","' + upper + accent + '", "' + lower + '")]/..';
-        var nodes = xpath_list(full_def, expr);
+        var expr1 = '//td/span[@lang="ru"]';
+        var expr2s = ['', '/a']; // свое́й under свой is once not full content of the cell
+        var expr3 = '[translate(.,"' + upper + accent + '", "' + lower + '")=translate("' + escapeHtml(word) + '","' + upper + accent + '", "' + lower + '")]/ancestor::td[1]';
 
         var cases = [];
-        $.each(nodes, function (i, element) {
-            grammar_from_table($(element).closest('table'), element, cases);
+        $.each(expr2s, function (i, expr2) {
+            var nodes = xpath_list(full_def, expr1 + expr2 + expr3);
+
+            $.each(nodes, function (j, element) {
+                grammar_from_table($(element).closest('table'), element, cases);
+            });
         });
 
         var comparatives = xpath_list(full_def, "b[@lang='ru' and preceding-sibling::*[1][name()='i' and text()='comparative']]");
