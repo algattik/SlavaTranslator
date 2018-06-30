@@ -1,17 +1,7 @@
 
-var language_pref = Array();
 function set_language_pref(lp) {
   chrome.storage.sync.set({ 'language_pref': lp });
-  language_pref = lp;
 }
-chrome.storage.sync.get('language_pref', function (response) {
-  language_pref = response.language_pref;
-  for (var key in slavaConfig.wiktionary) {
-    if (!language_pref.includes(key)) {
-      language_pref.push(key);
-    }
-  }
-});
 console.log("loading dictionary data");
 var forms_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/forms.json'));
 var lemmas_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/words.json'));
@@ -98,7 +88,16 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
         set_language_pref(request.payload);
       }
       else if (request.type == "get-language_pref") {
-        sendResponse(language_pref);
+        chrome.storage.sync.get('language_pref', function (response) {
+          language_pref = response.language_pref;
+          for (var key in slavaConfig.wiktionary) {
+            if (!language_pref.includes(key)) {
+              language_pref.push(key);
+            }
+          }
+          sendResponse(language_pref);
+        });
+        return true; // mark message response as async
       }
     });
 
