@@ -59,7 +59,19 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
           if (forms_for_entry) {
             var return_entries = Array();
             $.each(forms_for_entry, function (form_i, form) {
-              return_entries.push([lemmas[form[0]], form[1], form[2]]);
+              return_entries.push([lemmas[form[0]], form[1], form[2], 0]);
+
+              // e.g. шедшая -> шедший -> идти
+              //      про́ще -> простой -> простоя́ть
+              var forms_root = forms[lemmas[form[0]][0]];
+              if (forms_root) {
+                $.each(forms_root, function (root_i, root) {
+                  return_entries.push([lemmas[root[0]], [], [], 1]);
+                });
+              }
+
+
+
             });
             retval[entry] = return_entries;
           }

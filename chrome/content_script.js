@@ -382,8 +382,11 @@
                             var lemma_entry = entry[0];
                             stress_chars = stress_chars.concat(entry[1]);
                             lemmasf[lemma_entry[0]] = lemma_entry[1];
-                            var spelling = entry[2].length ? entry[2][0] : normalized_word;
-                            spellings[spelling] = 1;
+                            var is_derived = entry[3];
+                            if (!is_derived) {
+                                var spelling = entry[2].length ? entry[2][0] : normalized_word;
+                                spellings[spelling] = 1;
+                            }
                         });
                         var matchn = match.replace(accent, '');
                         var ref;

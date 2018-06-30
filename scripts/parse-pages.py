@@ -36,13 +36,16 @@ def add_norm(forms, html, xpath, optional_prefix=None, prefix_norm=None):
     for match in matches:
         match_text = match.xpath("string(.)")
 
-        # Add comparative with and without comparative suffix, e.g. попроще and проще
-        if optional_prefix and match_text.startswith(optional_prefix):
-            suffix = match_text[len(optional_prefix):]
-            forms.add(normalize_string(prefix_norm + suffix))
-            forms.add(normalize_string(suffix))
-        else:
-            forms.add(normalize_string(match_text))
+        #Cell may contain multiple forms, e.g. свой -> свое́й, свое́ю (https://en.wiktionary.org/wiki/%D1%81%D0%B2%D0%BE%D0%B9)
+        for match_form in match_text.split(", "):
+
+            # Add comparative with and without comparative suffix, e.g. попроще and проще
+            if optional_prefix and match_form.startswith(optional_prefix):
+                suffix = match_form[len(optional_prefix):]
+                forms.add(normalize_string(prefix_norm + suffix))
+                forms.add(normalize_string(suffix))
+            else:
+                forms.add(normalize_string(match_form))
 
 def vowel_count(txt):
     count = 0
@@ -72,7 +75,8 @@ def parse_file(f, src_lang, destdir):
             add_norm(forms, html, td_selector)
         add_norm(forms, html, "%s//strong[contains(@class,'headword') and @lang='%s']" % (span_selector, target_lang))
 
-        comp_select = "//b[@lang='%s' and preceding-sibling::*[1][name()='i' and text()='comparative']]" % target_lang
+        # Parse comparative. NB тёплый has two variants
+        comp_select = "//b[@lang='%s' and preceding-sibling::*[name()='i' and text()='comparative']]" % target_lang
         add_norm(forms, html, comp_select, "(по)", "по")
 
         dir = Path(destdir, target_lang)
