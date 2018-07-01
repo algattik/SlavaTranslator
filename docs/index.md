@@ -18,10 +18,9 @@ See the [examples](examples.md) page for more information.
 
 
 ### Reporting Issues and Feedback
+
 If you encounter any bugs, please file an issue in the [Issues](https://github.com/algattik/SlavaTranslator/issues) section of our GitHub repo.
 
 # More information
 
-Source code and license information can be found at https://github.com/algattik/SlavaTranslator/.
-
-
+Source code and license information can be found at [our GitHub repository](https://github.com/algattik/SlavaTranslator/).
