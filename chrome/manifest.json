@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Slava Russian Translator",
   "description": "This extension writes accents on Russian words, and adds a popup to each word with its definition.",
-  "version": "0.0.0.1",
+  "version": "0.0.0.2",
   "browser_action": {
     "default_title": "Enrich text with accents and translation popups",
     "default_icon": "owl_16.png",
