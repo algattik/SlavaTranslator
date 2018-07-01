@@ -8,7 +8,7 @@ The extension contains an index of all Russian words from the English wiktionary
 
 After the extension is installed, click on this icon in the Chrome toolbar:
 
-[icon](icon.png)
+![icon](icon.png)
 
 Toggle the switch to enable the extension for the current tab.
 
@@ -16,6 +16,9 @@ Toggle the switch to enable the extension for the current tab.
 
 See the [examples](examples.md) page for more information.
 
+
+### Reporting Issues and Feedback
+If you encounter any bugs, please file an issue in the [Issues](https://github.com/algattik/SlavaTranslator/issues) section of our GitHub repo.
 
 # More information
 
