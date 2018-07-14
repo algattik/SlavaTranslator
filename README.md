@@ -4,7 +4,7 @@ This Chrome extension adds an accent to mark the stress on words in Russian. Hov
 
 The extension contains an index of all Russian words from the English wiktionary site with all their grammatical forms and accent position.
 
-For more information and to install, visit the (https://chrome.google.com/webstore/detail/slava-russian-dictionary/bcbcmhmpbggnljoapclfcagammaapghi)[extension page].
+For more information and to install, visit the [extension page](https://chrome.google.com/webstore/detail/slava-russian-dictionary/bcbcmhmpbggnljoapclfcagammaapghi).
 
 # How to build
 
@@ -26,4 +26,4 @@ pipenv run python3 build-indexes.py
 
 This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
 
-Icon originally by (https://openclipart.org/detail/owl-by-karthikeyan)[karthikeyan], via (https://commons.wikimedia.org/wiki/File:Clipart_owl.png)[Wikimedia Commons].
+Icon originally by [karthikeyan](https://openclipart.org/detail/owl-by-karthikeyan), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Clipart_owl.png).
