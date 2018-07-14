@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
       $('#slava-disable-reload').css('visibility', checked ? 'hidden' : 'visible');
 
     });
-    $('#container').css('visibility', 'visible');
   });
 
   $('#go-to-options').click(function () {

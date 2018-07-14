@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    $('#container').css('visibility', 'visible');
   });
 
 })
