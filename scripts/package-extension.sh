@@ -12,4 +12,5 @@ wget -qO generated/bootstrap-toggle.css "https://gitcdn.github.io/bootstrap-togg
 wget -qO generated/bootstrap-toggle.js "https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"
 wget -qO generated/Sortable.js "https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js"
 (echo "slavaConfig = "; cat ../conf/config.json) > generated/slavaConfig.js
+rm -f ../build/slava-package.zip && zip -r ../build/slava-package.zip .
 echo Downloads complete.

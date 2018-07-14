@@ -1,7 +1,4 @@
 
-function set_language_pref(lp) {
-  chrome.storage.sync.set({ 'language_pref': lp });
-}
 console.log("loading dictionary data");
 var forms_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/forms.json'));
 var lemmas_q = $.getJSON(chrome.extension.getURL('generated/resources/ru/words.json'));
@@ -85,11 +82,11 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
         load(false);
       }
       else if (request.type == "set-language_pref") {
-        set_language_pref(request.payload);
+        chrome.storage.sync.set({ 'language_pref': request.payload });
       }
       else if (request.type == "get-language_pref") {
         chrome.storage.sync.get('language_pref', function (response) {
-          language_pref = response.language_pref;
+          language_pref = response.language_pref || [];
           for (var key in slavaConfig.wiktionary) {
             if (!language_pref.includes(key)) {
               language_pref.push(key);
