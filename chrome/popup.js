@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   chrome.runtime.sendMessage({ type: "get-enabled" }, function (response) {
-    console.log("Get res", response);
     if (response) {
       $('#slava-enable').bootstrapToggle('on');
     }
