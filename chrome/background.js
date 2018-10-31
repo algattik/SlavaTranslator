@@ -11,6 +11,7 @@ function load(unload) {
       chrome.tabs.executeScript(null, { file: "generated/jquery.js" });
       chrome.tabs.executeScript(null, { file: "generated/bootstrap.js" });
       chrome.tabs.executeScript(null, { file: "generated/slavaConfig.js" });
+      chrome.tabs.executeScript(null, { file: "shared.js" });
       chrome.tabs.executeScript(null, { file: "content_script.js" });
       chrome.tabs.insertCSS(null, { file: "generated/bootstrap.css" });
     }
@@ -50,7 +51,8 @@ $.when(forms_q, lemmas_q).done(function (forms_r, lemmas_r) {
 
               // e.g. шедшая -> шедший -> идти
               //      про́ще -> простой -> простоя́ть
-              var forms_root = forms[lemmas[form[0]][0]];
+              //      расчлененные -> расчленённый -> расчленить
+              var forms_root = forms[normalize(lemmas[form[0]][0])];
               if (forms_root) {
                 $.each(forms_root, function (root_i, root) {
                   return_entries.push([lemmas[root[0]], [], [], 1]);

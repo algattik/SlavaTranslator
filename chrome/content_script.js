@@ -12,20 +12,11 @@
         '=': '&#x3D;',
     };
 
-    // Unicode COMBINING ACUTE ACCENT character, used to mark stress on Russian words
-    var accent = '\u0301';
     // Regexp for matching Russian words
     var re = /[А-яЁё\-\u0301]+/g;
 
     // parse document without loading images. See https://stackoverflow.com/questions/15113910
     var virtualDocument = document.implementation.createHTMLDocument('virtual');
-
-    function normalize(str) {
-        str = str.replace(accent, '');
-        str = str.toLowerCase();
-        str = str.replace('ё', 'е');
-        return str;
-    }
 
     function escapeHtml(string) {
         return String(string).replace(/[&<>"'`=\/]/g, function (s) {
@@ -195,7 +186,7 @@
         var lower = upper.toLowerCase();
         var expr1 = '//td/span[@lang="ru"]';
         var expr2s = ['', '/a']; // свое́й under свой is once not full content of the cell
-        var expr3 = '[translate(.,"' + upper + accent + '", "' + lower + '")=translate("' + escapeHtml(word) + '","' + upper + accent + '", "' + lower + '")]/ancestor::td[1]';
+        var expr3 = '[translate(.,"' + upper + UNICODE_COMBINING_ACUTE_ACCENT + '", "' + lower + '")=translate("' + escapeHtml(word) + '","' + upper + UNICODE_COMBINING_ACUTE_ACCENT + '", "' + lower + '")]/ancestor::td[1]';
 
         var cases = [];
         $.each(expr2s, function (i, expr2) {
@@ -308,11 +299,6 @@
     }
 
 
-    function generate_popup_link(lemmasf, word) {
-        var slemmas = JSON.stringify(lemmasf);
-        return "</span>" + '<span class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + word + '</span><span>';
-    }
-
     function generate_popup(target, lemmas, langs) {
         var src_lang = langs[0];
         var word = target.text();
@@ -406,10 +392,11 @@
 
                 var str = t1.replace(re, function (match, group) {
                     var normalized_word = normalize(match);
+                    var ref = match;
+                    var lemmasf = {};
                     if (forms[normalized_word]) {
                         var entry0 = forms[normalized_word];
                         var stress_chars = Array();
-                        var lemmasf = {};
                         var spellings = {};
                         $.each(entry0, function (i, entry) {
                             var lemma_entry = entry[0];
@@ -421,8 +408,7 @@
                                 spellings[spelling] = 1;
                             }
                         });
-                        var matchn = match.replace(accent, '');
-                        var ref;
+                        var matchn = match.replace(UNICODE_COMBINING_ACUTE_ACCENT, '');
                         if (!spellings || spellings[matchn]) { ref = matchn }
                         else {
                             ref = _.keys(spellings)[0];
@@ -445,23 +431,21 @@
                             var accented = "";
                             var s_pos = 0;
                             $.each(stress_pos, function (i, stress_char) {
-                                accented += chars.slice(s_pos, stress_char) + accent;
+                                accented += chars.slice(s_pos, stress_char) + UNICODE_COMBINING_ACUTE_ACCENT;
                                 s_pos = stress_char;
                             });
                             accented += chars.slice(s_pos);
                             ref = accented;
                         }
-
-                        return generate_popup_link(lemmasf, ref);
                     }
                     else {
                         if (match.length > 3 && match[0] === match[0].toLowerCase()) {
                             console.log("[Slava] No match:" + match);
                         }
-                        var lemmasf = {}; lemmasf[match] = 0;
-                        var slemmas = JSON.stringify(lemmasf);
-                        return generate_popup_link(lemmasf, match);
+                        lemmasf[match] = 0;
                     }
+                    var slemmas = JSON.stringify(lemmasf);
+                    return "</span>" + '<span class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</span><span>';
                 }); // replace
                 str = "<span>" + str + "</span>";
                 var span = $(str);

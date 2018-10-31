@@ -26,6 +26,7 @@
     "scripts": [
       "generated/jquery.js",
       "generated/slavaConfig.js",
+      "shared.js",
       "background.js"
     ],
     "persistent": false
