@@ -8,6 +8,7 @@
 | продано, расчлененные | ![продано](продано.png) | Recognizes declined forms of verb participles. |
 | проще, попроще | ![проще](проще.png) | Recognizes comparative forms. |
 | крупнейший, крупнейшего | ![крупнейший](крупнейший.png) | Recognizes superlative forms. |
-| лиса | ![лиса](лиса.png) | Marks all accents where several accent positions are possible. The reader must stress the correct position depending on grammar. |
+| творог, свекла | ![творог](творог.png) | Marks all accents where several accent positions are accepted. |
+| лиса | ![лиса](лиса.png) | Marks all accents where several accent positions are possible depending on grammar. The reader must stress the correct position based on grammar. |
 | Тарзан | ![Тарзан](Тарзан.png) | When a word is missing from English Wiktionary, displays entry from Russian Wiktionary instead. The order of language preferences is configurable in the extension options. |
 | | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | |
