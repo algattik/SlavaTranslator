@@ -330,15 +330,21 @@
                     odom.append(dom);
                 }
             });
+            document.body.style.cursor = "auto";
             if (odom.children().children().children().length) {
+
+                var placement = 'bottom';
+                if ((target.offset().top - $(window).scrollTop()) / window.innerHeight > .5)
+                   placement = 'top';
+
                 target.popover({
                     trigger: 'manual',
                     content: odom,
                     container: 'body',
+                    placement: placement,
                     html: true
                 });
                 target.popover("show");
-                document.body.style.cursor = "auto";
             }
             else if (langs.length > 1) {
                 generate_popup(target, lemmas, langs.slice(1));
