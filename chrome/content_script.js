@@ -366,6 +366,21 @@
 
     }
 
+    function gen_popover(item) {
+        var lemmas = JSON.parse(item.attr("data-lemmas"));
+        if (lemmas) {
+            chrome.runtime.sendMessage({ type: "get-language_pref" }, function (response) {
+
+                if (response) {
+                    generate_popup(item, lemmas, response);
+                }
+                else {
+                    console.log("No response to get-language_pref");
+                }
+            });
+        }
+    }
+
     function slava_mouseenter(event) {
         $(".popover").css("display", "none");
         event.target.setAttribute("data-popover_on", "1");
@@ -373,18 +388,8 @@
             if (!event.target.getAttribute("data-popover_on")) {
                 return;
             }
-            var lemmas = JSON.parse(event.target.getAttribute("data-lemmas"));
-            if (lemmas) {
-                chrome.runtime.sendMessage({ type: "get-language_pref" }, function (response) {
+            gen_popover($(event.target));
 
-                    if (response) {
-                        generate_popup($(event.target), lemmas, response);
-                    }
-                    else {
-                        console.log("No response to get-language_pref");
-                    }
-                });
-            }
         }, 100);
 
     }
@@ -394,6 +399,83 @@
         setTimeout(function () { $(event.target).popover("hide"); }, 10000);
     }
 
+    function mark_word(word_item, callback) {
+        var t1 = word_item.text();
+
+        var allWords = Array();
+        var match;
+        while (match = re.exec(t1)) {
+            allWords.push(normalize(match[0]));
+        }
+
+        chrome.runtime.sendMessage({ type: "resolve", payload: _.unique(allWords) }, function (response) {
+            var forms = response.payload.forms;
+
+            var str = t1.replace(re, function (match, group) {
+                var normalized_word = normalize(match);
+                var ref = match;
+                var lemmasf = {};
+                if (forms[normalized_word]) {
+                    var entry0 = forms[normalized_word];
+                    var stress_chars = Array();
+                    var spellings = {};
+                    $.each(entry0, function (i, entry) {
+                        var lemma_entry = entry[0];
+                        stress_chars = stress_chars.concat(entry[1]);
+                        lemmasf[lemma_entry[0]] = lemma_entry[1];
+                        var is_derived = entry[3];
+                        if (!is_derived) {
+                            var spelling = entry[2].length ? entry[2][0] : normalized_word;
+                            spellings[spelling] = 1;
+                        }
+                    });
+                    var matchn = match.replace(UNICODE_COMBINING_ACUTE_ACCENT, '');
+                    if (!spellings || spellings[matchn]) { ref = matchn }
+                    else {
+                        ref = _.keys(spellings)[0];
+
+                        // match capitalization
+                        if (match[0].toLowerCase() != match[0]) {
+                            if (match.length > 1 && match[1].toLowerCase() != match[1]) {
+                                ref = ref.toUpperCase();
+                            }
+                            else {
+                                ref = ref.charAt(0).toUpperCase() + ref.slice(1);
+                            }
+                        }
+                    }
+
+                    // mark stress with accent character
+                    if (stress_chars) {
+                        var stress_pos = _.uniq(stress_chars).sort();
+                        var chars = ref;
+                        var accented = "";
+                        var s_pos = 0;
+                        $.each(stress_pos, function (i, stress_char) {
+                            accented += chars.slice(s_pos, stress_char) + UNICODE_COMBINING_ACUTE_ACCENT;
+                            s_pos = stress_char;
+                        });
+                        accented += chars.slice(s_pos);
+                        ref = accented;
+                    }
+                }
+                else {
+                    if (match.length > 3 && match[0] === match[0].toLowerCase()) {
+                        console.log("[Slava] No match:" + match);
+                    }
+                    lemmasf[match] = 0;
+                }
+                var slemmas = JSON.stringify(lemmasf);
+                return "</span>" + '<span class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</span><span>';
+            }); // replace
+            str = "<span>" + str + "</span>";
+            var span = $(str);
+            word_item.replaceWith(span);
+            if (callback)
+                callback(span);
+        });
+    }
+
     function mark_words() {
 
 
@@ -401,92 +483,31 @@
 
         var v = getTextNodesIn(document.body);
 
-        $.each(v, function (i, val) {
-            var t1 = $(val).text();
-
-            var allWords = Array();
-            var match;
-            while (match = re.exec(t1)) {
-                allWords.push(normalize(match[0]));
-            }
-
-            chrome.runtime.sendMessage({ type: "resolve", payload: _.unique(allWords) }, function (response) {
-                var forms = response.payload.forms;
-
-                var str = t1.replace(re, function (match, group) {
-                    var normalized_word = normalize(match);
-                    var ref = match;
-                    var lemmasf = {};
-                    if (forms[normalized_word]) {
-                        var entry0 = forms[normalized_word];
-                        var stress_chars = Array();
-                        var spellings = {};
-                        $.each(entry0, function (i, entry) {
-                            var lemma_entry = entry[0];
-                            stress_chars = stress_chars.concat(entry[1]);
-                            lemmasf[lemma_entry[0]] = lemma_entry[1];
-                            var is_derived = entry[3];
-                            if (!is_derived) {
-                                var spelling = entry[2].length ? entry[2][0] : normalized_word;
-                                spellings[spelling] = 1;
-                            }
-                        });
-                        var matchn = match.replace(UNICODE_COMBINING_ACUTE_ACCENT, '');
-                        if (!spellings || spellings[matchn]) { ref = matchn }
-                        else {
-                            ref = _.keys(spellings)[0];
-
-                            // match capitalization
-                            if (match[0].toLowerCase() != match[0]) {
-                                if (match.length > 1 && match[1].toLowerCase() != match[1]) {
-                                    ref = ref.toUpperCase();
-                                }
-                                else {
-                                    ref = ref.charAt(0).toUpperCase() + ref.slice(1);
-                                }
-                            }
-                        }
-
-                        // mark stress with accent character
-                        if (stress_chars) {
-                            var stress_pos = _.uniq(stress_chars).sort();
-                            var chars = ref;
-                            var accented = "";
-                            var s_pos = 0;
-                            $.each(stress_pos, function (i, stress_char) {
-                                accented += chars.slice(s_pos, stress_char) + UNICODE_COMBINING_ACUTE_ACCENT;
-                                s_pos = stress_char;
-                            });
-                            accented += chars.slice(s_pos);
-                            ref = accented;
-                        }
-                    }
-                    else {
-                        if (match.length > 3 && match[0] === match[0].toLowerCase()) {
-                            console.log("[Slava] No match:" + match);
-                        }
-                        lemmasf[match] = 0;
-                    }
-                    var slemmas = JSON.stringify(lemmasf);
-                    return "</span>" + '<span class="slava-pop" data-lemmas="' + escapeHtml(slemmas) + '">' + ref + '</span><span>';
-                }); // replace
-                str = "<span>" + str + "</span>";
-                var span = $(str);
-                $(val).replaceWith(span);
-            });
+        $.each(v, function () {
+            mark_word($(this), null);
         });
 
+
     }
+
 
     $(document).ready(mark_words)
 
     $("body").on("mouseenter", ".slava-pop", slava_mouseenter);
     $("body").on("mouseleave", ".slava-pop", slava_mouseleave);
 
+    $("body").append('<div id="slava-quick-input" style="z-index: 2147483647; visibility:hidden; position: fixed; top:0; right:0; background-color:#FAFAFA"><input id="slava-try" type="text"></input><div id="slava-try-res"></div><div>&nbsp;</div></div>');
+
     $('#slava-try').on("input", function () {
-        console.log($(this).val());
         $('#slava-try-res').text($(this).val());
-        mark_words();
+        $.each($('#slava-try-res').contents(), function () {
+            mark_word($(this), function (obj) {
+                var target = obj.filter('.slava-pop');
+                target.attr("data-popover_on", "1");
+                gen_popover(target);
+            }
+            );
+        });
     });
 
 })(); //outer function
