@@ -309,6 +309,8 @@
             return $.getJSON(url);
         });
 
+        document.body.style.cursor = "progress";
+
         $.when.apply($, ajax_queries).done(function () {
             if (!target.attr("data-popover_on")) {
                 return;
@@ -336,6 +338,7 @@
                     html: true
                 });
                 target.popover("show");
+                document.body.style.cursor = "auto";
             }
             else if (langs.length > 1) {
                 generate_popup(target, lemmas, langs.slice(1));
