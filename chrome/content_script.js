@@ -300,6 +300,33 @@
 
 
     function generate_popup(target, lemmas, langs) {
+        document.body.style.cursor = "progress";
+        get_entries(target, lemmas, langs, function (target, items) {
+            if (!target.attr("data-popover_on")) {
+                return;
+            }
+            var odom = $('<div class="slava-popover"/>');
+            $.each(items, function () {
+                odom.append($(this));
+            });
+            document.body.style.cursor = "auto";
+
+            var placement = 'bottom';
+            if ((target.offset().top - $(window).scrollTop()) / window.innerHeight > .5)
+                placement = 'top';
+
+            target.popover({
+                trigger: 'manual',
+                content: odom,
+                container: 'body',
+                placement: placement,
+                html: true
+            });
+            target.popover("show");
+        });
+    }
+
+    function get_entries(target, lemmas, langs, callback) {
         var src_lang = langs[0];
         var word = target.text();
         var target_lang = 'ru';
@@ -309,13 +336,9 @@
             return $.getJSON(url);
         });
 
-        document.body.style.cursor = "progress";
-
         $.when.apply($, ajax_queries).done(function () {
-            if (!target.attr("data-popover_on")) {
-                return;
-            }
-            var odom = $('<div class="slava-popover"/>');
+            var odom = Array();
+
             var res = arguments;
             if (ajax_queries.length < 2) {
                 res = [arguments];
@@ -327,29 +350,20 @@
                     var dom = $(html, virtualDocument);
                     var freq = lemmas[parsed.title];
                     dom = parse_wiki(dom, word, parsed.title, freq, src_lang, lang_pair);
-                    odom.append(dom);
+                    if (dom.children().children().length) {
+                        odom.push(dom);
+                    }
+
                 }
             });
-            document.body.style.cursor = "auto";
-            if (odom.children().children().children().length) {
-
-                var placement = 'bottom';
-                if ((target.offset().top - $(window).scrollTop()) / window.innerHeight > .5)
-                   placement = 'top';
-
-                target.popover({
-                    trigger: 'manual',
-                    content: odom,
-                    container: 'body',
-                    placement: placement,
-                    html: true
-                });
-                target.popover("show");
+            if (odom.length || langs.length <= 1) {
+                callback(target, odom);
             }
-            else if (langs.length > 1) {
-                generate_popup(target, lemmas, langs.slice(1));
+            else {
+                get_entries(target, lemmas, langs.slice(1), callback);
             }
         });
+
     }
 
     function slava_mouseenter(event) {
@@ -469,10 +483,10 @@
     $("body").on("mouseenter", ".slava-pop", slava_mouseenter);
     $("body").on("mouseleave", ".slava-pop", slava_mouseleave);
 
-  $('#slava-try').on("input", function () {
-console.log($(this).val());
-  $('#slava-try-res').text($(this).val());
-mark_words();
-  });
+    $('#slava-try').on("input", function () {
+        console.log($(this).val());
+        $('#slava-try-res').text($(this).val());
+        mark_words();
+    });
 
 })(); //outer function
