@@ -106,44 +106,44 @@ def output_lemma(src_lang, lemma):
 
 def build_ref(src_lang, target_lang):
 
-        index_dir=Path(index_top_dir, src_lang, target_lang)
-        parsed_dir=Path(parsed_top_dir, src_lang, target_lang)
-        index_dir.mkdir(parents=True, exist_ok=True)
-        words = dict()
-        forms = defaultdict(lambda : defaultdict(lambda : [set(), set()]))
+    index_dir=Path(index_top_dir, src_lang, target_lang)
+    parsed_dir=Path(parsed_top_dir, src_lang, target_lang)
+    index_dir.mkdir(parents=True, exist_ok=True)
+    words = dict()
+    forms = defaultdict(lambda : defaultdict(lambda : [set(), set()]))
 
-        freqfile = Path(resources_dir, target_lang + ".freq.txt")
-        p = pd.read_csv(freqfile, sep='\t')
-        p = p.groupby('Lemma').sum()
+    freqfile = Path(resources_dir, target_lang + ".freq.txt")
+    p = pd.read_csv(freqfile, sep='\t')
+    p = p.groupby('Lemma').sum()
 
-        # Word frequency by number of docs in which the word appear
-        # Break ties by dispersion index, then overall frequency
-        p['Score'] = (
-            p.Doc.rank() * len(p)**2
-            + p.D.rank() * len(p)
-            + p['Freq(ipm)']
-        )
-        p['Rank'] = p.Score.rank(method='min', ascending=False).astype(int)
-        remaining_words = list(p.sort_values(by='Rank').head(5000).index)
+    # Word frequency by number of docs in which the word appear
+    # Break ties by dispersion index, then overall frequency
+    p['Score'] = (
+        p.Doc.rank() * len(p)**2
+        + p.D.rank() * len(p)
+        + p['Freq(ipm)']
+    )
+    p['Rank'] = p.Score.rank(method='min', ascending=False).astype(int)
+    remaining_words = list(p.sort_values(by='Rank').head(5000).index)
 
-        while remaining_words:
-          i = remaining_words.pop(0)
-          fc = output_lemma(src_lang, i)
-          if not fc:
+    while remaining_words:
+      i = remaining_words.pop(0)
+      fc = output_lemma(src_lang, i)
+      if not fc:
+        continue
+      text = fc['text']
+      r = re.compile(r"""{{ru-verb\|(.*?)}""", re.DOTALL)
+      verbs = r.findall(text)
+      for verb in verbs:
+        forms = verb.split('|')
+        for verb_pair in forms:
+          if "=" not in verb_pair:
             continue
-          text = fc['text']
-          r = re.compile(r"""{{ru-verb\|(.*?)}""", re.DOTALL)
-          verbs = r.findall(text)
-          for verb in verbs:
-            forms = verb.split('|')
-            for verb_pair in forms:
-              if "=" not in verb_pair:
-                continue
-              (pair_aspect, pair_accented) = verb_pair.split('=')
-              pair_lemma = normalize_string(pair_accented)
-              if pair_lemma in remaining_words:
-                remaining_words = list(filter(lambda a: a != pair_lemma, remaining_words))
-                output_lemma(src_lang, pair_lemma)
+          (pair_aspect, pair_accented) = verb_pair.split('=')
+          pair_lemma = normalize_string(pair_accented)
+          if pair_lemma in remaining_words:
+            remaining_words = list(filter(lambda a: a != pair_lemma, remaining_words))
+            output_lemma(src_lang, pair_lemma)
 
 
 build_ref('en', 'ru')
