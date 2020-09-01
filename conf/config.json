@@ -50,7 +50,7 @@
   },
   "languages": {
     "ru": {
-      "frequency_file": "https://github.com/Baksalyar/mc.hertzbeat.ru-Frequency-Dictionaries/raw/master/mc.hertzbeat.ru_frequency_dict.txt"
+      "frequency_file": "http://dict.ruslang.ru/Freq2011.zip!freqrnc2011.csv"
     }
   },
   "wiktionary": {

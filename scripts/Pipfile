@@ -10,6 +10,7 @@ name = "pypi"
 pywikibot = "*"
 lxml = "*"
 progressbar2 = "*"
+pandas = "*"
 
 
 [dev-packages]

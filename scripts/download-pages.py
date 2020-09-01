@@ -32,7 +32,10 @@ def download_cat(site, cat, callback):
     count = 0
     for page in pagegenerators.CategorizedPageGenerator(category, recurse=recurse, namespaces="0"):
         count = count + 1
-        bar.update(count)
+        try:
+          bar.update(count)
+        except ValueError:
+          pass
         callback(page)
     bar.finish()
 
