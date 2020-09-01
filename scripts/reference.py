@@ -11,9 +11,6 @@ from collections import defaultdict
 def etree_deleteall(span):
             [bad.getparent().remove(bad) for bad in span]
 
-def toHex(x):
-    return "".join([hex(ord(c))[2:].zfill(4) for c in x])
-
 normalize_char_map = {'ё':'е', 'Ё':'Е'}
 def normalize_string(s):
    norms = unicodedata.normalize('NFC', s)
@@ -29,8 +26,7 @@ def normalize_string(s):
    return normalized
 
 
-parsed_top_dir = Path("../build/parsed")
-index_top_dir = Path("../build/index")
+top_dir = Path("../build/download")
 resources_dir = Path("../build/resources")
 
 config = json.load(open("../conf/config.json"))
@@ -44,19 +40,20 @@ print("""
 <body>\n""")
 
 
-def output_lemma(src_lang, lemma):
-          fn = f"../build/download/{src_lang}/{toHex(lemma)}.json"
-          if not os.path.isfile(fn):
+def output_lemma(src_lang, lemma, base_names):
+          if not lemma in base_names:
             print(f"<h1>not found {lemma}</h1>\n")
             return None
-          with open(fn) as f:
+          with open(base_names[lemma]) as f:
             fc = json.load(f)
             t = fc['html']
 
             html = etree.fromstring(t)
             etree_deleteall(html.xpath("//div[contains(@class,'sister-project') or contains(@class,'thumb')]"))
-            etree_deleteall(html.xpath("//span[contains(@class,'maintenance-line')  ]"))
+            etree_deleteall(html.xpath("//*[contains(@class,'maintenance-line') or contains(@class,'mw-empty-elt')]")) # -- лес
             etree_deleteall(html.xpath("//table"))
+            etree_deleteall(html.xpath("//small")) #лес
+            etree_deleteall(html.xpath("//hr")) #важно
             t = etree.tostring(html).decode('utf-8')
 
             r = re.compile(r"""\n<h2><span class="mw-headline" id="Russian">.*?</h2>(.*)""", re.DOTALL)
@@ -73,7 +70,6 @@ def output_lemma(src_lang, lemma):
             r9z = re.compile(r"""<(h4|h5)>(<span class="mw-headline".*?</span>)</\1>""")
             r10 = re.compile(r"""<p><strong class="Cyrl headword.*?</p>""", re.DOTALL)
             r11 = re.compile(r"""<p>From <span class="etyl">.*?</p>""", re.DOTALL)
-            r12 = re.compile(r"""<hr />""", re.DOTALL)
             matched = r.search(t)
             if (matched):
               t = matched.group(1)
@@ -90,10 +86,11 @@ def output_lemma(src_lang, lemma):
               t = r9z.sub(r"<h3>\2</h3>", t)
               #t = r10.sub("", t)
               t = r11.sub("", t)
-              t = r12.sub("", t)
               t = t.replace("<i>genitive</i>", "<i>gen</i>")
               t = t.replace("<i>nominative plural</i>", "<i>pl</i>")
               t = t.replace("<i>genitive plural</i>", "<i>gen pl</i>")
+              t = t.replace("<i>feminine</i>", "<i>fem</i>")
+              t = t.replace("<i>related adjective</i>", "<i>rel adj</i>")
             else:
               print(f"<h1>unmatched {lemma}</h1>\n")
 
@@ -106,9 +103,15 @@ def output_lemma(src_lang, lemma):
 
 def build_ref(src_lang, target_lang):
 
-    index_dir=Path(index_top_dir, src_lang, target_lang)
-    parsed_dir=Path(parsed_top_dir, src_lang, target_lang)
-    index_dir.mkdir(parents=True, exist_ok=True)
+    download_dir = Path(top_dir, src_lang)
+    files = list(download_dir.glob("*.json"))
+    base_names = dict()
+    for f in files:
+      string = os.path.basename(f).replace(".json", "")
+      base_name = "".join(chr(int(string[0+i:4+i], 16)) for i in range(0, len(string), 4))
+      base_names[base_name] = f
+      base_names[normalize_string(base_name)] = f
+
     words = dict()
     forms = defaultdict(lambda : defaultdict(lambda : [set(), set()]))
 
@@ -128,7 +131,7 @@ def build_ref(src_lang, target_lang):
 
     while remaining_words:
       i = remaining_words.pop(0)
-      fc = output_lemma(src_lang, i)
+      fc = output_lemma(src_lang, i, base_names)
       if not fc:
         continue
       text = fc['text']
@@ -143,7 +146,7 @@ def build_ref(src_lang, target_lang):
           pair_lemma = normalize_string(pair_accented)
           if pair_lemma in remaining_words:
             remaining_words = list(filter(lambda a: a != pair_lemma, remaining_words))
-            output_lemma(src_lang, pair_lemma)
+            output_lemma(src_lang, pair_lemma, base_names)
 
 
 build_ref('en', 'ru')
