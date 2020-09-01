@@ -110,19 +110,14 @@ for src_lang, targets in config["langpairs"].items():
           text = fc['text']
           r = re.compile(r"""{{ru-verb\|(.*?)}""", re.DOTALL)
           verbs = r.findall(text)
-          print("VERBS:")
-          print(verbs)
           for verb in verbs:
             forms = verb.split('|')
             for verb_pair in forms:
               if "=" not in verb_pair:
                 continue
-              print(f"PAIR:{verb_pair}")
               (pair_aspect, pair_accented) = verb_pair.split('=')
               pair_lemma = normalize_string(pair_accented)
-              print(f"{pair_aspect}:{pair_lemma}")
               if pair_lemma in remaining_words:
-                print("EXCCC")
                 remaining_words = list(filter(lambda a: a != pair_lemma, remaining_words))
                 output_lemma(pair_lemma)
 
