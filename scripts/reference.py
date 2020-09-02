@@ -56,10 +56,10 @@ def output_lemma(src_lang, lemma, base_names):
             etree_deleteall(html.xpath("//hr")) #важно
             etree_deleteall(html.xpath("//div[contains(@class,'NavHead')]"))
 
-            for i in html.xpath("//table[contains(@class,'inflection-table')]")[1:]:
-              i.getparent().remove(i)
+            inflection = html.xpath("//table[contains(@class,'inflection-table')]")
 
-            for i in html.xpath("//table"):
+            if inflection:
+              i = inflection[0] # звать has 2 inflection tables, the second is pre-reform
               forms = i.xpath("//span[contains(@class,'form-of')]") #Cyrl form-of lang-ru 1|s|pres|ind-form-of origin-спа́ть
 
               s1p = s1f = s2p = s2f = p3p = p3f = None
@@ -102,13 +102,14 @@ def output_lemma(src_lang, lemma, base_names):
                 e.text = ", "
                 i.getparent().append(e)
                 i.getparent().append(deepcopy(p3f))
-              i.getparent().remove(i)
+
+            etree_deleteall(html.xpath("//table"))
 
             t = etree.tostring(html, encoding="UTF-8").decode('utf-8')
 
             r = re.compile(r"""<h2><span class="mw-headline" id="Russian">.*?</h2>(.*)""", re.DOTALL)
             r2 = re.compile(r"""\n<h2>.*""", re.DOTALL)
-            r3 = re.compile(r"""(\s*&#8213;\s*)?<i lang="ru-Latn".*?</i>""", re.DOTALL)
+            r3 = re.compile(r"""(\s*―\s*)?<i lang="ru-Latn".*?</i>""", re.DOTALL)
             r4 = re.compile(r"""<span class="mw-editsection"><span.*?</span></span>""", re.DOTALL)
             r5 = re.compile(r"""\s*\(?<span lang="ru-Latn".*?</span>\)?""", re.DOTALL)
             r6 = re.compile(r"""<span class="mention-gloss-paren.*?</span>""", re.DOTALL)
@@ -167,7 +168,7 @@ def build_ref(src_lang, target_lang):
 
     freqfile = Path(resources_dir, target_lang + ".freq.txt")
     p = pd.read_csv(freqfile, sep='\t')
-    p = p.groupby('Lemma').sum()
+    p = p[p.PoS != 's.PROP'].groupby('Lemma').sum()
 
     # Word frequency by number of docs in which the word appear
     # Break ties by dispersion index, then overall frequency
