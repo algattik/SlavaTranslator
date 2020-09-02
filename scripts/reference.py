@@ -18,10 +18,7 @@ def normalize_string_nolc(s):
    noacc =        [c
                   for c in norms
                   if unicodedata.category(c) != 'Mn' #'Mark, Nonspacing' = accents
-                  and (
-                      not unicodedata.category(c).startswith('P') #Punctuation
-                      or c == '-'
-                  )]
+                  ]
    normalized = ''.join(normalize_char_map[c] if c in normalize_char_map else c
                   for c in noacc)
    return normalized
@@ -114,9 +111,9 @@ def output_lemma(src_lang, lemma, base_names):
             r5 = re.compile(r"""\s*\(?<span lang="ru-Latn".*?</span>\)?""", re.DOTALL)
             r6 = re.compile(r"""<span class="mention-gloss-paren.*?</span>""", re.DOTALL)
             r7 = re.compile(r"""<a href="/wiki/Wiktionary:Russian_transliteration".*?</a>""", re.DOTALL)
-            r8 = re.compile(r"""<h3><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h3>|\Z)""", re.DOTALL)
-            r8a = re.compile(r"""<h4><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h4>|\Z)""", re.DOTALL)
-            r8b = re.compile(r"""<h5><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h5>|<h4>|\Z)""", re.DOTALL)
+            r8 = re.compile(r"""<h3><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h3>|\Z)""", re.DOTALL)
+            r8a = re.compile(r"""<h4><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h4>|\Z)""", re.DOTALL)
+            r8b = re.compile(r"""<h5><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h5>|<h4>|\Z)""", re.DOTALL)
             r9 = re.compile(r"""<h3><span class="mw-headline" id="(Etymology).*?</h3>(.*?)(?=<(h3|h4)>)""", re.DOTALL)
             r9z = re.compile(r"""<(h4|h5)>(<span class="mw-headline".*?</span>)</\1>""")
             r10 = re.compile(r"""<p><strong class="Cyrl headword.*?</p>""", re.DOTALL)
