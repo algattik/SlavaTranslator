@@ -7,6 +7,7 @@ import os
 import re
 from progressbar import progressbar
 from collections import defaultdict
+from copy import deepcopy
 
 def etree_deleteall(span):
             [bad.getparent().remove(bad) for bad in span]
@@ -74,30 +75,30 @@ def output_lemma(src_lang, lemma, base_names):
                 if " 3|p|fut|" in form.get("class"):
                   p3f = form
 
-              if s1p:
-                i.getparent().append(s1p)
-              elif s1f:
-                i.getparent().append(s1f)
-              if s2p:
+              if s1p is not None:
+                i.getparent().append(deepcopy(s1p))
+              elif s1f is not None:
+                i.getparent().append(deepcopy(s1f))
+              if s2p is not None:
                 e = etree.Element("span")
                 e.text = ", "
                 i.getparent().append(e)
-                i.getparent().append(s2p)
-              elif s2f:
+                i.getparent().append(deepcopy(s2p))
+              elif s2f is not None:
                 e = etree.Element("span")
                 e.text = ", "
                 i.getparent().append(e)
-                i.getparent().append(s2f)
-              if p3p:
+                i.getparent().append(deepcopy(s2f))
+              if p3p is not None:
                 e = etree.Element("span")
                 e.text = ", "
                 i.getparent().append(e)
-                i.getparent().append(p3p)
-              elif p3f:
+                i.getparent().append(deepcopy(p3p))
+              elif p3f is not None:
                 e = etree.Element("span")
                 e.text = ", "
                 i.getparent().append(e)
-                i.getparent().append(p3f)
+                i.getparent().append(deepcopy(p3f))
               i.getparent().remove(i)
 
             t = etree.tostring(html, encoding="UTF-8").decode('utf-8')
