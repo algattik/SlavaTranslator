@@ -56,6 +56,9 @@ def output_lemma(src_lang, lemma, base_names):
             etree_deleteall(html.xpath("//hr")) #важно
             etree_deleteall(html.xpath("//div[contains(@class,'NavHead')]"))
 
+            for i in html.xpath("//table[contains(@class,'inflection-table')]")[1:]:
+              i.getparent().remove(i)
+
             for i in html.xpath("//table"):
               forms = i.xpath("//span[contains(@class,'form-of')]") #Cyrl form-of lang-ru 1|s|pres|ind-form-of origin-спа́ть
 
