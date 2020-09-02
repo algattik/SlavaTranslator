@@ -165,6 +165,9 @@ def build_ref(src_lang, target_lang):
 
     freqfile = Path(resources_dir, target_lang + ".freq.txt")
     p = pd.read_csv(freqfile, sep='\t')
+    p = p.replace({'Lemma': 'говорят'}, 'говоря')
+    p = p.replace({'Lemma': 'взаимоотношения'}, 'взаимоотношение')
+    p = p.replace({'Lemma': 'несмотря'}, 'несмотря на')
     p = p[p.PoS != 's.PROP'].groupby('Lemma').sum()
 
     # Word frequency by number of docs in which the word appear
