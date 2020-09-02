@@ -38,6 +38,9 @@ def download_cat(site, cat, callback):
           pass
         callback(page)
     bar.finish()
+    if count == 0:
+      print("Category not found")
+      raise ValueError(category)
 
 
 for src_lang, incl in includes.items():

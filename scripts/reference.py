@@ -104,7 +104,7 @@ def output_lemma(src_lang, lemma, base_names):
 
             t = etree.tostring(html, encoding="UTF-8").decode('utf-8')
 
-            r = re.compile(r"""<h2><span class="mw-headline" id="Russian">.*?</h2>(.*)""", re.DOTALL)
+            r1 = re.compile(r"""<h2><span class="mw-headline" id="Russian">.*?</h2>(.*?)(?=<h2>|\Z)""", re.DOTALL)
             r2 = re.compile(r"""\n<h2>.*""", re.DOTALL)
             r3 = re.compile(r"""(\s*―\s*)?<i lang="ru-Latn".*?</i>""", re.DOTALL)
             r4 = re.compile(r"""<span class="mw-editsection"><span.*?</span></span>""", re.DOTALL)
@@ -118,7 +118,7 @@ def output_lemma(src_lang, lemma, base_names):
             r9z = re.compile(r"""<(h4|h5)>(<span class="mw-headline".*?</span>)</\1>""")
             r10 = re.compile(r"""<p><strong class="Cyrl headword.*?</p>""", re.DOTALL)
             r11 = re.compile(r"""<p>From <span class="etyl">.*?</p>""", re.DOTALL)
-            matched = r.search(t)
+            matched = r1.search(t)
             if (matched):
               t = matched.group(1)
               t = r2.sub("", t)
