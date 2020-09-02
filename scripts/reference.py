@@ -12,7 +12,7 @@ def etree_deleteall(span):
             [bad.getparent().remove(bad) for bad in span]
 
 normalize_char_map = {'ё':'е', 'Ё':'Е'}
-def normalize_string(s):
+def normalize_string_nolc(s):
    norms = unicodedata.normalize('NFC', s)
    noacc =        [c
                   for c in norms
@@ -22,7 +22,7 @@ def normalize_string(s):
                       or c == '-'
                   )]
    normalized = ''.join(normalize_char_map[c] if c in normalize_char_map else c
-                  for c in noacc).lower()
+                  for c in noacc)
    return normalized
 
 
@@ -50,22 +50,68 @@ def output_lemma(src_lang, lemma, base_names):
 
             html = etree.fromstring(t)
             etree_deleteall(html.xpath("//div[contains(@class,'sister-project') or contains(@class,'thumb')]"))
-            etree_deleteall(html.xpath("//*[contains(@class,'maintenance-line') or contains(@class,'mw-empty-elt')]")) # -- лес
-            etree_deleteall(html.xpath("//table"))
+            etree_deleteall(html.xpath("//*[contains(@class,'maintenance-line') or contains(@class,'mw-empty-elt') or contains(@class,'checksense')]" )) # -- лес спокойно
             etree_deleteall(html.xpath("//small")) #лес
             etree_deleteall(html.xpath("//hr")) #важно
-            t = etree.tostring(html).decode('utf-8')
+            etree_deleteall(html.xpath("//div[contains(@class,'NavHead')]"))
 
-            r = re.compile(r"""\n<h2><span class="mw-headline" id="Russian">.*?</h2>(.*)""", re.DOTALL)
+            for i in html.xpath("//table"):
+              forms = i.xpath("//span[contains(@class,'form-of')]") #Cyrl form-of lang-ru 1|s|pres|ind-form-of origin-спа́ть
+
+              s1p = s1f = s2p = s2f = p3p = p3f = None
+              for form in forms:
+
+                if " 1|s|pres|" in form.get("class"): #imperfective
+                  s1p = form
+                elif " 1|s|fut|" in form.get("class"): #perfective
+                  s1f = form
+                if " 2|s|pres|" in form.get("class"):
+                  s2p = form
+                if " 2|s|fut|" in form.get("class"):
+                  s2f = form
+                if " 3|p|pres|" in form.get("class"):
+                  p3p = form
+                if " 3|p|fut|" in form.get("class"):
+                  p3f = form
+
+              if s1p:
+                i.getparent().append(s1p)
+              elif s1f:
+                i.getparent().append(s1f)
+              if s2p:
+                e = etree.Element("span")
+                e.text = ", "
+                i.getparent().append(e)
+                i.getparent().append(s2p)
+              elif s2f:
+                e = etree.Element("span")
+                e.text = ", "
+                i.getparent().append(e)
+                i.getparent().append(s2f)
+              if p3p:
+                e = etree.Element("span")
+                e.text = ", "
+                i.getparent().append(e)
+                i.getparent().append(p3p)
+              elif p3f:
+                e = etree.Element("span")
+                e.text = ", "
+                i.getparent().append(e)
+                i.getparent().append(p3f)
+              i.getparent().remove(i)
+
+            t = etree.tostring(html, encoding="UTF-8").decode('utf-8')
+
+            r = re.compile(r"""<h2><span class="mw-headline" id="Russian">.*?</h2>(.*)""", re.DOTALL)
             r2 = re.compile(r"""\n<h2>.*""", re.DOTALL)
             r3 = re.compile(r"""(\s*&#8213;\s*)?<i lang="ru-Latn".*?</i>""", re.DOTALL)
             r4 = re.compile(r"""<span class="mw-editsection"><span.*?</span></span>""", re.DOTALL)
             r5 = re.compile(r"""\s*\(?<span lang="ru-Latn".*?</span>\)?""", re.DOTALL)
             r6 = re.compile(r"""<span class="mention-gloss-paren.*?</span>""", re.DOTALL)
             r7 = re.compile(r"""<a href="/wiki/Wiktionary:Russian_transliteration".*?</a>""", re.DOTALL)
-            r8 = re.compile(r"""<h3><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Conjugation|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h3>|\Z)""", re.DOTALL)
-            r8a = re.compile(r"""<h4><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Conjugation|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h4>|\Z)""", re.DOTALL)
-            r8b = re.compile(r"""<h5><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Conjugation|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h5>|<h4>|\Z)""", re.DOTALL)
+            r8 = re.compile(r"""<h3><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h3>|\Z)""", re.DOTALL)
+            r8a = re.compile(r"""<h4><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h4>|\Z)""", re.DOTALL)
+            r8b = re.compile(r"""<h5><span class="mw-headline" id="(Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Coordinate_terms).*?(?=<h5>|<h4>|\Z)""", re.DOTALL)
             r9 = re.compile(r"""<h3><span class="mw-headline" id="(Etymology).*?</h3>(.*?)(?=<(h3|h4)>)""", re.DOTALL)
             r9z = re.compile(r"""<(h4|h5)>(<span class="mw-headline".*?</span>)</\1>""")
             r10 = re.compile(r"""<p><strong class="Cyrl headword.*?</p>""", re.DOTALL)
@@ -110,7 +156,7 @@ def build_ref(src_lang, target_lang):
       string = os.path.basename(f).replace(".json", "")
       base_name = "".join(chr(int(string[0+i:4+i], 16)) for i in range(0, len(string), 4))
       base_names[base_name] = f
-      base_names[normalize_string(base_name)] = f
+      base_names[normalize_string_nolc(base_name)] = f
 
     words = dict()
     forms = defaultdict(lambda : defaultdict(lambda : [set(), set()]))
@@ -143,7 +189,7 @@ def build_ref(src_lang, target_lang):
           if "=" not in verb_pair:
             continue
           (pair_aspect, pair_accented) = verb_pair.split('=')
-          pair_lemma = normalize_string(pair_accented)
+          pair_lemma = normalize_string_nolc(pair_accented)
           if pair_lemma in remaining_words:
             remaining_words = list(filter(lambda a: a != pair_lemma, remaining_words))
             output_lemma(src_lang, pair_lemma, base_names)
