@@ -12,6 +12,9 @@ from copy import deepcopy
 def etree_deleteall(span):
             [bad.getparent().remove(bad) for bad in span]
 
+def tostring(elem):
+            return etree.tostring(elem, encoding="UTF-8").decode('utf-8')
+
 normalize_char_map = {'ё':'е', 'Ё':'Е'}
 def normalize_string_nolc(s):
    norms = unicodedata.normalize('NFC', s)
@@ -40,88 +43,101 @@ print("""
 
 def output_lemma(src_lang, lemma, base_names):
           if not lemma in base_names:
-            print(f"<h1>not found {lemma}</h1>\n")
+            print(f"<!-- ERROR: not found {lemma} -->\n")
             return None
           with open(base_names[lemma]) as f:
             fc = json.load(f)
             t = fc['html']
-
             html = etree.fromstring(t)
-            etree_deleteall(html.xpath("//div[contains(@class,'sister-project') or contains(@class,'thumb')]"))
-            etree_deleteall(html.xpath("//*[contains(@class,'maintenance-line') or contains(@class,'mw-empty-elt') or contains(@class,'checksense')]" )) # -- лес спокойно
-            etree_deleteall(html.xpath("//small")) #лес
-            etree_deleteall(html.xpath("//hr")) #важно
-            etree_deleteall(html.xpath("//div[contains(@class,'NavHead')]"))
+            if html.xpath("//h2[span[@id='Russian']]"):
+              etree_deleteall(html.xpath("//*[preceding-sibling::h2[1][span[@id!='Russian']]]"))
+              etree_deleteall(html.xpath("//*[following-sibling::h2[1][span[@id='Russian']]]"))
+              etree_deleteall(html.xpath("//h2"))
+              etree_deleteall(html.xpath("//*[@id='toc']"))
 
-            inflection = html.xpath("//table[contains(@class,'inflection-table')]")
+              etree_deleteall(html.xpath("//div[contains(@class,'sister-project') or contains(@class,'thumb')]"))
+              etree_deleteall(html.xpath("//*[contains(@class,'maintenance-line') or contains(@class,'mw-empty-elt') or contains(@class,'checksense')]" )) # -- лес спокойно
+              etree_deleteall(html.xpath("//small")) #лес
+              etree_deleteall(html.xpath("//hr")) #важно
+              etree_deleteall(html.xpath("//div[contains(@class,'NavHead')]"))
+              etree_deleteall(html.xpath("//div[contains(@class,'disambig-see-also')]")) # с
 
-            if inflection:
-              i = inflection[0] # звать has 2 inflection tables, the second is pre-reform. пропадать has 2 tables, one per etymology
-              forms = i.xpath("//span[contains(@class,'form-of')]") #Cyrl form-of lang-ru 1|s|pres|ind-form-of origin-спа́ть
-
-              s1p = s1f = s2p = s2f = p3p = p3f = None
-              for form in forms:
-
-                if " 1|s|pres|" in form.get("class"): #imperfective
-                  s1p = form
-                elif " 1|s|fut|" in form.get("class"): #perfective
-                  s1f = form
-                if " 2|s|pres|" in form.get("class"):
-                  s2p = form
-                if " 2|s|fut|" in form.get("class"):
-                  s2f = form
-                if " 3|p|pres|" in form.get("class"):
-                  p3p = form
-                if " 3|p|fut|" in form.get("class"):
-                  p3f = form
-
-              if s1p is not None:
-                i.getparent().append(deepcopy(s1p))
-              elif s1f is not None:
-                i.getparent().append(deepcopy(s1f))
-              if s2p is not None:
-                e = etree.Element("span")
-                e.text = ", "
-                i.getparent().append(e)
-                i.getparent().append(deepcopy(s2p))
-              elif s2f is not None:
-                e = etree.Element("span")
-                e.text = ", "
-                i.getparent().append(e)
-                i.getparent().append(deepcopy(s2f))
-              if p3p is not None:
-                e = etree.Element("span")
-                e.text = ", "
-                i.getparent().append(e)
-                i.getparent().append(deepcopy(p3p))
-              elif p3f is not None:
-                e = etree.Element("span")
-                e.text = ", "
-                i.getparent().append(e)
-                i.getparent().append(deepcopy(p3f))
-
-            etree_deleteall(html.xpath("//table"))
-
-            t = etree.tostring(html, encoding="UTF-8").decode('utf-8')
-
-            r1 = re.compile(r"""<h2><span class="mw-headline" id="Russian">.*?</h2>(.*?)(?=<h2>|\Z)""", re.DOTALL)
-            r2 = re.compile(r"""\n<h2>.*""", re.DOTALL)
-            r3 = re.compile(r"""(\s*―\s*)?<i lang="ru-Latn".*?</i>""", re.DOTALL)
-            r4 = re.compile(r"""<span class="mw-editsection"><span.*?</span></span>""", re.DOTALL)
-            r5 = re.compile(r"""\s*\(?<span lang="ru-Latn".*?</span>\)?""", re.DOTALL)
-            r6 = re.compile(r"""<span class="mention-gloss-paren.*?</span>""", re.DOTALL)
-            r7 = re.compile(r"""<a href="/wiki/Wiktionary:Russian_transliteration".*?</a>""", re.DOTALL)
-            r8 = re.compile(r"""<h3><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h3>|\Z)""", re.DOTALL)
-            r8a = re.compile(r"""<h4><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h4>|\Z)""", re.DOTALL)
-            r8b = re.compile(r"""<h5><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h5>|<h4>|\Z)""", re.DOTALL)
-            r9 = re.compile(r"""<h3><span class="mw-headline" id="(Etymology).*?</h3>(.*?)(?=<(h3|h4)>)""", re.DOTALL)
-            r9z = re.compile(r"""<(h4|h5)>(<span class="mw-headline".*?</span>)</\1>""")
-            r10 = re.compile(r"""<p><strong class="Cyrl headword.*?</p>""", re.DOTALL)
-            r11 = re.compile(r"""<p>From <span class="etyl">.*?</p>""", re.DOTALL)
-            matched = r1.search(t)
-            if (matched):
-              t = matched.group(1)
-              t = r2.sub("", t)
+              inflection = html.xpath("//table[contains(@class,'inflection-table')]")
+              
+              if inflection:
+                i = inflection[0] # звать has 2 inflection tables, the second is pre-reform. пропадать has 2 tables, one per etymology
+                forms = i.xpath("//span[contains(@class,'form-of')]") #Cyrl form-of lang-ru 1|s|pres|ind-form-of origin-спа́ть
+              
+              
+                s1p = s1f = s2p = s2f = p3p = p3f = None
+                loc = None
+              
+                for form in forms:
+              
+                  if " 1|s|pres|" in form.get("class"): #imperfective
+                    s1p = form
+                  elif " 1|s|fut|" in form.get("class"): #perfective
+                    s1f = form
+                  if " 2|s|pres|" in form.get("class"):
+                    s2p = form
+                  if " 2|s|fut|" in form.get("class"):
+                    s2f = form
+                  if " 3|p|pres|" in form.get("class"):
+                    p3p = form
+                  if " 3|p|fut|" in form.get("class"):
+                    p3f = form
+                  if " loc|" in form.get("class"):
+                    loc = form
+              
+                if s1p is not None:
+                  i.getparent().append(deepcopy(s1p))
+                elif s1f is not None:
+                  i.getparent().append(deepcopy(s1f))
+                if s2p is not None:
+                  e = etree.Element("span")
+                  e.text = ", "
+                  i.getparent().append(e)
+                  i.getparent().append(deepcopy(s2p))
+                elif s2f is not None:
+                  e = etree.Element("span")
+                  e.text = ", "
+                  i.getparent().append(e)
+                  i.getparent().append(deepcopy(s2f))
+                if p3p is not None:
+                  e = etree.Element("span")
+                  e.text = ", "
+                  i.getparent().append(e)
+                  i.getparent().append(deepcopy(p3p))
+                elif p3f is not None:
+                  e = etree.Element("span")
+                  e.text = ", "
+                  i.getparent().append(e)
+                  i.getparent().append(deepcopy(p3f))
+              
+                if loc is not None:
+                  genpl = i.xpath("""//i[text()="genitive plural"]""")
+                  if not genpl:
+                    genpl = i.xpath("""//i[text()="genitive"]""")
+                  if genpl:
+                    genpl[0].getnext().addnext(etree.XML(f"""<span>, <i>locative</i> <b class="Cyrl" lang="ru">{tostring(loc)}</b></span>"""))
+                  else:
+                    print(f"ERROR: inserting locative {lemma}")
+              
+              etree_deleteall(html.xpath("//table"))
+              t = tostring(html)
+              
+              r3 = re.compile(r"""(\s*―\s*)?<i lang="ru-Latn".*?</i>""", re.DOTALL)
+              r4 = re.compile(r"""<span class="mw-editsection"><span.*?</span></span>""", re.DOTALL)
+              r5 = re.compile(r"""\s*\(?<span lang="ru-Latn".*?</span>\)?\s*""", re.DOTALL)
+              r6 = re.compile(r"""\s*<span class="mention-gloss-paren.*?</span>""", re.DOTALL)
+              r7 = re.compile(r"""<a href="/wiki/Wiktionary:Russian_transliteration".*?</a>""", re.DOTALL)
+              r8 = re.compile(r"""<h3><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h3>|\Z)""", re.DOTALL)
+              r8a = re.compile(r"""<h4><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h4>|\Z)""", re.DOTALL)
+              r8b = re.compile(r"""<h5><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h5>|<h4>|\Z)""", re.DOTALL)
+              r9 = re.compile(r"""<h3><span class="mw-headline" id="(Etymology).*?</h3>(.*?)(?=<(h3|h4)>)""", re.DOTALL)
+              r9z = re.compile(r"""<(h4|h5)>(<span class="mw-headline".*?</span>)</\1>""")
+              r10 = re.compile(r"""<p><strong class="Cyrl headword.*?</p>""", re.DOTALL)
+              r11 = re.compile(r"""<p>From <span class="etyl">.*?</p>""", re.DOTALL)
               t = r3.sub("", t)
               t = r4.sub("", t)
               t = r5.sub("", t)
@@ -140,7 +156,7 @@ def output_lemma(src_lang, lemma, base_names):
               t = t.replace("<i>feminine</i>", "<i>fem</i>")
               t = t.replace("<i>related adjective</i>", "<i>rel adj</i>")
             else:
-              print(f"<h1>unmatched {lemma}</h1>\n")
+              print(f"<h1>ERROR: unmatched {lemma}</h1>\n")
 
             print(f"<h1>{lemma}</h1>\n")
 
