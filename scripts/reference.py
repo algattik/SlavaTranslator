@@ -36,12 +36,29 @@ print("""
 <html><head>
 <base href="https://en.wiktionary.org">
 <style>
+a {
+  color: black;
+  text-decoration: none;
+}
+i {
+  font-style: normal;
+}
+body {
+ font-family: "Segoe UI";
+}
+.freq {
+  color: lightgray;
+  font-size: small;
+}
+h1.first {
+  page-break-before: always;
+}
 </style>
 </head>
 <body>\n""")
 
 
-def output_lemma(src_lang, lemma, base_names):
+def output_lemma(src_lang, lemma, word_freq, base_names, html_class):
           if not lemma in base_names:
             print(f"<!-- ERROR: not found {lemma} -->\n")
             return None
@@ -158,9 +175,7 @@ def output_lemma(src_lang, lemma, base_names):
             else:
               print(f"<h1>ERROR: unmatched {lemma}</h1>\n")
 
-            print(f"<h1>{lemma}</h1>\n")
-
-
+            print(f"""<h1 class="{html_class}"><a href="https://en.wiktionary.org/wiki/{lemma}#Russian">{lemma}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='freq'>{word_freq}</span></h1>\n""")
             print(t)
             return fc
 
@@ -195,10 +210,11 @@ def build_ref(src_lang, target_lang):
     )
     p['Rank'] = p.Score.rank(method='min', ascending=False).astype(int)
     remaining_words = list(p.sort_values(by='Rank').head(5000).index)
+    word_freqs = {k: v+1 for v, k in enumerate(remaining_words)}
 
     while remaining_words:
       i = remaining_words.pop(0)
-      fc = output_lemma(src_lang, i, base_names)
+      fc = output_lemma(src_lang, i, word_freqs[i], base_names, "first")
       if not fc:
         continue
       text = fc['text']
@@ -213,7 +229,7 @@ def build_ref(src_lang, target_lang):
           pair_lemma = normalize_string_nolc(pair_accented)
           if pair_lemma in remaining_words:
             remaining_words = list(filter(lambda a: a != pair_lemma, remaining_words))
-            output_lemma(src_lang, pair_lemma, base_names)
+            output_lemma(src_lang, pair_lemma, word_freqs[pair_lemma], base_names, "second")
 
 
 build_ref('en', 'ru')
