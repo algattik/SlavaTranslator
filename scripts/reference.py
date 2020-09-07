@@ -44,7 +44,7 @@ i {
   font-style: normal;
 }
 body {
- font-family: "Segoe UI";
+ font-family: Optima, Helvetica, "Segoe UI", Arial, sans-serif;
 }
 .freq {
   color: lightgray;
@@ -57,8 +57,7 @@ h1.first {
 </head>
 <body>\n""")
 
-
-def output_lemma(src_lang, lemma, word_freq, base_names, html_class):
+def output_lemma(src_lang, lemma, base_names, lemma_number, html_class):
           if not lemma in base_names:
             print(f"<!-- ERROR: not found {lemma} -->\n")
             return None
@@ -175,8 +174,12 @@ def output_lemma(src_lang, lemma, word_freq, base_names, html_class):
             else:
               print(f"<h1>ERROR: unmatched {lemma}</h1>\n")
 
-            print(f"""<h1 class="{html_class}"><a href="https://en.wiktionary.org/wiki/{lemma}#Russian">{lemma}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='freq'>{word_freq}</span></h1>\n""")
+            if not lemma_number:
+              lemma_number = ""
+
+            print(f"""<h1 class="{html_class}"><a href="https://en.wiktionary.org/wiki/{lemma}#Russian">{lemma}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='freq'>{lemma_number}</span></h1>\n""")
             print(t)
+            print("</div>")
             return fc
 
 
@@ -209,14 +212,18 @@ def build_ref(src_lang, target_lang):
         + p['Freq(ipm)']
     )
     p['Rank'] = p.Score.rank(method='min', ascending=False).astype(int)
-    remaining_words = list(p.sort_values(by='Rank').head(5000).index)
-    word_freqs = {k: v+1 for v, k in enumerate(remaining_words)}
+    remaining_words = list(p.sort_values(by='Rank').index)
+    #remaining_words = [ "судьба"]
 
+    lemma_number=1
     while remaining_words:
-      i = remaining_words.pop(0)
-      fc = output_lemma(src_lang, i, word_freqs[i], base_names, "first")
+      if lemma_number >5000:
+        break
+      lemma = remaining_words.pop(0)
+      fc = output_lemma(src_lang, lemma, base_names, lemma_number, "first")
       if not fc:
         continue
+      lemma_number = lemma_number + 1
       text = fc['text']
       r = re.compile(r"""{{ru-verb\|(.*?)}""", re.DOTALL)
       verbs = r.findall(text)
@@ -229,7 +236,7 @@ def build_ref(src_lang, target_lang):
           pair_lemma = normalize_string_nolc(pair_accented)
           if pair_lemma in remaining_words:
             remaining_words = list(filter(lambda a: a != pair_lemma, remaining_words))
-            output_lemma(src_lang, pair_lemma, word_freqs[pair_lemma], base_names, "second")
+            output_lemma(src_lang, pair_lemma, base_names, None, "second")
 
 
 build_ref('en', 'ru')
