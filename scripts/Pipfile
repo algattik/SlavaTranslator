@@ -11,6 +11,7 @@ pywikibot = "*"
 lxml = "*"
 progressbar2 = "*"
 pandas = "*"
+openpyxl = "*"
 
 
 [dev-packages]

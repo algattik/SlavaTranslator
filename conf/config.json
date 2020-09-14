@@ -27,9 +27,6 @@
         ],
         "exclude": [
           {
-            "category": "Russian spellings with е instead of ё"
-          },
-          {
             "category": "Russian phrases"
           },
           {
