@@ -46,7 +46,7 @@ i {
 body {
  font-family: Optima, Helvetica, "Segoe UI", Arial, sans-serif;
 }
-.freq, .freq a {
+.freq {
   color: lightgray;
   font-size: small;
 }
@@ -148,8 +148,8 @@ def output_lemma(src_lang, lemma, base_names, lemma_number, html_class):
               r6 = re.compile(r"""\s*<span class="mention-gloss-paren.*?</span>""", re.DOTALL)
               r7 = re.compile(r"""<a href="/wiki/Wiktionary:Russian_transliteration".*?</a>""", re.DOTALL)
               r8 = re.compile(r"""<h3><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h3>|\Z)""", re.DOTALL)
-              r8a = re.compile(r"""<h4><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<(h4|h3)>|\Z)""", re.DOTALL)
-              r8b = re.compile(r"""<h5><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<(h5|h4|h3)>|\Z)""", re.DOTALL)
+              r8a = re.compile(r"""<h4><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h4>|\Z)""", re.DOTALL)
+              r8b = re.compile(r"""<h5><span class="mw-headline" id="(Conjugation_|Alternative_forms|Pronunciation|Letter|References|Descendants|Declension|Derived_terms|Related_terms|See_also|Further_reading|Coordinate_terms).*?(?=<h5>|<h4>|\Z)""", re.DOTALL)
               r9 = re.compile(r"""<h3><span class="mw-headline" id="(Etymology).*?</h3>(.*?)(?=<(h3|h4)>)""", re.DOTALL)
               r9z = re.compile(r"""<(h4|h5)>(<span class="mw-headline".*?</span>)</\1>""")
               r10 = re.compile(r"""<p><strong class="Cyrl headword.*?</p>""", re.DOTALL)
@@ -177,7 +177,7 @@ def output_lemma(src_lang, lemma, base_names, lemma_number, html_class):
             if not lemma_number:
               lemma_number = ""
 
-            print(f"""<h1 class="{html_class}"><a href="https://en.wiktionary.org/wiki/{lemma}#Russian">{lemma}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='freq'>{lemma_number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://context.reverso.net/translation/russian-english/{lemma}">[R]</a></span></h1>\n""")
+            print(f"""<h1 class="{html_class}"><a href="https://en.wiktionary.org/wiki/{lemma}#Russian">{lemma}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='freq'>{lemma_number}</span></h1>\n""")
             print(t)
             print("</div>")
             return fc
