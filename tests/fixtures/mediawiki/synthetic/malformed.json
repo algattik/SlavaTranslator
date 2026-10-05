@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "en",
+    "requestedTitle": "говорить",
+    "resolvedTitle": null,
+    "revisionId": null,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://en.wiktionary.org/w/api.php",
+    "license": "Synthetic test fixture",
+    "scenario": "malformed"
+  },
+  "response": { "parse": { "text": 42 } }
+}

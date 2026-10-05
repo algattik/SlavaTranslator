@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "it",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 3735883,
+    "retrievedAt": "2026-10-05T07:09:02.698Z",
+    "sourceUrl": "https://it.wiktionary.org/w/api.php?action=parse&page=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "pageid": 143214,
+      "revid": 3735883,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"it\" dir=\"ltr\"><meta property=\"mw:PageProp/toc\" />\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Russo\"><span class=\"mw-image-border\" typeof=\"mw:File\"><a href=\"/wiki/File:Flag_of_Russia.svg\" class=\"mw-file-description\"><img src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/40px-Flag_of_Russia.svg.png?utm_source=it.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"40\" height=\"27\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/120px-Flag_of_Russia.svg.png?utm_source=it.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"900\" data-file-height=\"600\" /></a></span> <a href=\"/wiki/russo\" title=\"russo\">Russo</a></h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Verbo\"><span typeof=\"mw:File\"><a href=\"/wiki/File:Open_book_01.svg\" class=\"mw-file-description\"><img src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Open_book_01.svg/40px-Open_book_01.svg.png?utm_source=it.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"30\" height=\"30\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Open_book_01.svg/60px-Open_book_01.svg.png?utm_source=it.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"360\" data-file-height=\"360\" /></a></span><i><a href=\"/wiki/verbo\" title=\"verbo\">Verbo</a></i></h3></div> \n<p><b>говорить</b><small></small> <abbr style=\"border-bottom-color:blue;\" title=\"imperfettivo\"><i>impf.</i></abbr> (<i>perfettivo:</i> <b><a href=\"/w/index.php?title=%D1%81%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"сказать (la pagina non esiste)\">сказать</a></b>)\n</p>\n<ol><li><a href=\"/wiki/parlare\" title=\"parlare\">parlare</a>, <a href=\"/wiki/dire\" title=\"dire\">dire</a></li></ol>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Pronuncia\"><span typeof=\"mw:File\"><a href=\"/wiki/File:Nuvola_apps_edu_languages.svg\" class=\"mw-file-description\"><img src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Nuvola_apps_edu_languages.svg/40px-Nuvola_apps_edu_languages.svg.png?utm_source=it.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"30\" height=\"30\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Nuvola_apps_edu_languages.svg/60px-Nuvola_apps_edu_languages.svg.png?utm_source=it.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"128\" data-file-height=\"128\" /></a></span> <a href=\"/wiki/pronuncia\" title=\"pronuncia\">Pronuncia</a></h3></div>\n<ul><li><a href=\"/wiki/Aiuto:IPA\" title=\"Aiuto:IPA\">AFI</a>: <span class=\"IPA\" style=\"font-family:&#39;Segoe UI&#39;, &#39;Calibri&#39;, &#39;DejaVu Sans&#39;, &#39;Charis SIL&#39;, &#39;Doulos SIL&#39;, &#39;Gentium Plus&#39;, Gentium, GentiumAlt, &#39;Lucida Grande&#39;, &#39;Arial Unicode MS&#39;, sans-serif; font-size: 110%;\">[ɡəvɐˈrʲitʲ]</span></li>\n<li>Ascolta la pronuncia&#160;: <span class=\"mw-default-size\" typeof=\"mw:File\"><span><audio id=\"mwe_player_0\" controls=\"\" preload=\"none\" data-mw-tmh=\"\" class=\"mw-file-element\" width=\"250\" style=\"width:250px;\" data-durationhint=\"2\" data-mwtitle=\"Ru-говорить.ogg\" data-mwprovider=\"wikimediacommons\"><source src=\"//upload.wikimedia.org/wikipedia/commons/5/51/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg?utm_source=it.wiktionary.org&amp;utm_campaign=api&amp;utm_content=original\" type=\"audio/ogg; codecs=&quot;vorbis&quot;\" data-width=\"0\" data-height=\"0\" /><source src=\"//upload.wikimedia.org/wikipedia/commons/transcoded/5/51/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg.mp3\" type=\"audio/mpeg\" data-transcodekey=\"mp3\" data-width=\"0\" data-height=\"0\" /></audio></span></span></li></ul>\n<div class=\"NonModificabile\">\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Note_/_Riferimenti\"><span id=\"Note_.2F_Riferimenti\"></span><span typeof=\"mw:File\"><a href=\"/wiki/File:Nuvola_apps_bookcase.svg\" class=\"mw-file-description\"><img src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Nuvola_apps_bookcase.svg/40px-Nuvola_apps_bookcase.svg.png?utm_source=it.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"30\" height=\"30\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Nuvola_apps_bookcase.svg/60px-Nuvola_apps_bookcase.svg.png?utm_source=it.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"128\" data-file-height=\"128\" /></a></span> <a href=\"/wiki/note\" title=\"note\">Note</a> / <a href=\"/wiki/riferimenti\" title=\"riferimenti\">Riferimenti</a></h2></div>\n</div>\n<ul><li>The Free Dictionary, <a rel=\"nofollow\" class=\"external text\" href=\"http://ru.thefreedictionary.com/%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C\">edizione online</a> (russa)</li></ul></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "Russo",
+            "number": "1",
+            "index": "1",
+            "fromTitle": "говорить",
+            "codepointOffset": 0,
+            "anchor": "Russo"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "<i>Verbo</i>",
+            "number": "1.1",
+            "anchor": "Verbo"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Pronuncia",
+            "number": "1.2",
+            "index": "T-1",
+            "fromTitle": "Template:-pron-",
+            "anchor": "Pronuncia"
+          },
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "Note / Riferimenti",
+            "number": "2",
+            "index": "T-1",
+            "fromTitle": "Template:-ref-",
+            "anchor": "Note_/_Riferimenti"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": true,
+      "displaytitle": "<span lang=\"it\" dir=\"ltr\"><span class=\"mw-page-title-main\">говорить</span></span>"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "en",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 1,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://en.wiktionary.org/w/api.php",
+    "license": "Synthetic test fixture",
+    "scenario": "hostile"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "revid": 1,
+      "text": "<h2 id=\"Russian\">Russian</h2><h3 id=\"Verb\">Verb</h3><script>globalThis.compromised=true</script><ol><li onclick=\"compromised()\">to speak<img src=x onerror=\"compromised()\"></li></ol>",
+      "tocdata": { "sections": [] },
+      "displaytitle": "<img src=x onerror=\"compromised()\">"
+    }
+  }
+}

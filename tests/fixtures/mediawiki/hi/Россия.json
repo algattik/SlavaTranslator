@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "hi",
+    "requestedTitle": "Россия",
+    "resolvedTitle": "Россия",
+    "revisionId": 439081,
+    "retrievedAt": "2026-10-04T21:13:44.324Z",
+    "sourceUrl": "https://hi.wiktionary.org/w/api.php?action=parse&page=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "Россия",
+      "pageid": 6838,
+      "revid": 439081,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"hi\" dir=\"ltr\"><div class=\"mw-heading mw-heading2\"><h2 id=\"रूसी\"><span id=\".E0.A4.B0.E0.A5.82.E0.A4.B8.E0.A5.80\"></span><a href=\"/wiki/%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A5%87%E0%A4%A3%E0%A5%80:%E0%A4%B0%E0%A5%82%E0%A4%B8%E0%A5%80\" title=\"श्रेणी:रूसी\">रूसी</a></h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"नामवाचक_संज्ञा\"><span id=\".E0.A4.A8.E0.A4.BE.E0.A4.AE.E0.A4.B5.E0.A4.BE.E0.A4.9A.E0.A4.95_.E0.A4.B8.E0.A4.82.E0.A4.9C.E0.A5.8D.E0.A4.9E.E0.A4.BE\"></span>नामवाचक संज्ञा</h3></div>\n<ol><li><a href=\"/wiki/%E0%A4%B0%E0%A5%82%E0%A4%B8\" title=\"रूस\">रूस</a></li></ol>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"यह_भी_देखें\"><span id=\".E0.A4.AF.E0.A4.B9_.E0.A4.AD.E0.A5.80_.E0.A4.A6.E0.A5.87.E0.A4.96.E0.A5.87.E0.A4.82\"></span>यह भी देखें</h3></div>\n<p><strong class=\"error\"><span class=\"scribunto-error mw-scribunto-error-707911ef\">मॉड्यूल:interproject में पंक्ति 278 पर लुआ त्रुटि: Parameter &quot;भाषा&quot; is not used by this template.।</span></strong>\n</p></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "रूसी",
+            "number": "१",
+            "index": "1",
+            "fromTitle": "Россия",
+            "codepointOffset": 0,
+            "anchor": "रूसी"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "नामवाचक संज्ञा",
+            "number": "१.१",
+            "index": "2",
+            "fromTitle": "Россия",
+            "codepointOffset": 13,
+            "anchor": "नामवाचक_संज्ञा"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "यह भी देखें",
+            "number": "१.२",
+            "index": "3",
+            "fromTitle": "Россия",
+            "codepointOffset": 45,
+            "anchor": "यह_भी_देखें"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": false,
+      "displaytitle": "<span lang=\"hi\" dir=\"ltr\"><span class=\"mw-page-title-main\">Россия</span></span>"
+    }
+  }
+}

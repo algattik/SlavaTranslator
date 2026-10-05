@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "kk",
+    "requestedTitle": "Россия",
+    "resolvedTitle": "Россия",
+    "revisionId": 88642,
+    "retrievedAt": "2026-10-05T07:09:02.979Z",
+    "sourceUrl": "https://kk.wiktionary.org/w/api.php?action=parse&page=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "Россия",
+      "pageid": 10035,
+      "revid": 88642,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"kk\" dir=\"ltr\"><div class=\"mw-heading mw-heading2\"><h2 id=\"Орысша\"><span id=\".D0.9E.D1.80.D1.8B.D1.81.D1.88.D0.B0\"></span><div style=\"background-color:#d4e4f4;\">Орысша</div></h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Зат_есім\"><span id=\".D0.97.D0.B0.D1.82_.D0.B5.D1.81.D1.96.D0.BC\"></span>Зат есім</h3></div>\n<ol><li><a href=\"/wiki/%D0%A0%D0%B5%D1%81%D0%B5%D0%B9\" title=\"Ресей\">Ресей</a></li></ol></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "Орысша",
+            "number": "1",
+            "index": "T-1",
+            "fromTitle": "Үлгі:srcru",
+            "anchor": "Орысша"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Зат есім",
+            "number": "1.1",
+            "index": "T-1",
+            "fromTitle": "Үлгі:Зат_есім",
+            "anchor": "Зат_есім"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": false,
+      "displaytitle": "<span lang=\"kk\" dir=\"ltr\"><span class=\"mw-page-title-main\">Россия</span></span>"
+    }
+  }
+}

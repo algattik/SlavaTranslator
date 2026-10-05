@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://slava.example/schema/definition-result-v2.json",
+  "title": "Slava definition result",
+  "type": "object",
+  "required": [
+    "contractVersion",
+    "requestId",
+    "requestedEdition",
+    "resolvedEdition",
+    "requestedLemma",
+    "resolvedTitle",
+    "revisionId",
+    "sourceUrl",
+    "entries",
+    "fallbackUsed",
+    "attribution"
+  ],
+  "properties": {
+    "contractVersion": { "const": 2 },
+    "requestId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "requestedEdition": {
+      "enum": [
+        "en",
+        "ru",
+        "uk",
+        "de",
+        "fr",
+        "es",
+        "pt",
+        "zh",
+        "ja",
+        "ko",
+        "ar",
+        "hi",
+        "he",
+        "pl",
+        "ro",
+        "tr",
+        "it",
+        "kk",
+        "lv",
+        "et",
+        "lt"
+      ]
+    },
+    "resolvedEdition": {
+      "enum": [
+        "en",
+        "ru",
+        "uk",
+        "de",
+        "fr",
+        "es",
+        "pt",
+        "zh",
+        "ja",
+        "ko",
+        "ar",
+        "hi",
+        "he",
+        "pl",
+        "ro",
+        "tr",
+        "it",
+        "kk",
+        "lv",
+        "et",
+        "lt"
+      ]
+    },
+    "requestedLemma": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "resolvedTitle": { "type": "string", "minLength": 1 },
+    "revisionId": { "type": "integer", "minimum": 1 },
+    "sourceUrl": { "type": "string", "format": "uri" },
+    "entries": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "required": ["partOfSpeech", "senses"],
+        "properties": {
+          "partOfSpeech": { "type": ["string", "null"] },
+          "senses": {
+            "type": "array",
+            "maxItems": 64,
+            "items": { "type": "string", "maxLength": 2000 }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "fallbackUsed": { "type": "boolean" },
+    "attribution": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

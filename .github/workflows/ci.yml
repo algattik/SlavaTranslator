@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22.18.0
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Check formatting
+        run: npm run format:check
+      - name: Check types
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Run unit, property, and data tests
+        run: npm test
+      - name: Run deterministic Chromium tests
+        run: npm run test:e2e
+      - name: Verify release package, licenses, and compiled output
+        run: npm run release:verify
+      - name: Run exact packaged-ZIP smoke
+        run: npm run test:e2e:packaged
+      - name: Upload quality evidence
+        if: always()
+        uses: actions/upload-artifact@2031cfc080254a8a887f58cffee85186f0e49e48 # v4
+        with:
+          name: quality-evidence
+          if-no-files-found: ignore
+          path: |
+            artifacts/
+            test-results/
+
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Review dependency changes
+        uses: actions/dependency-review-action@87ef0dc97def48aa960fbf026a2563ee9dbdb470 # v4
+        with:
+          fail-on-severity: high

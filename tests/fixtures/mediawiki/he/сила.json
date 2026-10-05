@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "he",
+    "requestedTitle": "сила",
+    "resolvedTitle": "сила",
+    "revisionId": 260303,
+    "retrievedAt": "2026-10-05T07:09:01.560Z",
+    "sourceUrl": "https://he.wiktionary.org/w/api.php?action=parse&page=%D1%81%D0%B8%D0%BB%D0%B0&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "сила",
+      "pageid": 46161,
+      "revid": 260303,
+      "redirects": [],
+      "text": "<div class=\"mw-content-rtl mw-parser-output\" lang=\"he\" dir=\"rtl\"><div class=\"mw-heading mw-heading2\"><h2 id=\"רוסית\"><span id=\".D7.A8.D7.95.D7.A1.D7.99.D7.AA\"></span>רוסית</h2></div>\n<p><b>сила, -ы</b>\n</p>\n<ol><li><span style=\"color:#0080FF;\"><small>[פיזיקה]</small></span> <a href=\"/wiki/%D7%9B%D7%95%D7%97\" title=\"כוח\">כוח</a></li></ol></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "רוסית",
+            "number": "1",
+            "index": "1",
+            "fromTitle": "сила",
+            "codepointOffset": 0,
+            "anchor": "רוסית"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": false,
+      "displaytitle": "<span lang=\"he\" dir=\"rtl\"><span class=\"mw-page-title-main\">сила</span></span>"
+    }
+  }
+}

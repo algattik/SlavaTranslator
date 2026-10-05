@@ -1,0 +1,32 @@
+Kaikki/Wiktionary Russian morphology data
+
+The packaged morphology index is an adapted, machine-readable index derived
+from the Kaikki English Wiktionary Russian extraction:
+
+Source: https://kaikki.org/dictionary/Russian/
+Source file: https://kaikki.org/dictionary/Russian/kaikki.org-dictionary-Russian.jsonl
+Raw-data information: https://kaikki.org/dictionary/rawdata.html
+Source identifier: kaikki-english-russian
+Source revision: enwiktionary-2026-09-02_wiktextract-1a05e46_wikitextprocessor-e3d6d4e
+Snapshot date: 2026-09-28
+Upstream license declaration: CC BY-SA 4.0 and GFDL
+
+The source data was extracted from the English Wiktionary dump dated
+2026-09-02 using Wiktextract revision 1a05e46 and Wikitextprocessor revision
+e3d6d4e. Slava transforms the Russian entries into compact lemma, form,
+stem, paradigm, exception, and posting tables. It does not reproduce
+Wiktionary definitions in this packaged index.
+
+Wiktionary contributors retain copyright in their contributions. This
+adapted morphology data is distributed under the Creative Commons
+Attribution-ShareAlike 4.0 International license:
+
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+The upstream source also identifies GNU Free Documentation License terms:
+
+https://www.gnu.org/licenses/fdl-1.3.html
+
+No endorsement by Wikimedia, Wiktionary, Kaikki, Wiktextract, or their
+contributors is implied.

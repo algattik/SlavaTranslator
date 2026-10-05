@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "tr",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 5672593,
+    "retrievedAt": "2026-10-05T07:09:02.452Z",
+    "sourceUrl": "https://tr.wiktionary.org/w/api.php?action=parse&page=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "pageid": 131590,
+      "revid": 5672593,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"tr\" dir=\"ltr\"><div class=\"mw-heading mw-heading2\"><h2 id=\"Rusça\"><span id=\"Rus.C3.A7a\"></span>Rusça</h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Köken\"><span id=\"K.C3.B6ken\"></span>Köken</h3></div>\n<p><a href=\"https://tr.wikipedia.org/wiki/Ana_Slavca\" class=\"extiw\" title=\"w:Ana Slavca\">Ana Slavca</a> <span class=\"Latinx\" lang=\"sla-pro\"><a href=\"/w/index.php?title=YeniKurum:Ana_Slavca/govoriti&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"YeniKurum:Ana Slavca/govoriti (sayfa mevcut değil)\">*govoriti</a></span> sözcüğünden devralındı.\n</p>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Eylem\">Eylem</h3></div>\n<p><strong class=\"Cyrl headword\" lang=\"ru\">говори́ть</strong> (<span lang=\"ru-Latn\" class=\"headword-tr tr Latn\" dir=\"ltr\">govorítʹ</span>)&#160;<span class=\"gender\"><abbr title=\"tamamlanmamış bakış açısı\">tamamlanmamış</abbr></span> (<i>tamamlanmış</i> <b class=\"Cyrl\" lang=\"ru\"><a href=\"/wiki/%D1%81%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C#Rusça\" title=\"сказать\">сказа́ть</a></b> <i>veya</i> <b class=\"Cyrl\" lang=\"ru\"><a href=\"/w/index.php?title=%D0%BF%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"поговорить (sayfa mevcut değil)\">поговори́ть</a></b>)\n</p>\n<ol><li><a href=\"/wiki/konu%C5%9Fmak\" title=\"konuşmak\">konuşmak</a></li>\n<li><a href=\"/wiki/demek\" title=\"demek\">demek</a>, <a href=\"/wiki/s%C3%B6ylemek\" title=\"söylemek\">söylemek</a></li></ol></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "Rusça",
+            "number": "1",
+            "index": "1",
+            "fromTitle": "говорить",
+            "codepointOffset": 0,
+            "anchor": "Rusça"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Köken",
+            "number": "1.1",
+            "index": "2",
+            "fromTitle": "говорить",
+            "codepointOffset": 11,
+            "anchor": "Köken"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Eylem",
+            "number": "1.2",
+            "index": "3",
+            "fromTitle": "говорить",
+            "codepointOffset": 61,
+            "anchor": "Eylem"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": false,
+      "displaytitle": "<span lang=\"tr\" dir=\"ltr\"><span class=\"mw-page-title-main\">говорить</span></span>"
+    }
+  }
+}

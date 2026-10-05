@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "ru",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 1,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://ru.wiktionary.org/w/api.php",
+    "license": "Synthetic descriptor; tests generate a payload above the configured byte limit",
+    "scenario": "oversized"
+  },
+  "response": {
+    "generateTextBytes": 2097153
+  }
+}

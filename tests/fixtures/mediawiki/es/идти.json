@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "es",
+    "requestedTitle": "идти",
+    "resolvedTitle": "идти",
+    "revisionId": 5290836,
+    "retrievedAt": "2026-10-04T21:13:42.024Z",
+    "sourceUrl": "https://es.wiktionary.org/w/api.php?action=parse&page=%D0%B8%D0%B4%D1%82%D0%B8&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "идти",
+      "pageid": 66588,
+      "revid": 5290836,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"es\" dir=\"ltr\"><meta property=\"mw:PageProp/toc\" />\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Ruso\"><span id=\"ru\" class=\"headline-lang\"></span>Ruso</h2></div>\n<style data-mw-deduplicate=\"TemplateStyles:r6294892\">.mw-parser-output .pron-graf{float:right;clear:both;min-width:200px;max-width:50%}.mw-parser-output .pron-graf td:nth-child(1){text-align:left;vertical-align:top;padding:0 15px;word-wrap:break-word}.mw-parser-output .pron-graf td:nth-child(2){text-align:left;vertical-align:top;padding:0 15px;word-wrap:break-word;word-break:break-all}@media(max-width:768px){.mw-parser-output .pron-graf{float:none;max-width:100%}}</style>\n<table class=\"pron-graf\">\n<tbody><tr>\n<td style=\"background-color: var(--background-color-neutral, #eaecf0); color: var(--color-base, #202122);\" colspan=\"2\"><span style=\"font-family: Arial, sans-serif; font-size: 1.5em;\">идти</span>\n</td></tr>\n<tr>\n<td><a href=\"/w/index.php?title=Ap%C3%A9ndice:RU:Referencia/Pronunciaci%C3%B3n&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Apéndice:RU:Referencia/Pronunciación (la página no existe)\"><b>pronunciación</b></a> (<a href=\"/wiki/Alfabeto_Fon%C3%A9tico_Internacional\" title=\"Alfabeto Fonético Internacional\">AFI</a>)\n</td>\n<td>[ɪˈtʲi]<br />\n</td></tr></tbody></table>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Etimología\"><span id=\"Etimolog.C3.ADa\"></span>Etimología</h3></div>\n<p>Del ruteno antiguo <a href=\"/w/index.php?title=%D0%B8%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"ити (la página no existe)\"><i>ити</i></a> (<i>iti</i>), y este del protoeslavo <a href=\"/w/index.php?title=*j%D1%8Cti&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"*jьti (la página no existe)\"><i>*jьti</i></a>, del protoindoeuropeo <a href=\"/w/index.php?title=*h%E2%82%81ey-&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"*h₁ey- (la página no existe)\"><i>*h₁ey-</i></a>. Compárese el bielorruso <a href=\"/w/index.php?title=%D1%96%D1%81%D1%86%D1%96&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"ісці (la página no existe)\"><i>ісці</i></a>&#160;(<i>iscí</i>), el checo <a href=\"/wiki/j%C3%ADt#Checo\" title=\"jít\"><i>jít</i></a>, el eslavónico eclesiástico <a href=\"/w/index.php?title=%D0%B8%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"ити (la página no existe)\"><i>ити</i></a>, <a href=\"/w/index.php?title=%E2%B0%89%E2%B0%95%E2%B0%89&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"ⰉⰕⰉ (la página no existe)\"><i>ⰉⰕⰉ</i></a>&#160;(<i>iti</i>), el eslovaco <a href=\"/w/index.php?title=%C3%ADs%C5%A5&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"ísť (la página no existe)\"><i>ísť</i></a>, el esloveno <a href=\"/w/index.php?title=iti&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"iti (la página no existe)\"><i>iti</i></a>, el polaco <a href=\"/wiki/i%C5%9B%C4%87#Polaco\" title=\"iść\"><i>iść</i></a>, el serbio <a href=\"/w/index.php?title=%D0%B8%D1%9B%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"ићи (la página no existe)\"><i>ѝћи</i></a>&#160;(<i>ìći</i>) o el ucraniano <a href=\"/w/index.php?title=%D1%96%D1%82%D0%B8%CC%81&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"іти́ (la página no existe)\"><i>іти́</i></a>&#160;(<i>itý</i>), así como, más remotamente, el letón <a href=\"/wiki/iet#Letón\" title=\"iet\"><i>iet</i></a> o el lituano <a href=\"/w/index.php?title=e%C4%A9ti&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"eĩti (la página no existe)\"><i>eĩti</i></a>\n</p>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Verbo_imperfectivo\">Verbo imperfectivo</h3></div>\n<dl><dt>1</dt>\n<dd><a href=\"/wiki/ir#Español\" title=\"ir\">Ir</a></dd></dl>\n<dl><dt>2</dt>\n<dd><a href=\"/wiki/andar#Español\" title=\"andar\">Andar</a>, <a href=\"/wiki/caminar\" title=\"caminar\">caminar</a></dd></dl>\n<dl><dt>3</dt>\n<dd><a href=\"/wiki/funcionar#Español\" title=\"funcionar\">Funcionar</a></dd></dl>\n<dl><dt>4</dt>\n<dd><a href=\"/wiki/caer#Español\" title=\"caer\">Caer</a> (la lluvia, nieve o granizo)</dd></dl>\n<dl><dt>5</dt>\n<dd><a href=\"/wiki/convenir#Español\" title=\"convenir\">Convenir</a>, <a href=\"/wiki/pegar\" title=\"pegar\">pegar</a>, ir bien (una prenda de ropa)</dd></dl>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Véase_también\"><span id=\"V.C3.A9ase_tambi.C3.A9n\"></span>Véase también</h3></div>\n<ul><li><a href=\"/w/index.php?title=%D0%B2%D0%BE%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"войти (la página no existe)\">войти</a>&#160;(<i>vojti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%B2%D1%8B%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"выйти (la página no existe)\">выйти</a>&#160;(<i>vyjti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%B4%D0%BE%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"дойти (la página no existe)\">дойти</a>&#160;(<i>dojti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%B7%D0%B0%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"зайти (la página no existe)\">зайти</a>&#160;(<i>zajti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%BD%D0%B0%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"найти (la página no existe)\">найти</a>&#160;(<i>najti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%BD%D0%B0%D0%B9%D1%82%D0%B8%D1%81%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"найтись (la página no existe)\">найтись</a>&#160;(<i>najtisʹ</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%BF%D0%B5%D1%80%D0%B5%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"перейти (la página no existe)\">перейти</a>&#160;(<i>perejti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%BF%D0%BE%D0%B4%D0%BE%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"подойти (la página no existe)\">подойти</a>&#160;(<i>podojti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%BF%D0%BE%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"пойти (la página no existe)\">пойти</a>&#160;(<i>pojti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%BF%D1%80%D0%B8%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"прийти (la página no existe)\">прийти</a>&#160;(<i>prijti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%BE%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"произойти (la página no existe)\">произойти</a>&#160;(<i>proizojti</i>)</li>\n<li><a href=\"/w/index.php?title=%D0%BF%D1%80%D0%BE%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"пройти (la página no existe)\">пройти</a>&#160;(<i>projti</i>)</li>\n<li><a href=\"/w/index.php?title=%D1%83%D0%B9%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"уйти (la página no existe)\">уйти</a>&#160;(<i>ujti</i>)</li></ul>\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Referencias_y_notas\">Referencias y notas</h2></div>\n</div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "Ruso",
+            "number": "1",
+            "index": "1",
+            "fromTitle": "идти",
+            "codepointOffset": 0,
+            "anchor": "Ruso"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Etimología",
+            "number": "1.1",
+            "index": "2",
+            "fromTitle": "идти",
+            "codepointOffset": 54,
+            "anchor": "Etimología"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Verbo imperfectivo",
+            "number": "1.2",
+            "index": "3",
+            "fromTitle": "идти",
+            "codepointOffset": 568,
+            "anchor": "Verbo_imperfectivo"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Véase también",
+            "number": "1.3",
+            "index": "4",
+            "fromTitle": "идти",
+            "codepointOffset": 784,
+            "anchor": "Véase_también"
+          },
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "Referencias y notas",
+            "number": "2",
+            "index": "5",
+            "fromTitle": "идти",
+            "codepointOffset": 1167,
+            "anchor": "Referencias_y_notas"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": true,
+      "displaytitle": "<span lang=\"es\" dir=\"ltr\"><span class=\"mw-page-title-main\">идти</span></span>"
+    }
+  }
+}

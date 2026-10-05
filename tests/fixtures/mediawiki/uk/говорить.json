@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "uk",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 555901,
+    "retrievedAt": "2026-10-04T21:13:41.737Z",
+    "sourceUrl": "https://uk.wiktionary.org/w/api.php?action=parse&page=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "pageid": 43199,
+      "revid": 555901,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"uk\" dir=\"ltr\"><meta property=\"mw:PageProp/toc\" />\n<div class=\"mw-heading mw-heading1\"><h1 id=\"Українська\"><span id=\".D0.A3.D0.BA.D1.80.D0.B0.D1.97.D0.BD.D1.81.D1.8C.D0.BA.D0.B0\"></span><div style=\"background-color:#d4e4f4\">Українська</div></h1></div>\n<pre>форма теперішнього часу   третьої особи однини дійсного способу  дієслова  <i><a href=\"/wiki/%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8\" title=\"говорити\">говорити</a></i>\n</pre>\n<p><span class=\"example-fullblock example-absent-block\">&#9670;&#160;<span class=\"example-block\" style=\"color:darkgreen\"><span class=\"example-absent\" style=\"color:darkorange\">Немає прикладів слововжитку (див. <a href=\"/wiki/%D0%92%D1%96%D0%BA%D1%96%D1%81%D0%BB%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA:%D0%A6%D0%98%D0%A2\" title=\"Вікісловник:ЦИТ\"><span class=\"example-recommendations\" style=\"color:darkorange; font-weight: bold; text-decoration: inherit; -moz-text-decoration-color: darkorange; text-decoration-color: darkorange;\">рекомендації</span></a>).</span> <span class=\"example-details\" style=\"font-size:smaller;\"> <i> <span class=\"citation-source\" style=\"font-size:smaller;\"></span></i></span></span></span>\n</p>\n<div class=\"mw-heading mw-heading1\"><h1 id=\"Російська\"><span id=\".D0.A0.D0.BE.D1.81.D1.96.D0.B9.D1.81.D1.8C.D0.BA.D0.B0\"></span><div style=\"background-color:#d4e4f4\">Російська</div></h1></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Морфосинтаксичні_ознаки\"><span id=\".D0.9C.D0.BE.D1.80.D1.84.D0.BE.D1.81.D0.B8.D0.BD.D1.82.D0.B0.D0.BA.D1.81.D0.B8.D1.87.D0.BD.D1.96_.D0.BE.D0.B7.D0.BD.D0.B0.D0.BA.D0.B8\"></span>Морфосинтаксичні ознаки</h3></div>\n<p><b>го<span style=\"color:red;\">-</span>во<span style=\"color:red;\">-</span>рить</b>\n</p><p>Дієслово, друга дієвідміна, недоконаного виду (тип дієвідміни 4b за класифікацією А. А. Залізняка)\n</p>\n<table style=\"float:right; clear:right; padding:3; margin-left:0.5em; margin-bottom:0.5em; border: 1px solid #6699СС; border-collapse:collapse;\" cellpadding=\"2\" rules=\"all\">\n<tbody><tr>\n<th bgcolor=\"#EEF9FF\">&#160;\n</th>\n<th bgcolor=\"#EEF9FF\">теп.\n</th>\n<th bgcolor=\"#EEF9FF\">мин.\n</th>\n<th bgcolor=\"#EEF9FF\">майб.\n</th>\n<th bgcolor=\"#EEF9FF\">наказ.\n</th></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D1%8F\" title=\"я\">Я</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говорю́\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́л<br />говори́ла\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">—\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D1%82%D1%8B\" title=\"ты\">Ты</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́шь\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́л<br />говори́ла\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%BE%D0%BD\" title=\"он\">Он</a><br /><a href=\"/w/index.php?title=%D0%BE%D0%BD%D0%B0&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"она (такої сторінки не існує)\">Она</a><br /><a href=\"/w/index.php?title=%D0%BE%D0%BD%D0%BE&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"оно (такої сторінки не існує)\">Оно</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́т\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́л<br />говори́ла<br />говори́ло\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">—\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%BC%D1%8B\" title=\"мы\">Мы</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́м\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́ли\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">—\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%B2%D1%8B\" title=\"вы\">Вы</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́те\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́ли\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́те\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/w/index.php?title=%D0%BE%D0%BD%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"они (такої сторінки не існує)\">Они</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говоря́т\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́ли\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">—\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%B4%D1%96%D1%94%D0%BF%D1%80%D0%B8%D0%BA%D0%BC%D0%B5%D1%82%D0%BD%D0%B8%D0%BA\" title=\"дієприкметник\">Дієприкм.</a> <a href=\"/wiki/%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%96%D1%88%D0%BD%D1%96%D0%B9_%D1%87%D0%B0%D1%81\" title=\"теперішній час\">теп. ч.</a>\n</td>\n<td colspan=\"3\" align=\"center\" bgcolor=\"#ffffff\">говоря́щий\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%B4%D1%96%D1%94%D0%BF%D1%80%D0%B8%D0%BA%D0%BC%D0%B5%D1%82%D0%BD%D0%B8%D0%BA\" title=\"дієприкметник\">Дієприкм.</a> <a href=\"/wiki/%D0%BC%D0%B8%D0%BD%D1%83%D0%BB%D0%B8%D0%B9_%D1%87%D0%B0%D1%81\" title=\"минулий час\">мин. ч.</a>\n</td>\n<td colspan=\"3\" align=\"center\" bgcolor=\"#ffffff\">говори́вший\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%B4%D1%96%D1%94%D0%BF%D1%80%D0%B8%D1%81%D0%BB%D1%96%D0%B2%D0%BD%D0%B8%D0%BA\" title=\"дієприслівник\">Дієприсл.</a> <a href=\"/wiki/%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%96%D1%88%D0%BD%D1%96%D0%B9_%D1%87%D0%B0%D1%81\" title=\"теперішній час\">теп. ч.</a>\n</td>\n<td colspan=\"3\" align=\"center\" bgcolor=\"#ffffff\">говоря́\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%B4%D1%96%D1%94%D0%BF%D1%80%D0%B8%D1%81%D0%BB%D1%96%D0%B2%D0%BD%D0%B8%D0%BA\" title=\"дієприслівник\">Дієприсл.</a> <a href=\"/wiki/%D0%BC%D0%B8%D0%BD%D1%83%D0%BB%D0%B8%D0%B9_%D1%87%D0%B0%D1%81\" title=\"минулий час\">мин. ч.</a>\n</td>\n<td colspan=\"3\" align=\"center\" bgcolor=\"#ffffff\">говори́вши\n</td></tr></tbody></table>\n<p>Корінь: <b>-говор-</b>&#59; суфікс: <b>-и-</b> &#59; закінчення: <b>-ть</b>\n</p><p><br />\n</p>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Вимова\"><span id=\".D0.92.D0.B8.D0.BC.D0.BE.D0.B2.D0.B0\"></span>Вимова</h3></div>\n<ul><li><ul class=\"transcription\" style=\"margin-left:0; list-style:none;\"><li><a href=\"https://uk.wikipedia.org/wiki/%D0%9C%D1%96%D0%B6%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B8%D0%B9_%D1%84%D0%BE%D0%BD%D0%B5%D1%82%D0%B8%D1%87%D0%BD%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D1%96%D1%82\" class=\"extiw\" title=\"w:Міжнародний фонетичний алфавіт\">МФА</a>:&#160;&#91;<span class=\"IPA\" style=\"white-space: nowrap;\">ɡəvɐˈrʲitʲ</span>&#93;</li></ul></li>\n<li><span class=\"mw-default-size skin-invert\" typeof=\"mw:File\"><a href=\"/wiki/%D0%A4%D0%B0%D0%B9%D0%BB:Loudspeaker.svg\" class=\"mw-file-description\"><img alt=\"\" src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/20px-Loudspeaker.svg.png?utm_source=uk.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"20\" height=\"20\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/40px-Loudspeaker.svg.png?utm_source=uk.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"20\" data-file-height=\"20\" /></a></span>&#160;<span class=\"IPA\" style=\"font-family:Gentium, Gentium Alternative, Arial Unicode MS, TITUS Cyberbit Basic, Lucida Sans Unicode, DejaVu Sans, Segoe UI, Lucida Grande, Charis SIL, Doulos SIL, Code2000;\"><a href=\"//upload.wikimedia.org/wikipedia/commons/5/51/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg?utm_source=uk.wiktionary.org&amp;utm_campaign=api&amp;utm_content=original\" class=\"internal\" title=\"Ru-говорить.ogg\">прослухати вимову</a></span><sup><a href=\"https://uk.wikipedia.org/wiki/Wikipedia:Media_help_(Ogg)\" class=\"extiw\" title=\"w:Wikipedia:Media help (Ogg)\">?</a>, <a href=\"/wiki/%D0%A4%D0%B0%D0%B9%D0%BB:Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg\" title=\"Файл:Ru-говорить.ogg\">файл</a></sup></li></ul>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Семантичні_властивості\"><span id=\".D0.A1.D0.B5.D0.BC.D0.B0.D0.BD.D1.82.D0.B8.D1.87.D0.BD.D1.96_.D0.B2.D0.BB.D0.B0.D1.81.D1.82.D0.B8.D0.B2.D0.BE.D1.81.D1.82.D1.96\"></span>Семантичні властивості</h3></div>\n<div class=\"mw-heading mw-heading4\"><h4 id=\"Значення\"><span id=\".D0.97.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.BD.D1.8F\"></span>Значення</h4></div>\n<ol><li><a href=\"/wiki/%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8\" title=\"говорити\">говорити</a>, <a href=\"/wiki/%D1%80%D0%BE%D0%B7%D0%BC%D0%BE%D0%B2%D0%BB%D1%8F%D1%82%D0%B8\" title=\"розмовляти\">розмовляти</a> <sup id=\"cite&#95;ref-1\" class=\"reference\"><a href=\"#cite_note-1\"><span class=\"cite-bracket\">&#91;</span>≈ 1<span class=\"cite-bracket\">&#93;</span></a></sup><sup id=\"cite&#95;ref-2\" class=\"reference\"><a href=\"#cite_note-2\"><span class=\"cite-bracket\">&#91;</span>≠ 1<span class=\"cite-bracket\">&#93;</span></a></sup><span style=\"display: none\"><sup id=\"cite&#95;ref-3\" class=\"reference\"><a href=\"#cite_note-3\"><span class=\"cite-bracket\">&#91;</span>▲ 1<span class=\"cite-bracket\">&#93;</span></a></sup></span><span style=\"display: none\"><sup id=\"cite&#95;ref-4\" class=\"reference\"><a href=\"#cite_note-4\"><span class=\"cite-bracket\">&#91;</span>▼ 1<span class=\"cite-bracket\">&#93;</span></a></sup></span> <span class=\"example-fullblock example-absent-block\">&#9670;&#160;<span class=\"example-block\" style=\"color:darkgreen\"><span class=\"example-absent\" style=\"color:darkorange\">Немає прикладів слововжитку (див. <a href=\"/wiki/%D0%92%D1%96%D0%BA%D1%96%D1%81%D0%BB%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA:%D0%A6%D0%98%D0%A2\" title=\"Вікісловник:ЦИТ\"><span class=\"example-recommendations\" style=\"color:darkorange; font-weight: bold; text-decoration: inherit; -moz-text-decoration-color: darkorange; text-decoration-color: darkorange;\">рекомендації</span></a>).</span> <span class=\"example-details\" style=\"font-size:smaller;\"> <i> <span class=\"citation-source\" style=\"font-size:smaller;\"></span></i></span></span></span></li></ol>\n<dl><dt>Синоніми</dt></dl>\n<div class=\"mw-references-wrap\"><ol class=\"references\" data-mw-group=\"≈\">\n<li id=\"cite&#95;note-1\"><span class=\"mw-cite-backlink\"><a href=\"#cite_ref-1\">↑</a></span> <span class=\"reference-text\"><a href=\"/wiki/%D1%80%D0%B0%D0%B7%D0%B3%D0%BE%D0%B2%D0%B0%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C\" title=\"разговаривать\">разговаривать</a></span>\n</li>\n</ol></div>\n<dl><dt>Антоніми</dt></dl>\n<div class=\"mw-references-wrap\"><ol class=\"references\" data-mw-group=\"≠\">\n<li id=\"cite&#95;note-2\"><span class=\"mw-cite-backlink\"><a href=\"#cite_ref-2\">↑</a></span> <span class=\"reference-text\"><a href=\"/w/index.php?title=%D0%BC%D0%BE%D0%BB%D1%87%D0%B0%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"молчать (такої сторінки не існує)\">молчать</a></span>\n</li>\n</ol></div>\n<dl><dt>Гіпероніми</dt></dl>\n<div class=\"mw-references-wrap\"><ol class=\"references\" data-mw-group=\"▲\">\n<li id=\"cite&#95;note-3\"><span class=\"mw-cite-backlink\"><a href=\"#cite_ref-3\">↑</a></span> <span class=\"reference-text\">?</span>\n</li>\n</ol></div>\n<dl><dt>Гіпоніми</dt></dl>\n<div class=\"mw-references-wrap\"><ol class=\"references\" data-mw-group=\"▼\">\n<li id=\"cite&#95;note-4\"><span class=\"mw-cite-backlink\"><a href=\"#cite_ref-4\">↑</a></span> <span class=\"reference-text\">?</span>\n</li>\n</ol></div>\n<div class=\"mw-heading mw-heading4\"><h4 id=\"Холоніми\"><span id=\".D0.A5.D0.BE.D0.BB.D0.BE.D0.BD.D1.96.D0.BC.D0.B8\"></span>Холоніми</h4></div>\n<ol><li class=\"mw-empty-elt\"></li></ol>\n<div class=\"mw-heading mw-heading4\"><h4 id=\"Мероніми\"><span id=\".D0.9C.D0.B5.D1.80.D0.BE.D0.BD.D1.96.D0.BC.D0.B8\"></span>Мероніми</h4></div>\n<ol><li class=\"mw-empty-elt\"></li></ol>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Усталені_та_термінологічні_словосполучення,_фразеологізми\"><span id=\".D0.A3.D1.81.D1.82.D0.B0.D0.BB.D0.B5.D0.BD.D1.96_.D1.82.D0.B0_.D1.82.D0.B5.D1.80.D0.BC.D1.96.D0.BD.D0.BE.D0.BB.D0.BE.D0.B3.D1.96.D1.87.D0.BD.D1.96_.D1.81.D0.BB.D0.BE.D0.B2.D0.BE.D1.81.D0.BF.D0.BE.D0.BB.D1.83.D1.87.D0.B5.D0.BD.D0.BD.D1.8F.2C_.D1.84.D1.80.D0.B0.D0.B7.D0.B5.D0.BE.D0.BB.D0.BE.D0.B3.D1.96.D0.B7.D0.BC.D0.B8\"></span>Усталені та термінологічні словосполучення, фразеологізми</h3></div>\n<ul><li class=\"mw-empty-elt\"></li></ul>\n<div class=\"mw-heading mw-heading4\"><h4 id=\"Колокації\"><span id=\".D0.9A.D0.BE.D0.BB.D0.BE.D0.BA.D0.B0.D1.86.D1.96.D1.97\"></span>Колокації</h4></div>\n<div class=\"mw-heading mw-heading4\"><h4 id=\"Прислів'я_та_приказки\"><span id=\".D0.9F.D1.80.D0.B8.D1.81.D0.BB.D1.96.D0.B2.27.D1.8F_.D1.82.D0.B0_.D0.BF.D1.80.D0.B8.D0.BA.D0.B0.D0.B7.D0.BA.D0.B8\"></span>Прислів'я та приказки</h4></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Споріднені_слова\"><span id=\".D0.A1.D0.BF.D0.BE.D1.80.D1.96.D0.B4.D0.BD.D0.B5.D0.BD.D1.96_.D1.81.D0.BB.D0.BE.D0.B2.D0.B0\"></span>Споріднені слова</h3></div>\n<table class=\"wikitable mw-collapsible mw-collapsed\" style=\"margin: 0 0 0.2em; border-width: 1px\" data-collapsetext=\"сховати\" data-expandtext=\"показати\">\n<tbody><tr>\n<td style=\"text-align:left; border-right:0; font-size: 95%; font-weight: bold; padding-left:5px;\" width=\"100%\" class=\"block-head\">Найтісніша спорідненість\n</td>\n<th style=\"font-size:smaller; border-left:0;\" class=\"block-head\">\n</th></tr>\n<tr>\n<td colspan=\"2\" class=\"block-body\">\n<ul><li><span>іменники:</span> <a href=\"/w/index.php?title=%D1%80%D0%B0%D0%B7%D0%B3%D0%BE%D0%B2%D0%BE%D1%80&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"разговор (такої сторінки не існує)\">разговор</a>, <a href=\"/w/index.php?title=%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"договор (такої сторінки не існує)\">договор</a>, <a href=\"/w/index.php?title=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D0%B2%D0%BE%D1%80&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"приговор (такої сторінки не існує)\">приговор</a>, <a href=\"/w/index.php?title=%D0%B7%D0%B0%D0%B3%D0%BE%D0%B2%D0%BE%D1%80&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"заговор (такої сторінки не існує)\">заговор</a></li>\n<li><span>прикметники:</span> <a href=\"/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%BB%D0%B8%D0%B2%D1%8B%D0%B9.&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"говорливый. (такої сторінки не існує)\">говорливый.</a> <a href=\"/w/index.php?title=%D1%80%D0%B0%D0%B7%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%BD%D1%8B%D0%B9&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"разговорный (такої сторінки не існує)\">разговорный</a></li>\n<li><span>дієслова:</span> <a href=\"/wiki/%D1%80%D0%B0%D0%B7%D0%B3%D0%BE%D0%B2%D0%B0%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C\" title=\"разговаривать\">разговаривать</a>, <a href=\"/w/index.php?title=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D0%B2%D0%B0%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"приговаривать (такої сторінки не існує)\">приговаривать</a>, <a href=\"/w/index.php?title=%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%B0%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"договариваться (такої сторінки не існує)\">договариваться</a></li></ul>\n</td></tr></tbody></table>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Етимологія\"><span id=\".D0.95.D1.82.D0.B8.D0.BC.D0.BE.D0.BB.D0.BE.D0.B3.D1.96.D1.8F\"></span>Етимологія</h3></div>\n<p>Від <a href=\"/w/index.php?title=%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD:%D0%B5%D1%82%D0%B8%D0%BC%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%8F:%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Шаблон:етимологія:говорити (такої сторінки не існує)\">Шаблон:етимологія:говорити</a>\n</p>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Джерела\"><span id=\".D0.94.D0.B6.D0.B5.D1.80.D0.B5.D0.BB.D0.B0\"></span>Джерела</h3></div></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 1,
+            "line": "Українська",
+            "number": "1",
+            "index": "T-1",
+            "fromTitle": "Шаблон:мова",
+            "anchor": "Українська"
+          },
+          {
+            "tocLevel": 1,
+            "hLevel": 1,
+            "line": "Російська",
+            "number": "2",
+            "index": "T-1",
+            "fromTitle": "Шаблон:мова",
+            "anchor": "Російська"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Морфосинтаксичні ознаки",
+            "number": "2.1",
+            "index": "1",
+            "fromTitle": "говорить",
+            "codepointOffset": 152,
+            "anchor": "Морфосинтаксичні_ознаки"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Вимова",
+            "number": "2.2",
+            "index": "2",
+            "fromTitle": "говорить",
+            "codepointOffset": 269,
+            "anchor": "Вимова"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Семантичні властивості",
+            "number": "2.3",
+            "index": "3",
+            "fromTitle": "говорить",
+            "codepointOffset": 362,
+            "anchor": "Семантичні_властивості"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 4,
+            "line": "Значення",
+            "number": "2.3.1",
+            "index": "4",
+            "fromTitle": "говорить",
+            "codepointOffset": 392,
+            "anchor": "Значення"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 4,
+            "line": "Холоніми",
+            "number": "2.3.2",
+            "index": "5",
+            "fromTitle": "говорить",
+            "codepointOffset": 580,
+            "anchor": "Холоніми"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 4,
+            "line": "Мероніми",
+            "number": "2.3.3",
+            "index": "6",
+            "fromTitle": "говорить",
+            "codepointOffset": 602,
+            "anchor": "Мероніми"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Усталені та термінологічні словосполучення, фразеологізми",
+            "number": "2.4",
+            "index": "7",
+            "fromTitle": "говорить",
+            "codepointOffset": 624,
+            "anchor": "Усталені_та_термінологічні_словосполучення,_фразеологізми"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 4,
+            "line": "Колокації",
+            "number": "2.4.1",
+            "index": "8",
+            "fromTitle": "говорить",
+            "codepointOffset": 692,
+            "anchor": "Колокації"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 4,
+            "line": "Прислів'я та приказки",
+            "number": "2.4.2",
+            "index": "9",
+            "fromTitle": "говорить",
+            "codepointOffset": 712,
+            "anchor": "Прислів'я_та_приказки"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Споріднені слова",
+            "number": "2.5",
+            "index": "10",
+            "fromTitle": "говорить",
+            "codepointOffset": 743,
+            "anchor": "Споріднені_слова"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Етимологія",
+            "number": "2.6",
+            "index": "11",
+            "fromTitle": "говорить",
+            "codepointOffset": 963,
+            "anchor": "Етимологія"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Джерела",
+            "number": "2.7",
+            "index": "12",
+            "fromTitle": "говорить",
+            "codepointOffset": 1012,
+            "anchor": "Джерела"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": true,
+      "displaytitle": "<span lang=\"uk\" dir=\"ltr\"><span class=\"mw-page-title-main\">говорить</span></span>"
+    }
+  }
+}

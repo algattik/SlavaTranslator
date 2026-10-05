@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://slava.example/schema/quality-report-v1.json",
+  "title": "Slava local index quality report",
+  "type": "object",
+  "required": ["schemaVersion", "source", "recordFlow", "artifact"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "source": { "type": "object" },
+    "recordFlow": {
+      "type": "object",
+      "required": [
+        "sourceRecordsSeen",
+        "eligibleRecords",
+        "emittedRecords",
+        "filteredRecords",
+        "rejectedRecords"
+      ]
+    },
+    "artifact": { "type": "object" }
+  },
+  "additionalProperties": false
+}

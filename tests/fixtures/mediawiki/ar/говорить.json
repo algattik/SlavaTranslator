@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "ar",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 1070207,
+    "retrievedAt": "2026-10-04T21:13:43.995Z",
+    "sourceUrl": "https://ar.wiktionary.org/w/api.php?action=parse&page=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "pageid": 155034,
+      "revid": 1070207,
+      "redirects": [],
+      "text": "<div class=\"mw-content-rtl mw-parser-output\" lang=\"ar\" dir=\"rtl\"><meta property=\"mw:PageProp/toc\" />\n<div class=\"mw-heading mw-heading2\"><h2 id=\"روسية\"><span id=\".D8.B1.D9.88.D8.B3.D9.8A.D8.A9\"></span>روسية</h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"اللفظ\"><span id=\".D8.A7.D9.84.D9.84.D9.81.D8.B8\"></span>اللفظ</h3></div>\n<p>ألفبائية صوتية دولية: [gəvɐˈrʲitʲ] <span class=\"mw-default-size\" typeof=\"mw:File\"><span><audio id=\"mwe_player_0\" controls=\"\" preload=\"none\" data-mw-tmh=\"\" class=\"mw-file-element\" width=\"250\" style=\"width:250px;\" data-durationhint=\"2\" data-mwtitle=\"Ru-говорить.ogg\" data-mwprovider=\"wikimediacommons\"><source src=\"//upload.wikimedia.org/wikipedia/commons/5/51/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg?utm_source=ar.wiktionary.org&amp;utm_campaign=api&amp;utm_content=original\" type=\"audio/ogg; codecs=&quot;vorbis&quot;\" data-width=\"0\" data-height=\"0\" /><source src=\"//upload.wikimedia.org/wikipedia/commons/transcoded/5/51/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg.mp3\" type=\"audio/mpeg\" data-transcodekey=\"mp3\" data-width=\"0\" data-height=\"0\" /></audio></span></span>\n</p>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"فعل\"><span id=\".D9.81.D8.B9.D9.84\"></span>فعل</h3></div>\n<p>говори́ть فعل الصرف الثاني (تصريف И) ذو المظهر غير المكتمل.\n</p>\n<ol><li>يَتَكَّلَمُ</li></ol>\n<p>?Ты говоришь по-арабски - <i>هل تتكلم بالعربية؟</i>\n</p>\n<div class=\"mw-heading mw-heading4\"><h4 id=\"التصريف\"><span id=\".D8.A7.D9.84.D8.AA.D8.B5.D8.B1.D9.8A.D9.81\"></span>التصريف</h4></div>\n<hr width=\"65%\" />\n<div class=\"mw-heading mw-heading5\"><h5 id=\"المضارع\"><span id=\".D8.A7.D9.84.D9.85.D8.B6.D8.A7.D8.B1.D8.B9\"></span>المضارع</h5></div>\n<table class=\"wikitable\">\n\n<tbody><tr>\n<th>\n</th>\n<th>متكلم</th>\n<th>مخاطب</th>\n<th>غائب\n</th></tr>\n<tr>\n<td><i>الفرد</i></td>\n<td><a href=\"/wiki/%D1%8F\" title=\"я\">я</a> говорю́</td>\n<td><a href=\"/wiki/%D1%82%D1%8B\" title=\"ты\">ты</a> говори́шь</td>\n<td><a href=\"/wiki/%D0%BE%D0%BD\" title=\"он\">он</a>/<a href=\"/wiki/%D0%BE%D0%BD%D0%B0\" title=\"она\">она</a>/<a href=\"/wiki/%D0%BE%D0%BD%D0%BE\" title=\"оно\">оно</a> говори́т\n</td></tr>\n<tr>\n<td><i>الجمع</i></td>\n<td><a href=\"/wiki/%D0%BC%D1%8B\" title=\"мы\">мы</a> говори́м</td>\n<td><a href=\"/w/index.php?title=%D0%B2%D1%8B&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"вы (الصفحة غير موجودة)\">вы</a> говори́те</td>\n<td><a href=\"/wiki/%D0%BE%D0%BD%D0%B8\" title=\"они\">они</a> говоря́т\n</td></tr></tbody></table>\n<div class=\"mw-heading mw-heading5\"><h5 id=\"الماضي\"><span id=\".D8.A7.D9.84.D9.85.D8.A7.D8.B6.D9.8A\"></span>الماضي</h5></div>\n<table class=\"wikitable\">\n\n<tbody><tr>\n<th>\n</th>\n<th>مذكر\n</th>\n<th>أنثى\n</th>\n<th>محايد\n</th></tr>\n<tr>\n<td><i>الفرد</i></td>\n<td><a href=\"/wiki/%D0%BE%D0%BD\" title=\"он\">он</a>/<a href=\"/wiki/%D1%82%D1%8B\" title=\"ты\">ты</a>/<a href=\"/wiki/%D1%8F\" title=\"я\">я</a> говори́л</td>\n<td><a href=\"/wiki/%D0%BE%D0%BD%D0%B0\" title=\"она\">она</a>/<a href=\"/wiki/%D1%82%D1%8B\" title=\"ты\">ты</a>/<a href=\"/wiki/%D1%8F\" title=\"я\">я</a> говори́ла</td>\n<td><a href=\"/wiki/%D0%BE%D0%BD%D0%BE\" title=\"оно\">оно</a> говори́ло\n</td></tr>\n<tr>\n<td><i>الجمع</i></td>\n<td><a href=\"/wiki/%D0%BE%D0%BD%D0%B8\" title=\"они\">они</a> говори́ли</td>\n<td><a href=\"/wiki/%D0%BE%D0%BD%D0%B8\" title=\"они\">они</a> говори́ли</td>\n<td><a href=\"/wiki/%D0%BE%D0%BD%D0%B8\" title=\"они\">они</a> говори́ли\n</td></tr></tbody></table>\n<hr width=\"65%\" />\n<div class=\"mw-heading mw-heading3\"><h3 id=\"الكلمات_ذات_علاقة\"><span id=\".D8.A7.D9.84.D9.83.D9.84.D9.85.D8.A7.D8.AA_.D8.B0.D8.A7.D8.AA_.D8.B9.D9.84.D8.A7.D9.82.D8.A9\"></span>الكلمات ذات علاقة</h3></div>\n<p><a href=\"/wiki/%D1%80%D0%B0%D0%B7%D0%B3%D0%BE%D0%B2%D0%B0%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C\" title=\"разговаривать\">разговаривать</a>\n</p></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "روسية",
+            "number": "1",
+            "index": "1",
+            "fromTitle": "говорить",
+            "codepointOffset": 0,
+            "anchor": "روسية"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "اللفظ",
+            "number": "1.1",
+            "index": "2",
+            "fromTitle": "говорить",
+            "codepointOffset": 22,
+            "anchor": "اللفظ"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "فعل",
+            "number": "1.2",
+            "index": "3",
+            "fromTitle": "говорить",
+            "codepointOffset": 84,
+            "anchor": "فعل"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 4,
+            "line": "التصريف",
+            "number": "1.2.1",
+            "index": "4",
+            "fromTitle": "говорить",
+            "codepointOffset": 220,
+            "anchor": "التصريف"
+          },
+          {
+            "tocLevel": 4,
+            "hLevel": 5,
+            "line": "المضارع",
+            "number": "1.2.1.1",
+            "index": "5",
+            "fromTitle": "говорить",
+            "codepointOffset": 255,
+            "anchor": "المضارع"
+          },
+          {
+            "tocLevel": 4,
+            "hLevel": 5,
+            "line": "الماضي",
+            "number": "1.2.1.2",
+            "index": "6",
+            "fromTitle": "говорить",
+            "codepointOffset": 486,
+            "anchor": "الماضي"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "الكلمات ذات علاقة",
+            "number": "1.3",
+            "index": "7",
+            "fromTitle": "говорить",
+            "codepointOffset": 750,
+            "anchor": "الكلمات_ذات_علاقة"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": true,
+      "displaytitle": "<span lang=\"ar\" dir=\"rtl\"><span class=\"mw-page-title-main\">говорить</span></span>"
+    }
+  }
+}

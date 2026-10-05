@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "de",
+    "requestedTitle": "электрификация",
+    "resolvedTitle": null,
+    "revisionId": null,
+    "retrievedAt": "2026-10-03T12:34:00.480Z",
+    "sourceUrl": "https://de.wiktionary.org/w/api.php?action=parse&page=%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "missing"
+  },
+  "response": {
+    "error": {
+      "code": "missingtitle",
+      "info": "The page you specified doesn't exist.",
+      "docref": "See https://de.wiktionary.org/w/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes."
+    },
+    "servedby": "mw-api-ext.eqiad.main-9fb74df6f-cw4px"
+  }
+}

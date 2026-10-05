@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "ro",
+    "requestedTitle": "Россия",
+    "resolvedTitle": "Россия",
+    "revisionId": 917957,
+    "retrievedAt": "2026-10-05T07:09:02.163Z",
+    "sourceUrl": "https://ro.wiktionary.org/w/api.php?action=parse&page=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "Россия",
+      "pageid": 36288,
+      "revid": 917957,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"ro\" dir=\"ltr\"><meta property=\"mw:PageProp/toc\" />\n<div class=\"mw-heading mw-heading2\"><h2 id=\"rusă\"><span id=\"rus.C4.83\"></span><a href=\"https://ro.wikipedia.org/wiki/Limba_rus%C4%83\" class=\"extiw\" title=\"w:Limba rusă\"><span style=\"text-transform: capitalize\">rusă</span></a></h2></div>\n<p>(<a href=\"https://ru.wiktionary.org/wiki/%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F\" class=\"extiw\" title=\"ru:Россия\">русский</a>)\n</p>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Etimologie\">Etimologie</h3></div>\n<p><i><a href=\"/wiki/Wik%C8%9Bionar:Etimologie\" title=\"Wikționar:Etimologie\">Etimologie</a> lipsă. <span class=\"plainlinks\"><a class=\"external text\" data-mw-original-href=\"//ro.wiktionary.org/w/index.php?title=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&amp;action=edit\" href=\"https://ro.wiktionary.org/w/index.php?title=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&amp;action=edit\">(Ajută)</a></span></i>\n</p>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Pronunție\"><span id=\"Pronun.C8.9Bie\"></span>Pronunție</h3></div>\n<p><span class=\"nopronunciation-rus\"><i><a href=\"/wiki/Wik%C8%9Bionar:Pronun%C8%9Bie\" title=\"Wikționar:Pronunție\">Pronunție</a> lipsă. <span class=\"plainlinks\"><a class=\"external text\" data-mw-original-href=\"//ro.wiktionary.org/w/index.php?title=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&amp;action=edit\" href=\"https://ro.wiktionary.org/w/index.php?title=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&amp;action=edit\">(Modifică pagina)</a></span></i></span> \n<br clear=\"all\" />\n</p>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Substantiv\">Substantiv</h3></div>\n<p><b>Россия</b>\n</p>\n<ol><li><a href=\"/wiki/Rusia\" title=\"Rusia\">Rusia</a></li></ol></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "<span>rusă</span>",
+            "number": "1",
+            "index": "1",
+            "fromTitle": "Россия",
+            "codepointOffset": 0,
+            "anchor": "rusă"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Etimologie",
+            "number": "1.1",
+            "anchor": "Etimologie"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Pronunție",
+            "number": "1.2",
+            "anchor": "Pronunție"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Substantiv",
+            "number": "1.3",
+            "index": "T-1",
+            "fromTitle": "Format:-substantiv-",
+            "anchor": "Substantiv"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": true,
+      "displaytitle": "<span lang=\"ro\" dir=\"ltr\"><span class=\"mw-page-title-main\">Россия</span></span>"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+name: Live Wiktionary canary
+
+on:
+  schedule:
+    - cron: "43 5 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-canary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22.18.0
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run non-blocking live provider checks
+        run: npm run test:e2e:live:report
+      - name: Upload live-canary evidence
+        if: always()
+        uses: actions/upload-artifact@2031cfc080254a8a887f58cffee85186f0e49e48 # v4
+        with:
+          name: live-wiktionary-canary-${{ github.sha }}
+          if-no-files-found: warn
+          path: artifacts/live-canary.json

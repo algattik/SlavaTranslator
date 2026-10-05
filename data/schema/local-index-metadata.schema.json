@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://slava.example/schema/local-index-metadata-v1.json",
+  "title": "Slava local index metadata",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "kind",
+    "sourceRevision",
+    "sourceDigest",
+    "artifactDigest",
+    "snapshotDate",
+    "recordCount",
+    "files"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "kind": { "enum": ["stress", "morphology"] },
+    "sourceRevision": { "type": "string", "minLength": 1 },
+    "sourceDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "artifactDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "snapshotDate": { "type": "string", "format": "date" },
+    "recordCount": { "type": "integer", "minimum": 0 },
+    "files": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["bytes", "digest", "chunkSize", "chunks"],
+        "properties": {
+          "bytes": { "type": "integer", "minimum": 0 },
+          "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+          "chunkSize": { "type": "integer", "minimum": 1 },
+          "chunks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

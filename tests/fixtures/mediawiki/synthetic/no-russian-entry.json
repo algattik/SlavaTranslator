@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "en",
+    "requestedTitle": "roman",
+    "resolvedTitle": "roman",
+    "revisionId": 1,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://en.wiktionary.org/w/api.php",
+    "license": "Synthetic test fixture",
+    "scenario": "no-russian-entry"
+  },
+  "response": {
+    "parse": {
+      "title": "roman",
+      "revid": 1,
+      "text": "<h2 id=\"English\">English</h2><ol><li>A Roman person.</li></ol>",
+      "tocdata": { "sections": [] },
+      "displaytitle": "roman"
+    }
+  }
+}

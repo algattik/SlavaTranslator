@@ -1,0 +1,13 @@
+.copilot-tracking/
+.output/
+.wxt/
+artifacts/
+build/
+chrome/
+conf/
+coverage/
+docs/
+node_modules/
+public/indexes/
+scripts/
+test-results/

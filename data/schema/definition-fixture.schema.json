@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://slava.example/schema/definition-fixture-v1.json",
+  "title": "Slava definition fixture metadata",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "edition",
+    "requestedTitle",
+    "resolvedTitle",
+    "revisionId",
+    "retrievedAt",
+    "sourceUrl",
+    "license",
+    "scenario"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "edition": {
+      "enum": [
+        "en",
+        "ru",
+        "uk",
+        "de",
+        "fr",
+        "es",
+        "pt",
+        "zh",
+        "ja",
+        "ko",
+        "ar",
+        "hi",
+        "he",
+        "pl",
+        "ro",
+        "tr",
+        "it",
+        "kk",
+        "lv",
+        "et",
+        "lt"
+      ]
+    },
+    "requestedTitle": { "type": "string" },
+    "resolvedTitle": { "type": ["string", "null"] },
+    "revisionId": { "type": ["integer", "null"] },
+    "retrievedAt": { "type": "string", "format": "date-time" },
+    "sourceUrl": { "type": "string", "format": "uri" },
+    "license": { "type": "string", "minLength": 1 },
+    "scenario": {
+      "enum": [
+        "usable",
+        "missing",
+        "redirect",
+        "malformed",
+        "hostile",
+        "oversized",
+        "no-russian-entry",
+        "timeout",
+        "aborted",
+        "wrong-origin",
+        "wrong-content-type"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

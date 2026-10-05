@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "pt",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 3024364,
+    "retrievedAt": "2026-10-04T21:13:42.388Z",
+    "sourceUrl": "https://pt.wiktionary.org/w/api.php?action=parse&page=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "pageid": 69206,
+      "revid": 3024364,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"pt\" dir=\"ltr\"><meta property=\"mw:PageProp/toc\" />\n<div class=\"mw-heading mw-heading1\"><h1 id=\"Russo\"><style data-mw-deduplicate=\"TemplateStyles:r3259528\">.mw-parser-output .lnklng span a{color:black}@media screen{html.skin-theme-clientpref-night .mw-parser-output .lnklng span a{color:white}}@media screen and (prefers-color-scheme:dark){html.skin-theme-clientpref-os .mw-parser-output .lnklng span a{color:white}}</style><span class=\"cabecalhoIdioma\"><span id=\"russo\"><span class=\"lnklng\" id=\"Russo\"><span lang=\"Português\"><a href=\"/wiki/russo#Português\" title=\"russo\">Russo</a></span></span></span></span></h1></div>\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Verbo\">Verbo</h2></div>\n<table style=\"float:right; clear:right; padding:3; margin-left:0.5em; margin-bottom:0.5em; border: 1px solid #6699СС; border-collapse:collapse;\" cellpadding=\"2\" rules=\"all\">\n<tbody><tr>\n<th bgcolor=\"#EEF9FF\">&#160;\n</th>\n<th bgcolor=\"#EEF9FF\">Presente\n</th>\n<th bgcolor=\"#EEF9FF\">Passado\n</th>\n<th bgcolor=\"#EEF9FF\">Imperativo\n</th></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D1%8F\" title=\"я\">Я</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говорю́\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́л<br />говори́ла\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">-\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D1%82%D1%8B\" title=\"ты\">Ты</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́шь\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́л<br />говори́ла\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%BE%D0%BD\" title=\"он\">Он</a><br /><a href=\"/wiki/%D0%BE%D0%BD%D0%B0\" title=\"она\">она</a><br /><a href=\"/wiki/%D0%BE%D0%BD%D0%BE\" title=\"оно\">оно</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́т\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́л<br />говори́ла<br />говори́ло\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">-\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%BC%D1%8B\" title=\"мы\">Мы</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́м\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́ли\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">-\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%B2%D1%8B\" title=\"вы\">Вы</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́те\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́ли\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́те\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\"><a href=\"/wiki/%D0%BE%D0%BD%D0%B8\" title=\"они\">Они</a>\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говоря́т\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">говори́ли\n</td>\n<td bgcolor=\"#ffffff\" align=\"right\">-\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\">Particípio presente\n</td>\n<td colspan=\"3\" align=\"center\" bgcolor=\"#ffffff\">говоря́щий\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\">Particípio adverbial presente\n</td>\n<td colspan=\"3\" align=\"center\" bgcolor=\"#ffffff\">говоря́\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\">Voz passiva\n</td>\n<td colspan=\"3\" align=\"center\" bgcolor=\"#ffffff\">говори́вший\n</td></tr>\n<tr>\n<td bgcolor=\"#EEF9FF\" align=\"right\">Futuro\n</td>\n<td colspan=\"3\" align=\"center\" bgcolor=\"#ffffff\">буду/будешь... говори́ть\n</td></tr></tbody></table>\n<p><b>говорить</b> (<i>perfectivo</i>: <a href=\"/wiki/%D1%81%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C\" title=\"сказать\">сказать</a>)\n</p>\n<ol><li><a href=\"/wiki/falar\" title=\"falar\">falar</a>\n<ul><li><i>я очень хорошо <b>говорю</b> по-русски</i> - <small>eu falo muito bem russo</small></li></ul></li>\n<li><a href=\"/wiki/dizer\" title=\"dizer\">dizer</a></li></ol>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Antônimos\"><span id=\"Ant.C3.B4nimos\"></span>Antônimos</h3></div>\n<ol><li><a href=\"/wiki/%D0%BC%D0%BE%D0%BB%D1%87%D0%B0%D1%82%D1%8C\" title=\"молчать\">молчать</a>, <a href=\"/w/index.php?title=%D0%BD%D0%B5%D0%BC%D0%BE%D1%82%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"немотствовать (página não existe)\">немотствовать</a></li></ol>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Sinônimos\"><span id=\"Sin.C3.B4nimos\"></span>Sinônimos</h3></div>\n<ol><li><a href=\"/wiki/%D0%B1%D0%BE%D0%BB%D1%82%D0%B0%D1%82%D1%8C\" title=\"болтать\">болтать</a>, <a href=\"/wiki/%D1%80%D0%B0%D0%B7%D0%B3%D0%BE%D0%B2%D0%B0%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C\" title=\"разговаривать\">разговаривать</a>, <a href=\"/w/index.php?title=%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B0%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"сообщать (página não existe)\">сообщать</a>, <a href=\"/w/index.php?title=%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"беседовать (página não existe)\">беседовать</a></li></ol>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Termos_relacionados\">Termos relacionados</h3></div>\n<ul><li>substantivos: <a href=\"/wiki/%D0%B3%D0%BE%D0%B2%D0%BE%D1%80\" title=\"говор\">говор</a>, <a href=\"/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%BE%D0%BA&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"говорок (página não existe)\">говорок</a>, <a href=\"/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%B8%D0%B5&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"говорение (página não existe)\">говорение</a>, <a href=\"/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%83%D0%BD&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"говорун (página não existe)\">говорун</a>, <a href=\"/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D0%BB%D1%8C%D0%BD%D1%8F&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"говорильня (página não existe)\">говорильня</a>, <a href=\"/w/index.php?title=%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"оговор (página não existe)\">оговор</a>, <a href=\"/w/index.php?title=%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%91%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"договорённость (página não existe)\">договорённость</a>, <a href=\"/w/index.php?title=%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"переговоры (página não existe)\">переговоры</a></li>\n<li>adjetivos: <a href=\"/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%BB%D0%B8%D0%B2%D1%8B%D0%B9&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"говорливый (página não existe)\">говорливый</a>, <a href=\"/w/index.php?title=%D1%80%D0%B0%D0%B7%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%87%D0%B8%D0%B2%D1%8B%D0%B9&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"разговорчивый (página não existe)\">разговорчивый</a></li>\n<li>verbos: <a href=\"/w/index.php?title=%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"выговорить (página não existe)\">выговорить</a>, <a href=\"/w/index.php?title=%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"оговорить (página não existe)\">оговорить</a>, <a href=\"/wiki/%D1%80%D0%B0%D0%B7%D0%B3%D0%BE%D0%B2%D0%B0%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D1%8C\" title=\"разговаривать\">разговаривать</a></li>\n<li>advérbio: <a href=\"/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%BB%D0%B8%D0%B2%D0%BE&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"говорливо (página não existe)\">говорливо</a></li></ul>\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Etimologia\"><span title=\"Origem e transformação histórica da palavra\">Etimologia</span></h2></div>\n<dl><dd>Do proto-eslavo <i><a href=\"/w/index.php?title=*govoriti&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"*govoriti (página não existe)\">*govoriti</a></i>; do proto-indo-europeu <i><a href=\"/w/index.php?title=*gow(H)-&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"*gow(H)- (página não existe)\">*gow(H)-</a></i> (\"chamar\"; \"chorar\").</dd></dl>\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Pronúncia\"><span id=\"Pron.C3.BAncia\"></span><span title=\"Pronúncia da palavra\">Pronúncia</span></h2></div>\n<ul><li><span typeof=\"mw:File\"><a href=\"/wiki/Ficheiro:Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg\" title=\"Ficheiro:Ru-говорить.ogg\"><img src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/20px-Loudspeaker.svg.png?utm_source=pt.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"15\" height=\"15\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/40px-Loudspeaker.svg.png?utm_source=pt.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"20\" data-file-height=\"20\" /></a></span>&#160;<a href=\"//upload.wikimedia.org/wikipedia/commons/5/51/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg?utm_source=pt.wiktionary.org&amp;utm_campaign=api&amp;utm_content=original\" class=\"internal\" title=\"Ru-говорить.ogg\">Audio</a><sup> <a href=\"/wiki/Ficheiro:Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg\" title=\"Ficheiro:Ru-говорить.ogg\">fonte</a> <a href=\"/wiki/Ajuda:Guia_de_consulta_e_reprodu%C3%A7%C3%A3o/reprodu%C3%A7%C3%A3o_de_arquivos_Ogg\" title=\"Ajuda:Guia de consulta e reprodução/reprodução de arquivos Ogg\">?</a></sup> <span typeof=\"mw:File\"><span><audio id=\"mwe_player_0\" controls=\"\" preload=\"none\" data-mw-tmh=\"\" class=\"mw-file-element\" width=\"80\" style=\"width:80px;\" data-durationhint=\"2\" data-mwtitle=\"Ru-говорить.ogg\" data-mwprovider=\"wikimediacommons\"><source src=\"//upload.wikimedia.org/wikipedia/commons/5/51/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg?utm_source=pt.wiktionary.org&amp;utm_campaign=api&amp;utm_content=original\" type=\"audio/ogg; codecs=&quot;vorbis&quot;\" data-width=\"0\" data-height=\"0\" /><source src=\"//upload.wikimedia.org/wikipedia/commons/transcoded/5/51/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg/Ru-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C.ogg.mp3\" type=\"audio/mpeg\" data-transcodekey=\"mp3\" data-width=\"0\" data-height=\"0\" /></audio></span></span></li>\n<li>AFI: [ɡəvɐˈrʲitʲ]</li></ul>\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Ver_também\"><span id=\"Ver_tamb.C3.A9m\"></span>Ver também</h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"No_Wikcionário\"><span id=\"No_Wikcion.C3.A1rio\"></span>No Wikcionário</h3></div>\n<ul><li><a href=\"/wiki/Ap%C3%AAndice:As_mil_palavras_mais_usadas_em_russo\" title=\"Apêndice:As mil palavras mais usadas em russo\">Apêndice: As mil palavras mais usadas em russo</a></li></ul></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 1,
+            "line": "<span><span><span><span>Russo</span></span></span></span>",
+            "number": "1",
+            "index": "1",
+            "fromTitle": "говорить",
+            "codepointOffset": 0,
+            "anchor": "Russo"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 2,
+            "line": "Verbo",
+            "number": "1.1",
+            "index": "2",
+            "fromTitle": "говорить",
+            "codepointOffset": 11,
+            "anchor": "Verbo"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 3,
+            "line": "Antônimos",
+            "number": "1.1.1",
+            "index": "3",
+            "fromTitle": "говорить",
+            "codepointOffset": 538,
+            "anchor": "Antônimos"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 3,
+            "line": "Sinônimos",
+            "number": "1.1.2",
+            "index": "4",
+            "fromTitle": "говорить",
+            "codepointOffset": 588,
+            "anchor": "Sinônimos"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 3,
+            "line": "Termos relacionados",
+            "number": "1.1.3",
+            "index": "5",
+            "fromTitle": "говорить",
+            "codepointOffset": 668,
+            "anchor": "Termos_relacionados"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 2,
+            "line": "<span>Etimologia</span>",
+            "number": "1.2",
+            "index": "6",
+            "fromTitle": "говорить",
+            "codepointOffset": 958,
+            "anchor": "Etimologia"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 2,
+            "line": "<span>Pronúncia</span>",
+            "number": "1.3",
+            "index": "7",
+            "fromTitle": "говорить",
+            "codepointOffset": 1078,
+            "anchor": "Pronúncia"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 2,
+            "line": "Ver também",
+            "number": "1.4",
+            "index": "8",
+            "fromTitle": "говорить",
+            "codepointOffset": 1160,
+            "anchor": "Ver_também"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 3,
+            "line": "No Wikcionário",
+            "number": "1.4.1",
+            "index": "9",
+            "fromTitle": "говорить",
+            "codepointOffset": 1175,
+            "anchor": "No_Wikcionário"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": true,
+      "displaytitle": "<span lang=\"pt\" dir=\"ltr\"><span class=\"mw-page-title-main\">говорить</span></span>"
+    }
+  }
+}

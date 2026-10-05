@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "et",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 1074840,
+    "retrievedAt": "2026-10-05T07:09:03.513Z",
+    "sourceUrl": "https://et.wiktionary.org/w/api.php?action=parse&page=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "pageid": 51375,
+      "revid": 1074840,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"et\" dir=\"ltr\"><p><br style=\"clear:both;\" />\n</p>\n<div class=\"mw-heading mw-heading2\"><h2 id=\"Vene\">Vene</h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Tegusõna\"><span id=\"Tegus.C3.B5na\"></span>Tegusõna</h3></div>\n<p><b>говорить</b>\n<i>imperfektiivne</i>\n</p>\n<ol><li><a href=\"/wiki/r%C3%A4%C3%A4kima\" title=\"rääkima\">rääkima</a>, <a href=\"/w/index.php?title=k%C3%B5nelema&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"kõnelema (pole veel kirjutatud)\">kõnelema</a></li></ol>\n<div class=\"mw-heading mw-heading4\"><h4 id=\"Fraasid\">Fraasid</h4></div>\n<ul><li><a href=\"/wiki/%D1%81%D0%BA%D0%B0%D0%B7%D0%B0%D0%BB_%D0%B0,_%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8_%D0%B8_%D0%B1%D1%8D\" title=\"сказал а, говори и бэ\">сказал а, говори и бэ</a></li></ul></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "Vene",
+            "number": "1",
+            "index": "T-1",
+            "fromTitle": "Mall:-ru-",
+            "anchor": "Vene"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Tegusõna",
+            "number": "1.1",
+            "anchor": "Tegusõna"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 4,
+            "line": "Fraasid",
+            "number": "1.1.1",
+            "index": "1",
+            "fromTitle": "говорить",
+            "codepointOffset": 89,
+            "anchor": "Fraasid"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": false,
+      "displaytitle": "<span lang=\"et\" dir=\"ltr\"><span class=\"mw-page-title-main\">говорить</span></span>"
+    }
+  }
+}

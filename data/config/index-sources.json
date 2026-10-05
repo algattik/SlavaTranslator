@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "russian-stress-marker-dictionary",
+      "purpose": "stress",
+      "fileName": "stress-dictionary.bin",
+      "url": "https://raw.githubusercontent.com/zdarsch/russian-stress-marker/1cd1a1555f01bbbaeebb2d4fd15fe5e9d52c9a37/ru_stress_marker/dictionary",
+      "revision": "1cd1a1555f01bbbaeebb2d4fd15fe5e9d52c9a37",
+      "snapshotDate": "2026-10-03",
+      "expectedBytes": 721732,
+      "expectedSha256": "a0ae40ae0e3f4b1c7b0513afee4168178be60b72667e71691ac3be3e6d1d06ae",
+      "license": "MIT",
+      "licenseSourceId": "russian-stress-marker-license"
+    },
+    {
+      "id": "russian-stress-marker-license",
+      "purpose": "license",
+      "fileName": "stress-LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/zdarsch/russian-stress-marker/1cd1a1555f01bbbaeebb2d4fd15fe5e9d52c9a37/LICENSE",
+      "revision": "1cd1a1555f01bbbaeebb2d4fd15fe5e9d52c9a37",
+      "snapshotDate": "2026-10-03",
+      "expectedBytes": 1064,
+      "expectedSha256": "db42732e38431202d58ee006ce769649709ca90d1bf867b2139458edf8954357",
+      "license": "MIT",
+      "licenseSourceId": "russian-stress-marker-license"
+    },
+    {
+      "id": "kaikki-english-russian",
+      "purpose": "morphology",
+      "fileName": "kaikki-en.jsonl",
+      "url": "https://kaikki.org/dictionary/Russian/kaikki.org-dictionary-Russian.jsonl",
+      "revision": "enwiktionary-2026-09-02_wiktextract-1a05e46_wikitextprocessor-e3d6d4e",
+      "snapshotDate": "2026-09-28",
+      "expectedBytes": 944699204,
+      "expectedSha256": "eab01279fe888f4fedf044350e04f8f619dd34bbd325ca186b0017e595ad3b6b",
+      "expectedEtag": "\"6abaa46e-384ef744\"",
+      "license": "CC BY-SA 4.0 and GFDL",
+      "licenseUrl": "https://kaikki.org/dictionary/rawdata.html",
+      "extractor": {
+        "name": "wiktextract",
+        "revision": "1a05e46"
+      }
+    }
+  ]
+}

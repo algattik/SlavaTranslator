@@ -1,0 +1,46 @@
+[
+  {
+    "schemaVersion": 1,
+    "edition": "en",
+    "requestedTitle": "говорить",
+    "resolvedTitle": null,
+    "revisionId": null,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://en.wiktionary.org/w/api.php",
+    "license": "Synthetic transport fixture",
+    "scenario": "timeout"
+  },
+  {
+    "schemaVersion": 1,
+    "edition": "en",
+    "requestedTitle": "говорить",
+    "resolvedTitle": null,
+    "revisionId": null,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://en.wiktionary.org/w/api.php",
+    "license": "Synthetic transport fixture",
+    "scenario": "aborted"
+  },
+  {
+    "schemaVersion": 1,
+    "edition": "en",
+    "requestedTitle": "говорить",
+    "resolvedTitle": null,
+    "revisionId": null,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://example.invalid/w/api.php",
+    "license": "Synthetic transport fixture",
+    "scenario": "wrong-origin"
+  },
+  {
+    "schemaVersion": 1,
+    "edition": "en",
+    "requestedTitle": "говорить",
+    "resolvedTitle": null,
+    "revisionId": null,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://en.wiktionary.org/w/api.php",
+    "license": "Synthetic transport fixture",
+    "scenario": "wrong-content-type"
+  }
+]

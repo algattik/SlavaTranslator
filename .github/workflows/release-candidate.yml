@@ -1,0 +1,46 @@
+name: Release candidate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  attestations: write
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22.18.0
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run release-blocking quality gates
+        run: |
+          npm run release:gates
+          npm run release:reproduce
+          npm run release:sbom
+          node tools/verify-release.mjs
+          npm run test:e2e:packaged
+          npm run release:evidence
+      - name: Attest release ZIP provenance
+        uses: actions/attest-build-provenance@96b4a1ef7235a096b17240c259729fdd70c83d45 # v2
+        with:
+          subject-path: .output/slava-russian-dictionary-*-chrome.zip
+      - name: Upload release candidate and evidence
+        uses: actions/upload-artifact@2031cfc080254a8a887f58cffee85186f0e49e48 # v4
+        with:
+          name: slava-russian-dictionary-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            .output/slava-russian-dictionary-*-chrome.zip
+            artifacts/

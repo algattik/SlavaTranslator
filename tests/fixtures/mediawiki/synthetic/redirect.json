@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "en",
+    "requestedTitle": "synthetic-redirect",
+    "resolvedTitle": "говорить",
+    "revisionId": 1,
+    "retrievedAt": "2026-10-03T00:00:00.000Z",
+    "sourceUrl": "https://en.wiktionary.org/w/api.php",
+    "license": "Synthetic test fixture",
+    "scenario": "redirect"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "revid": 1,
+      "redirects": [{ "from": "synthetic-redirect", "to": "говорить" }],
+      "text": "<h2 id=\"Russian\">Russian</h2><h3 id=\"Verb\">Verb</h3><ol><li>to speak</li></ol>",
+      "tocdata": { "sections": [] },
+      "displaytitle": "говорить"
+    }
+  }
+}

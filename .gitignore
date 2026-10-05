@@ -1,5 +1,15 @@
 generated/
 build/
+benchmark-results/
+data/cache/
 apicache*/
 throttle.ctrl
 Pipfile.lock
+.output/
+.wxt/
+artifacts/
+coverage/
+node_modules/
+.cache/
+release-evidence/
+test-results/

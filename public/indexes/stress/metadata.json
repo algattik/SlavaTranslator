@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "kind": "stress",
+  "sourceRevision": "1cd1a1555f01bbbaeebb2d4fd15fe5e9d52c9a37",
+  "sourceDigest": "sha256:a0ae40ae0e3f4b1c7b0513afee4168178be60b72667e71691ac3be3e6d1d06ae",
+  "artifactDigest": "sha256:26fddb424ce7fe2f0a43e7689b9ddcfc0461df1e57f26c2510f1d967eab59b0c",
+  "snapshotDate": "2026-10-03",
+  "recordCount": 180433,
+  "files": {
+    "dictionary.bin": {
+      "bytes": 721732,
+      "digest": "sha256:a0ae40ae0e3f4b1c7b0513afee4168178be60b72667e71691ac3be3e6d1d06ae",
+      "chunkSize": 65536,
+      "chunks": [
+        "sha256:1bdae6f2d01fb8f953827db2b50c7ae58b1bfd084ff3c253ab4f73f48c107166",
+        "sha256:8fc96a3ab9378452b9465f815e00c978f2c4ba00ad7bd8cc3d37cf50aa9dcdd6",
+        "sha256:50ae9f5aaf42c7da543285c7a163ab0d77294dfa1e98216f4b3ece3b06cfed55",
+        "sha256:2049d26357ccd00a553d192180ecf21ca3552a96f70df0be524bf47672cdfecd",
+        "sha256:9d37f090f8b29f52f84ef2e1ab3bcad819c6f13070cece8de5933e09c6e38a16",
+        "sha256:4f9a9c9975b946a74a8457bc6e1bb9ac611571cb4b99494728cc1b99599fa9d2",
+        "sha256:a3c6b0a7157ffc4960deb27ad88ef77e04869182c79cd362473813cce702bde1",
+        "sha256:4bbb1fb437bbb4a0288b7d4a93d4a930bdfdd7efe624fc14b3b38eb4af5bce5f",
+        "sha256:48307c6bd3058c3c0d87f5b013b4ac111220b5d6b1d00c7af3d998fe5537c0ae",
+        "sha256:6a772fed56e9439e09c494dd613c4c5c99a909ab5c8b7475423c6927935b2245",
+        "sha256:807379caced57b5f97335795730349ef567242338ca53de8cb5322ed5b4b350f",
+        "sha256:de28ad17fe213450c4fc7d17710ad9e1ad182117ecf53f4d31b37e6e42ebe7b3"
+      ]
+    },
+    "conflicts.json": {
+      "bytes": 360988,
+      "digest": "sha256:b13621f50c228f0b93728beaa22d45b86b3ef75bd610579a29558f5841483b47",
+      "chunkSize": 65536,
+      "chunks": [
+        "sha256:67707dae2f93381c7d4c321faf0983b6f9003df12150779323c75d2e935590f3",
+        "sha256:3c4423f8f50fe5f2515c2d508e5a358b37f7335c1ccc8bddc00754f508307d08",
+        "sha256:7fe8583774d19451e5b0205908a9f0a8272bc270a04dc1db88c591e8c790586c",
+        "sha256:bae236e0a74d2f9429d54cea0af70e818784a9cb5332186b9e63c20b1308f5ab",
+        "sha256:88f5a5f42891fb7e782b92e0ddd8f464e417f14472b01481444090ffc5af6cb9",
+        "sha256:3bc3e6e26929148ec93fd132b0c4cec252ed88b7d9cc9bea7dc00fcd86738129"
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# MediaWiki fixtures
+
+The edition directories contain bounded responses captured from the exact Wiktionary Action API contract used by Slava. Each fixture records its edition, requested and resolved title, revision ID, retrieval date, source URL, license notice, and scenario. Most usable fixtures request `говорить`; Spanish uses `идти`; Hindi, Romanian, Kazakh, and Latvian use `Россия`; and Hebrew uses `сила`, because those editions do not have suitable `говорить` pages. The French `драйвер` fixture covers numbered part-of-speech headings such as `Nom commun 1`. Recreate every fixture deliberately with `npm run fixtures:capture`, or pass edition codes to refresh a subset; review revision and parser changes before accepting regenerated content.
+
+The `synthetic` directory contains deterministic malformed, hostile, oversized, redirect, no-Russian-entry, timeout, abort, wrong-origin, and wrong-content-type cases. Synthetic HTML is inert test input and must never be inserted into an extension page or popup.

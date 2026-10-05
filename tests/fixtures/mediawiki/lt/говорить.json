@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "lt",
+    "requestedTitle": "говорить",
+    "resolvedTitle": "говорить",
+    "revisionId": 1707187,
+    "retrievedAt": "2026-10-05T07:09:03.817Z",
+    "sourceUrl": "https://lt.wiktionary.org/w/api.php?action=parse&page=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "говорить",
+      "pageid": 523233,
+      "revid": 1707187,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"lt\" dir=\"ltr\"><div class=\"mw-heading mw-heading2\"><h2 id=\"_Rusų_kalba\"><span id=\"_Rus.C5.B3_kalba\"></span><span class=\"mw-image-border\" typeof=\"mw:File\"><a href=\"/wiki/Vaizdas:Flag_of_Russia.svg\" class=\"mw-file-description\"><img src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/60px-Flag_of_Russia.svg.png?utm_source=lt.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"45\" height=\"30\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/120px-Flag_of_Russia.svg.png?utm_source=lt.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"900\" data-file-height=\"600\" /></a></span>&#160;<a href=\"/wiki/Kategorija:Rus%C5%B3_kalba\" title=\"Kategorija:Rusų kalba\">Rusų kalba</a></h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Veiksmažodis\"><span id=\"Veiksma.C5.BEodis\"></span><i>Veiksmažodis</i></h3></div>\n<p><b><a class=\"mw-selflink selflink\">говорить</a></b> \n</p>\n<ol><li><a href=\"/wiki/kalb%C4%97ti#_Lietuvių_kalba\" title=\"kalbėti\">kalbėti</a>&#160;<sup><a href=\"/wiki/kalb%C4%97ti\" title=\"kalbėti\">(lt)</a></sup>, <a href=\"/wiki/sakyti#_Lietuvių_kalba\" title=\"sakyti\">sakyti</a>&#160;<sup><a href=\"/wiki/sakyti\" title=\"sakyti\">(lt)</a></sup></li></ol>\n<div class=\"mw-heading mw-heading4\"><h4 id=\"Etimologija\">Etimologija</h4></div>\n<table width=\"90%\" align=\"center\" style=\"border:1px dashed #999999; background-color: var(--background-color-progressive-subtle, #f1f4fd);color:inherit;text-align:left\">\n\n<tbody><tr>\n<td><span typeof=\"mw:File\"><a href=\"//lt.wiktionary.org/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&amp;action=edit\"><img src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/EB1911_-_Volume_01_-_Page_001_-_1.svg/60px-EB1911_-_Volume_01_-_Page_001_-_1.svg.png?utm_source=lt.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"50\" height=\"18\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/EB1911_-_Volume_01_-_Page_001_-_1.svg/120px-EB1911_-_Volume_01_-_Page_001_-_1.svg.png?utm_source=lt.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"111\" data-file-height=\"41\" /></a></span>\n</td>\n<td>Žodžio kilmė nežinoma. Jeigu žinote žodžio etimologiją, maloniai kviečiame ją parašyti <span class=\"plainlinks\"><a class=\"external text\" data-mw-original-href=\"//lt.wiktionary.org/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&amp;action=edit\" href=\"https://lt.wiktionary.org/w/index.php?title=%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C&amp;action=edit\">čia</a></span>. Instrukcijas, kaip nurodyti etimologijas rasite <a href=\"/w/index.php?title=Viki%C5%BEodynas:Etimologijos&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Vikižodynas:Etimologijos (puslapis neegzistuoja)\"><b>čia</b></a>.\n</td></tr></tbody></table>\n<p><br />\n</p>\n<div style=\"background-color: #f0f0f0;\" class=\"notheme\">\n<div class=\"plainlinks\" style=\"border: 1px solid #ccc; padding: 7px;\">\n<p>Šio žodžio <b><a class=\"mw-selflink selflink\">говорить</a></b> Rusų kalba aprašymas buvo sukurtas pagal vertimą įrašytą žodyje <b><a href=\"/wiki/kalb%C4%97ti\" title=\"kalbėti\">kalbėti</a>&#160;<sup><a href=\"https://lt.wikipedia.org/wiki/kalb%C4%97ti\" class=\"extiw\" title=\"w:kalbėti\">(w)</a></sup></b>. Šis aprašymas gali būti netikslus ar nepilnas. Žiūrėkite <i><a href=\"https://ru.wiktionary.org/wiki/%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C\" class=\"extiw\" title=\"ru:говорить\">говорить</a></i> Vikižodyną  ir <i><a href=\"https://lt.wikipedia.org/wiki/ru:%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C\" class=\"extiw\" title=\"w:ru:говорить\">говорить</a></i> Vikipediją Rusų kalba ir panaikinkite žymę. <small>Sukūrimo data: 2010 m. kovo 23 d. <a href=\"/wiki/%C5%A0ablonas:bot-entry\" title=\"Šablonas:bot-entry\">apie šabloną...</a><i></i></small>\n</p>\n</div></div>\n<p><br clear=\"all\" />\n</p>\n<hr /></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": " Rusų kalba",
+            "number": "1",
+            "index": "1",
+            "fromTitle": "говорить",
+            "codepointOffset": 0,
+            "anchor": "_Rusų_kalba"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "<i>Veiksmažodis</i>",
+            "number": "1.1",
+            "index": "2",
+            "fromTitle": "говорить",
+            "codepointOffset": 14,
+            "anchor": "Veiksmažodis"
+          },
+          {
+            "tocLevel": 3,
+            "hLevel": 4,
+            "line": "Etimologija",
+            "number": "1.1.1",
+            "index": "3",
+            "fromTitle": "говорить",
+            "codepointOffset": 109,
+            "anchor": "Etimologija"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": false,
+      "displaytitle": "<span lang=\"lt\" dir=\"ltr\"><span class=\"mw-page-title-main\">говорить</span></span>"
+    }
+  }
+}

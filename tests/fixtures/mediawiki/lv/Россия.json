@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "schemaVersion": 1,
+    "edition": "lv",
+    "requestedTitle": "Россия",
+    "resolvedTitle": "Россия",
+    "revisionId": 86494,
+    "retrievedAt": "2026-10-05T07:09:03.231Z",
+    "sourceUrl": "https://lv.wiktionary.org/w/api.php?action=parse&page=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&prop=text%7Ctocdata%7Crevid%7Cdisplaytitle&format=json&formatversion=2&redirects=1&origin=*&disableeditsection=1&disablelimitreport=1",
+    "license": "Wiktionary content; CC BY-SA and GFDL terms apply for the source edition",
+    "scenario": "usable"
+  },
+  "response": {
+    "parse": {
+      "title": "Россия",
+      "pageid": 3204,
+      "revid": 86494,
+      "redirects": [],
+      "text": "<div class=\"mw-content-ltr mw-parser-output\" lang=\"lv\" dir=\"ltr\"><div class=\"mw-heading mw-heading2\"><h2 id=\"Krievu_valoda\"><span class=\"mw-image-border\" typeof=\"mw:File\"><a href=\"/wiki/Att%C4%93ls:Flag_of_Russia.svg\" class=\"mw-file-description\"><img src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/40px-Flag_of_Russia.svg.png?utm_source=lv.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"30\" height=\"20\" class=\"mw-file-element\" srcset=\"//thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/60px-Flag_of_Russia.svg.png?utm_source=lv.wiktionary.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"900\" data-file-height=\"600\" /></a></span> Krievu valoda</h2></div>\n<div class=\"mw-heading mw-heading3\"><h3 id=\"Skaidrojums\">Skaidrojums</h3></div>\n<ol><li><a href=\"/wiki/Krievija\" title=\"Krievija\">Krievija</a></li></ol></div>",
+      "tocdata": {
+        "sections": [
+          {
+            "tocLevel": 1,
+            "hLevel": 2,
+            "line": "Krievu valoda",
+            "number": "1",
+            "index": "T-1",
+            "fromTitle": "Veidne:Valoda",
+            "anchor": "Krievu_valoda"
+          },
+          {
+            "tocLevel": 2,
+            "hLevel": 3,
+            "line": "Skaidrojums",
+            "number": "1.1",
+            "index": "1",
+            "fromTitle": "Россия",
+            "codepointOffset": 9,
+            "anchor": "Skaidrojums"
+          }
+        ],
+        "extensionData": []
+      },
+      "showtoc": false,
+      "displaytitle": "<span lang=\"lv\" dir=\"ltr\"><span class=\"mw-page-title-main\">Россия</span></span>"
+    }
+  }
+}

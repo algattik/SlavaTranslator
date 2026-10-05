@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "normalization": {
+    "unicode": "NFC",
+    "case": "casefold",
+    "removeCombiningAcute": true,
+    "preserveYo": true
+  },
+  "surfacePolicy": {
+    "requireCyrillic": true,
+    "allowCharacters": ["-", "‑", "'", "’"],
+    "rejectWhitespace": true,
+    "rejectMixedScripts": true
+  },
+  "morphologyFields": [
+    "word",
+    "pos",
+    "forms[].form",
+    "forms[].source",
+    "forms[].tags",
+    "senses[].tags",
+    "senses[].form_of[].word",
+    "senses[].alt_of[].word"
+  ],
+  "packagedDefinitionFields": [],
+  "ambiguityPolicy": "preserve-all-candidates",
+  "stressConflictPolicy": "leave-unchanged-with-diagnostic"
+}
