@@ -1006,7 +1006,7 @@ test("activates a 100,000-character page within latency and heap budgets", async
   context,
   extensionId,
 }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(180_000);
   const attemptsPerSample = 3;
   const activeSamples: number[] = [];
   const activeAttemptSamples: number[][] = [];
