@@ -1,5 +1,33 @@
 # Chrome Web Store disclosure text
 
+## Single purpose description
+
+> Slava helps readers understand Russian text by adding stress marks and grammatical information locally, then retrieving definitions from the user's selected Wiktionary editions when the user requests a word lookup.
+
+## activeTab justification
+
+> The activeTab permission lets the user activate Slava temporarily on the current tab after choosing the toolbar action. Access is limited to that tab and activation; Slava does not use activeTab for passive browsing observation.
+
+## Host permission justification
+
+> Slava uses scripting to inject its packaged page-integration code after user activation and offscreen to parse bounded definition responses away from the web page. The exact hosts en.wiktionary.org, ru.wiktionary.org, uk.wiktionary.org, de.wiktionary.org, fr.wiktionary.org, es.wiktionary.org, pt.wiktionary.org, zh.wiktionary.org, ja.wiktionary.org, ko.wiktionary.org, ar.wiktionary.org, hi.wiktionary.org, he.wiktionary.org, pl.wiktionary.org, ro.wiktionary.org, tr.wiktionary.org, it.wiktionary.org, kk.wiktionary.org, lv.wiktionary.org, et.wiktionary.org, and lt.wiktionary.org are used to request definitions from the user's selected editions. The optional http and https wildcard capability lets a user request persistent activation for a site, but Chrome prompts only for the exact user-selected origin and Slava does not silently gain access to every site.
+
+## Remote code justification
+
+> Slava does not use remote code. It executes only code packaged with the extension. Bounded responses from the selected Wiktionary hosts are treated as data, origin-checked, parsed in an isolated extension document, reduced to text, and never executed or inserted as remote HTML.
+
+## storage justification
+
+> The storage permission holds the user's interface language, ordered definition languages, stress-mark and definition-popup accessibility preferences, and the exact origins the user selected for persistent activation. Slava does not store browsing history, page content, definition queries, cookies, credentials, analytics, or telemetry.
+
+## Required dashboard actions
+
+1. Upload the new Manifest V3 ZIP first so it replaces the currently evaluated Manifest V2 package.
+2. Under Settings, enter and verify the publisher contact email.
+3. Complete the privacy-practices fields using the answers above.
+4. Certify compliance with the Developer Program Policies.
+5. Submit the updated package and disclosures for review.
+
 ## Store listing description
 
 Slava helps you read Russian text by adding stress marks, identifying grammatical forms, and showing definitions from your preferred Wiktionary editions.
@@ -41,23 +69,6 @@ Russian stress and morphology can be ambiguous, incomplete, or context-dependent
 
 Slava is a non-commercial, open-source project with no paid or hidden features.
 
-## Single purpose
-
-Slava helps readers of Russian text by adding stress marks locally and retrieving Wiktionary definitions when the user pauses over an annotated word or explicitly requests a lookup.
-
-## Permission justification
-
-- `activeTab`: temporarily activates Slava on the tab after a toolbar action.
-- `scripting`: injects the reviewed page-integration script after activation.
-- `storage`: stores ordered definition-language and accessibility settings.
-- `offscreen`: parses bounded Wiktionary responses away from the web page and returns text-only results.
-- `https://en.wiktionary.org/*`, `https://ru.wiktionary.org/*`, `https://uk.wiktionary.org/*`, `https://de.wiktionary.org/*`, `https://fr.wiktionary.org/*`, `https://es.wiktionary.org/*`, `https://pt.wiktionary.org/*`, `https://zh.wiktionary.org/*`, `https://ja.wiktionary.org/*`, `https://ko.wiktionary.org/*`, `https://ar.wiktionary.org/*`, `https://hi.wiktionary.org/*`, `https://he.wiktionary.org/*`, `https://pl.wiktionary.org/*`, `https://ro.wiktionary.org/*`, `https://tr.wiktionary.org/*`, `https://it.wiktionary.org/*`, `https://kk.wiktionary.org/*`, `https://lv.wiktionary.org/*`, `https://et.wiktionary.org/*`, and `https://lt.wiktionary.org/*`: retrieve definitions from the user-selected ordered editions after a trusted 100 ms word hover or explicit lookup.
-- Optional `http://*/*` and `https://*/*`: lets the user grant persistent activation to a site of their choice. Chrome prompts for the exact requested origin; Slava does not silently grant all sites.
-
 ## Data-use disclosure
 
 Stress and morphology lookup are local. A trusted 100 ms word hover or explicit definition lookup sends each locally resolved normalized lemma to the selected Wiktionary editions in order until one has a usable Russian entry; Wikimedia also receives the user's IP address and ordinary network metadata. Slava does not send page URLs, surrounding text, browsing history, cookies, credentials, analytics, or telemetry. Slava does not sell or use data for advertising and operates no definition or analytics service.
-
-## Remote code
-
-The extension executes only packaged code. Wiktionary responses are bounded, origin-checked, parsed in an extension offscreen document, reduced to text, and never executed or inserted as remote HTML.

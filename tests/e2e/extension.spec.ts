@@ -1009,26 +1009,8 @@ test("activates a 100,000-character page within latency and heap budgets", async
   test.setTimeout(60_000);
   const samples: number[] = [];
   let maximumHeapDelta = 0;
-  for (let sample = 0; sample < 20; sample++) {
-    const page = await context.newPage();
-    await page.goto(`chrome-extension://${extensionId}/offscreen.html`);
-    await page.evaluate(() => {
-      const phrase = "Он говорил громко. ";
-      document.body.textContent = phrase
-        .repeat(Math.ceil(100_000 / phrase.length))
-        .slice(0, 100_000);
-    });
-    const cdp = await context.newCDPSession(page);
-    await cdp.send("Performance.enable");
-    const heap = async () => {
-      const response = await cdp.send("Performance.getMetrics");
-      return (
-        response.metrics.find((metric) => metric.name === "JSHeapUsedSize")
-          ?.value ?? 0
-      );
-    };
-    const baselineHeap = await heap();
-    const started = await page.evaluate(async () => {
+  const activate = (page: Page) =>
+    page.evaluate(async () => {
       const start = performance.now();
       const script = document.createElement("script");
       script.src = "/page-integration.js";
@@ -1045,6 +1027,63 @@ test("activates a 100,000-character page within latency and heap budgets", async
       });
       return start;
     });
+  const deactivate = (page: Page) =>
+    page.evaluate(() => {
+      const state = (
+        globalThis as typeof globalThis & {
+          [key: symbol]: { deactivate(): void } | undefined;
+        }
+      )[Symbol.for("slava.pageIntegration")];
+      state?.deactivate();
+    });
+  const page = await context.newPage();
+  await page.goto(`chrome-extension://${extensionId}/offscreen.html`);
+  const cdp = await context.newCDPSession(page);
+  await cdp.send("Performance.enable");
+  const heap = async () => {
+    const response = await cdp.send("Performance.getMetrics");
+    return (
+      response.metrics.find((metric) => metric.name === "JSHeapUsedSize")
+        ?.value ?? 0
+    );
+  };
+  await page.evaluate(() => {
+    document.body.textContent = "Он говорил громко. ".repeat(100);
+  });
+  const warmupStarted = await activate(page);
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const state = (
+            globalThis as typeof globalThis & {
+              [key: symbol]: { ready: boolean } | undefined;
+            }
+          )[Symbol.for("slava.pageIntegration")];
+          return (
+            state?.ready === true &&
+            document.querySelector("[data-slava-token]") !== null
+          );
+        }),
+      { timeout: 5_000 },
+    )
+    .toBe(true);
+  const warmupMilliseconds = await page.evaluate(
+    (start) => performance.now() - start,
+    warmupStarted,
+  );
+  await deactivate(page);
+  for (let sample = 0; sample < 20; sample++) {
+    await page.goto(`chrome-extension://${extensionId}/offscreen.html`);
+    await page.evaluate(() => {
+      const phrase = "Он говорил громко. ";
+      document.body.textContent = phrase
+        .repeat(Math.ceil(100_000 / phrase.length))
+        .slice(0, 100_000);
+    });
+    await cdp.send("HeapProfiler.collectGarbage");
+    const baselineHeap = await heap();
+    const started = await activate(page);
     let peakHeap = baselineHeap;
     await expect
       .poll(
@@ -1060,8 +1099,8 @@ test("activates a 100,000-character page within latency and heap budgets", async
       await page.evaluate((start) => performance.now() - start, started),
     );
     maximumHeapDelta = Math.max(maximumHeapDelta, peakHeap - baselineHeap);
-    await page.close();
   }
+  await page.close();
   samples.sort((left, right) => left - right);
   const p95 = samples[Math.ceil(samples.length * 0.95) - 1] ?? Infinity;
   await mkdir("artifacts", { recursive: true });
@@ -1071,10 +1110,12 @@ test("activates a 100,000-character page within latency and heap budgets", async
       {
         schemaVersion: 1,
         fixtureCharacters: 100_000,
+        measurement: "steady-state activation after per-page warmup",
         sampleCount: samples.length,
         p95Milliseconds: p95,
         maximumHeapDeltaBytes: maximumHeapDelta,
         samplesMilliseconds: samples,
+        warmupMilliseconds,
       },
       null,
       2,
