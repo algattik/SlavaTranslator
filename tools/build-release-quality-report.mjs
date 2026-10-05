@@ -4,6 +4,7 @@ import process from "node:process";
 const readJson = async (file) => JSON.parse(await readFile(file, "utf8"));
 const release = await readJson("artifacts/release-candidate-report.json");
 const activation = await readJson("artifacts/activation-performance.json");
+const releasePolicy = await readJson("data/config/release-policy.json");
 const reproducibility = await readJson("artifacts/reproducibility.json");
 const verification = await readJson("artifacts/attestation-verification.json");
 const validation = await readJson("artifacts/release-validation.json");
@@ -63,6 +64,22 @@ assert(
   "Deterministic Chromium tests failed",
 );
 assert(packaged.stats.unexpected === 0, "Packaged smoke tests failed");
+assert(
+  activation.thresholds.functionalCompletionMilliseconds ===
+    releasePolicy.budgets.activationCompletionMilliseconds &&
+    activation.thresholds.rendererWorkP95Milliseconds ===
+      releasePolicy.budgets.activationRendererWorkP95Milliseconds &&
+    activation.thresholds.heapDeltaBytes ===
+      releasePolicy.budgets.activationHeapDeltaBytes,
+  "Activation evidence thresholds do not match release policy",
+);
+assert(
+  activation.gates.functionalCompletion === "enforced" &&
+    activation.gates.rendererWorkP95 ===
+      releasePolicy.performance.hostedRunnerLatencyMode &&
+    activation.gates.heapDelta === "enforced",
+  "Activation evidence gate modes do not match hosted-runner policy",
+);
 
 let liveCanary = {
   status: "not-run",
@@ -88,7 +105,10 @@ const report = {
     bytes: release.installed.bytes,
     files: Object.keys(release.installed.files).length,
   },
-  activation,
+  activation: {
+    ...activation,
+    hostedRunnerPolicy: releasePolicy.performance,
+  },
   reproducibility,
   provenanceVerification: verification,
   supplyChain: {

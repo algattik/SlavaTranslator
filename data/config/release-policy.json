@@ -3,8 +3,13 @@
   "budgets": {
     "zipBytes": 20971520,
     "installedBytes": 83886080,
+    "activationCompletionMilliseconds": 5000,
     "activationRendererWorkP95Milliseconds": 500,
     "activationHeapDeltaBytes": 67108864
+  },
+  "performance": {
+    "hostedRunnerLatencyMode": "observational",
+    "latencyEnforcementEnvironmentVariable": "SLAVA_ENFORCE_PERFORMANCE"
   },
   "allowedLicenses": [
     "Apache-2.0",

@@ -5,10 +5,15 @@ import { describe, expect, it } from "vitest";
 import { WIKTIONARY_HOSTS } from "../../src/config/wiktionary-hosts";
 interface ReleasePolicy {
   budgets: {
+    activationCompletionMilliseconds: number;
     activationHeapDeltaBytes: number;
     activationRendererWorkP95Milliseconds: number;
     installedBytes: number;
     zipBytes: number;
+  };
+  performance: {
+    hostedRunnerLatencyMode: string;
+    latencyEnforcementEnvironmentVariable: string;
   };
   allowedPackageEntries: string[];
   packagedDataNotices: Record<string, string>;
@@ -28,15 +33,29 @@ describe("release policy", () => {
     ) as ReleasePolicy;
 
     expect(policy.budgets).toEqual({
+      activationCompletionMilliseconds: 5_000,
       activationHeapDeltaBytes: 64 * 1024 * 1024,
       activationRendererWorkP95Milliseconds: 500,
       installedBytes: 80 * 1024 * 1024,
       zipBytes: 20 * 1024 * 1024,
     });
+    expect(policy.performance).toEqual({
+      hostedRunnerLatencyMode: "observational",
+      latencyEnforcementEnvironmentVariable: "SLAVA_ENFORCE_PERFORMANCE",
+    });
 
     const benchmark = await readFile("tests/e2e/extension.spec.ts", "utf8");
+    const packageJson = JSON.parse(await readFile("package.json", "utf8")) as {
+      scripts: Record<string, string>;
+    };
     expect(benchmark).toContain("activationRendererWorkP95Milliseconds");
+    expect(benchmark).toContain(
+      'process.env.SLAVA_ENFORCE_PERFORMANCE === "1"',
+    );
     expect(benchmark).not.toContain("expect(wallClockMedian)");
+    expect(packageJson.scripts["test:e2e:performance"]).toContain(
+      "SLAVA_ENFORCE_PERFORMANCE=1",
+    );
   });
 
   it("pins every workflow action and avoids privileged pull-request execution", async () => {

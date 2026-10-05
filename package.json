@@ -23,6 +23,7 @@
     "test:unit:report": "vitest run --reporter=default --reporter=json --outputFile=artifacts/vitest.json",
     "test:watch": "vitest",
     "test:e2e": "npm run build && playwright test",
+    "test:e2e:performance": "SLAVA_ENFORCE_PERFORMANCE=1 npm run build && playwright test -g \"100,000-character page\"",
     "test:e2e:report": "PLAYWRIGHT_JSON_OUTPUT_FILE=artifacts/playwright.json playwright test --reporter=json",
     "test:e2e:packaged": "npm run release:package && npm run prepare:packaged-smoke && PLAYWRIGHT_JSON_OUTPUT_FILE=artifacts/playwright-packaged.json SLAVA_EXTENSION_PATH=.output/packaged-smoke playwright test --reporter=json -g \"packaged smoke\"",
     "test:e2e:live": "SLAVA_LIVE_MEDIAWIKI=1 npm run test:e2e",
