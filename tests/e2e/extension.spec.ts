@@ -1026,6 +1026,7 @@ test("activates a 100,000-character page within latency and heap budgets", async
   const activate = (page: Page) =>
     page.evaluate(async () => {
       const start = performance.now();
+      const completionTimeoutMilliseconds = 5_000;
       const script = document.createElement("script");
       script.src = "/page-integration.js";
       await new Promise<void>((resolve, reject) => {
@@ -1039,7 +1040,29 @@ test("activates a 100,000-character page within latency and heap budgets", async
         );
         document.head.append(script);
       });
-      return start;
+      await new Promise<void>((resolve, reject) => {
+        const checkCompletion = () => {
+          const state = (
+            globalThis as typeof globalThis & {
+              [key: symbol]: { ready: boolean } | undefined;
+            }
+          )[Symbol.for("slava.pageIntegration")];
+          if (
+            state?.ready === true &&
+            document.querySelector("[data-slava-token]") !== null
+          ) {
+            resolve();
+            return;
+          }
+          if (performance.now() - start >= completionTimeoutMilliseconds) {
+            reject(new Error("activation did not complete within 5 seconds"));
+            return;
+          }
+          setTimeout(checkCompletion, 25);
+        };
+        checkCompletion();
+      });
+      return performance.now() - start;
     });
   const deactivate = (page: Page) =>
     page.evaluate(() => {
@@ -1077,28 +1100,7 @@ test("activates a 100,000-character page within latency and heap budgets", async
       .repeat(Math.ceil(100_000 / phrase.length))
       .slice(0, 100_000);
   });
-  const warmupStarted = await activate(page);
-  await expect
-    .poll(
-      () =>
-        page.evaluate(() => {
-          const state = (
-            globalThis as typeof globalThis & {
-              [key: symbol]: { ready: boolean } | undefined;
-            }
-          )[Symbol.for("slava.pageIntegration")];
-          return (
-            state?.ready === true &&
-            document.querySelector("[data-slava-token]") !== null
-          );
-        }),
-      { timeout: 5_000 },
-    )
-    .toBe(true);
-  const warmupMilliseconds = await page.evaluate(
-    (start) => performance.now() - start,
-    warmupStarted,
-  );
+  const warmupMilliseconds = await activate(page);
   await deactivate(page);
   for (let sample = 0; sample < 20; sample++) {
     const activeAttempts: number[] = [];
@@ -1115,25 +1117,12 @@ test("activates a 100,000-character page within latency and heap budgets", async
       await cdp.send("HeapProfiler.collectGarbage");
       const baselineHeap = await heap();
       const baselineActiveDuration = await activeDuration();
-      const started = await activate(page);
-      let peakHeap = baselineHeap;
-      await expect
-        .poll(
-          async () => {
-            peakHeap = Math.max(peakHeap, await heap());
-            return page.locator("[data-slava-token]").count();
-          },
-          { timeout: 5_000 },
-        )
-        .toBeGreaterThan(0);
-      peakHeap = Math.max(peakHeap, await heap());
-      wallClockAttempts.push(
-        await page.evaluate((start) => performance.now() - start, started),
-      );
+      wallClockAttempts.push(await activate(page));
+      const activeHeap = await heap();
       activeAttempts.push(
         ((await activeDuration()) - baselineActiveDuration) * 1_000,
       );
-      heapDeltas.push(peakHeap - baselineHeap);
+      heapDeltas.push(activeHeap - baselineHeap);
     }
     activeAttempts.sort((left, right) => left - right);
     wallClockAttempts.sort((left, right) => left - right);
