@@ -10,7 +10,7 @@
 
 ## Host permission justification
 
-> Slava uses scripting to inject its packaged page-integration code after user activation and offscreen to parse bounded definition responses away from the web page. The exact hosts en.wiktionary.org, ru.wiktionary.org, uk.wiktionary.org, de.wiktionary.org, fr.wiktionary.org, es.wiktionary.org, pt.wiktionary.org, zh.wiktionary.org, ja.wiktionary.org, ko.wiktionary.org, ar.wiktionary.org, hi.wiktionary.org, he.wiktionary.org, pl.wiktionary.org, ro.wiktionary.org, tr.wiktionary.org, it.wiktionary.org, kk.wiktionary.org, lv.wiktionary.org, et.wiktionary.org, and lt.wiktionary.org are used to request definitions from the user's selected editions. The optional http and https wildcard capability lets a user request persistent activation for a site, but Chrome prompts only for the exact user-selected origin and Slava does not silently gain access to every site.
+> Slava uses scripting to inject its packaged page-integration code after user activation and offscreen to parse bounded definition responses away from the web page. The exact host patterns https://en.wiktionary.org/*, https://ru.wiktionary.org/*, https://uk.wiktionary.org/*, https://de.wiktionary.org/*, https://fr.wiktionary.org/*, https://es.wiktionary.org/*, https://pt.wiktionary.org/*, https://zh.wiktionary.org/*, https://ja.wiktionary.org/*, https://ko.wiktionary.org/*, https://ar.wiktionary.org/*, https://hi.wiktionary.org/*, https://he.wiktionary.org/*, https://pl.wiktionary.org/*, https://ro.wiktionary.org/*, https://tr.wiktionary.org/*, https://it.wiktionary.org/*, https://kk.wiktionary.org/*, https://lv.wiktionary.org/*, https://et.wiktionary.org/*, and https://lt.wiktionary.org/* are used to request definitions from the user's selected editions. The optional http://*/* and https://*/* capabilities let a user request persistent activation for a site, but Chrome prompts only for the exact user-selected origin and Slava does not silently gain access to every site.
 
 ## Remote code justification
 
@@ -30,44 +30,35 @@
 
 ## Store listing description
 
-Slava helps you read Russian text by adding stress marks, identifying grammatical forms, and showing definitions from your preferred Wiktionary editions.
-
-### Read Russian with stress marks
-
-Open the Slava toolbar menu on a page containing Russian text, then enable Slava temporarily for the current tab or allow it to run automatically on that site. Slava annotates supported Russian words with stress marks, for example `предложение` becomes `предложе́ние`. Disable Slava at any time to restore the original page text.
-
-Stress marking, word-form analysis, lemma lookup, and grammar analysis run locally from verified indexes packaged with the extension. Slava avoids editable fields, form controls, code, hidden content, and selected text.
-
-### Look up words in context
-
-Pause over an annotated word, click it, or use the keyboard to open its definition. Slava immediately shows locally available information while the online definition is loading, including:
-
-- the word's lemma and stress;
-- its grammatical form and part of speech;
-- gender, number, case, animacy, person, tense, and other available properties;
-- verb aspect and corresponding perfective or imperfective forms;
-- definitions and source links from Wiktionary.
-
-Choose and order one or more definition languages from 21 supported Wiktionary editions. Slava tries them in your chosen order and uses English only when you select it. Definition availability and detail vary between editions.
-
-### Control where Slava runs
-
-- **Enable temporarily on this site** activates Slava for the current tab.
-- **Always enable on this site** asks Chrome for access to that exact site.
-- **Disable on this site** revokes persistent access for the current site.
-- The settings page lists every site with persistent access and lets you revoke it.
-
-### Privacy and security
-
-Slava has no advertising, analytics, telemetry, user account, or Slava-operated server. Page annotation and linguistic analysis happen locally. When you request a definition, Slava sends only the locally resolved Russian lemma to the selected Wikimedia Wiktionary API. It does not send the page URL, surrounding text, browsing history, cookies, credentials, or unrelated page content.
-
-The extension executes only packaged code. Wiktionary responses are origin-checked, size-bounded, parsed in an isolated extension document, reduced to text, and never executed as remote code.
-
-### Limitations
-
-Russian stress and morphology can be ambiguous, incomplete, or context-dependent. Slava does not guarantee perfect linguistic disambiguation, definition availability, or support for every word or page. Review the displayed result in context.
-
-Slava is a non-commercial, open-source project with no paid or hidden features.
+> Slava helps you read Russian text by adding stress marks, identifying grammatical forms, and showing definitions from your preferred Wiktionary editions.
+>
+> Read Russian with stress marks
+>
+> Open the Slava toolbar menu on a page containing Russian text, then enable Slava temporarily for the current tab or allow it to run automatically on that site. Slava annotates supported Russian words with stress marks, for example предложение becomes предложе́ние. Disable Slava at any time to restore the original page text.
+>
+> Stress marking, word-form analysis, lemma lookup, and grammar analysis run locally from verified indexes packaged with the extension. Slava avoids editable fields, form controls, code, hidden content, and selected text.
+>
+> Look up words in context
+>
+> Pause over an annotated word, click it, or use the keyboard to open its definition. Slava immediately shows locally available information while the online definition is loading, including the word's lemma and stress; its grammatical form and part of speech; gender, number, case, animacy, person, tense, and other available properties; verb aspect and corresponding perfective or imperfective forms; and definitions and source links from Wiktionary.
+>
+> Choose and order one or more definition languages from 21 supported Wiktionary editions. Slava tries them in your chosen order and uses English only when you select it. Definition availability and detail vary between editions.
+>
+> Control where Slava runs
+>
+> Enable temporarily on this site activates Slava for the current tab. Always enable on this site asks Chrome for access to that exact site. Disable on this site revokes persistent access for the current site. The settings page lists every site with persistent access and lets you revoke it.
+>
+> Privacy and security
+>
+> Slava has no advertising, analytics, telemetry, user account, or Slava-operated server. Page annotation and linguistic analysis happen locally. When you request a definition, Slava sends only the locally resolved Russian lemma to the selected Wikimedia Wiktionary API. It does not send the page URL, surrounding text, browsing history, cookies, credentials, or unrelated page content.
+>
+> The extension executes only packaged code. Wiktionary responses are origin-checked, size-bounded, parsed in an isolated extension document, reduced to text, and never executed as remote code.
+>
+> Limitations
+>
+> Russian stress and morphology can be ambiguous, incomplete, or context-dependent. Slava does not guarantee perfect linguistic disambiguation, definition availability, or support for every word or page. Review the displayed result in context.
+>
+> Slava is a non-commercial, open-source project with no paid or hidden features.
 
 ## Data-use disclosure
 
