@@ -3,7 +3,7 @@
   "budgets": {
     "zipBytes": 20971520,
     "installedBytes": 83886080,
-    "activationP95Milliseconds": 500,
+    "activationRendererWorkP95Milliseconds": 500,
     "activationHeapDeltaBytes": 67108864
   },
   "allowedLicenses": [

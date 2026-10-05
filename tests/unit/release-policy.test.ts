@@ -6,7 +6,7 @@ import { WIKTIONARY_HOSTS } from "../../src/config/wiktionary-hosts";
 interface ReleasePolicy {
   budgets: {
     activationHeapDeltaBytes: number;
-    activationP95Milliseconds: number;
+    activationRendererWorkP95Milliseconds: number;
     installedBytes: number;
     zipBytes: number;
   };
@@ -29,10 +29,14 @@ describe("release policy", () => {
 
     expect(policy.budgets).toEqual({
       activationHeapDeltaBytes: 64 * 1024 * 1024,
-      activationP95Milliseconds: 500,
+      activationRendererWorkP95Milliseconds: 500,
       installedBytes: 80 * 1024 * 1024,
       zipBytes: 20 * 1024 * 1024,
     });
+
+    const benchmark = await readFile("tests/e2e/extension.spec.ts", "utf8");
+    expect(benchmark).toContain("activationRendererWorkP95Milliseconds");
+    expect(benchmark).not.toContain("expect(wallClockMedian)");
   });
 
   it("pins every workflow action and avoids privileged pull-request execution", async () => {

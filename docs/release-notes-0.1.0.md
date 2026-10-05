@@ -17,4 +17,4 @@ This release replaces the removed Manifest V2 implementation with a project-owne
 
 ## Release evidence
 
-The release process retains the exact ZIP and checksum, source identity, local-data digests, reproducibility comparison, SBOM, provenance statement and GitHub attestation, license inventory, quality and package report, activation performance report, live-canary result, and packaged Chromium smoke evidence.
+The release process retains the exact ZIP and checksum, source identity, local-data digests, reproducibility comparison, SBOM, provenance statement and GitHub attestation, license inventory, quality and package report, activation performance report, live-canary result, and packaged Chromium smoke evidence. The activation gate enforces a 500 ms p95 budget on calibrated renderer work after warmup and a 64 MiB heap-delta budget; wall-clock p50, p95, and warmup timings remain diagnostic because shared-runner scheduling is outside the extension's control.
