@@ -80,6 +80,8 @@ describe("release policy", () => {
     );
     expect(release).toContain("workflow_dispatch:");
     expect(release).not.toContain("pull_request:");
+    expect(release).toContain("include-hidden-files: true");
+    expect(release).toContain(".output/slava-russian-dictionary-*-chrome.zip");
   });
 
   it("keeps user-facing privacy and permission disclosures aligned", async () => {
