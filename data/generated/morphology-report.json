@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "records": 442594,
+    "forms": 1045845
+  },
+  "recordFlow": {
+    "sourceRecordsSeen": 442594,
+    "eligibleRecords": 442594,
+    "emittedRecords": 426248,
+    "filteredRecords": 16346,
+    "rejectedRecords": 0
+  },
+  "index": {
+    "lemmas": 57179,
+    "relations": 698375,
+    "ambiguousSurfaces": 21331,
+    "encodedGroups": 52166,
+    "exceptionGroups": 5013,
+    "uniqueParadigms": 5556,
+    "reusedParadigms": 46610,
+    "excludedForms": 376616,
+    "excludedLexicalForms": 13947,
+    "formOfEntries": 368676,
+    "aspectLemmas": 12119,
+    "aspectCounterparts": 10556,
+    "grammarForms": 640552,
+    "grammarRelations": 1029228,
+    "grammarAnalyses": 389,
+    "semanticMismatches": 0,
+    "supplementalStressForms": 234904,
+    "ambiguousSupplementalStress": 19562
+  },
+  "artifact": {
+    "files": 22,
+    "installedBytes": 32294913,
+    "compressedBytes": 9390901,
+    "sha256": "bfc8d0f8962ff16171342e45132e25e37537d2d8327f635b23a9c6e03d13d0f3"
+  }
+}

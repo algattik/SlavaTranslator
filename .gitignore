@@ -1,4 +1,8 @@
 generated/
+!data/generated/
+data/generated/*
+!data/generated/morphology-report.json
+!data/generated/stress-report.json
 build/
 benchmark-results/
 data/cache/

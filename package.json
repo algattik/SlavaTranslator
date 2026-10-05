@@ -20,7 +20,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "npm run build && vitest run",
-    "test:unit:report": "vitest run --reporter=json --outputFile=artifacts/vitest.json",
+    "test:unit:report": "vitest run --reporter=default --reporter=json --outputFile=artifacts/vitest.json",
     "test:watch": "vitest",
     "test:e2e": "npm run build && playwright test",
     "test:e2e:report": "PLAYWRIGHT_JSON_OUTPUT_FILE=artifacts/playwright.json playwright test --reporter=json",
