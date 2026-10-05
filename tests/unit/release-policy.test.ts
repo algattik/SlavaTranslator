@@ -52,6 +52,10 @@ describe("release policy", () => {
     expect(benchmark).toContain(
       'process.env.SLAVA_ENFORCE_PERFORMANCE === "1"',
     );
+    expect(benchmark).toContain(
+      "const attemptsPerSample = enforceLatency ? 3 : 1",
+    );
+    expect(benchmark).toContain("const sampleCount = enforceLatency ? 20 : 5");
     expect(benchmark).not.toContain("expect(wallClockMedian)");
     expect(packageJson.scripts["test:e2e:performance"]).toContain(
       "SLAVA_ENFORCE_PERFORMANCE=1",

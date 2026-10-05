@@ -1022,7 +1022,8 @@ test("activates a 100,000-character page within latency and heap budgets", async
     activationRendererWorkP95Milliseconds,
   } = releasePolicy.budgets;
   const enforceLatency = process.env.SLAVA_ENFORCE_PERFORMANCE === "1";
-  const attemptsPerSample = 3;
+  const attemptsPerSample = enforceLatency ? 3 : 1;
+  const sampleCount = enforceLatency ? 20 : 5;
   const activeSamples: number[] = [];
   const activeAttemptSamples: number[][] = [];
   const wallClockSamples: number[] = [];
@@ -1106,7 +1107,7 @@ test("activates a 100,000-character page within latency and heap budgets", async
   });
   const warmupMilliseconds = await activate(page);
   await deactivate(page);
-  for (let sample = 0; sample < 20; sample++) {
+  for (let sample = 0; sample < sampleCount; sample++) {
     const activeAttempts: number[] = [];
     const wallClockAttempts: number[] = [];
     const heapDeltas: number[] = [];
@@ -1176,7 +1177,7 @@ test("activates a 100,000-character page within latency and heap budgets", async
           p95 <= activationRendererWorkP95Milliseconds,
         wallClockMeasurement:
           "diagnostic only because shared-runner scheduling is external to extension work",
-        sampleCount: activeSamples.length,
+        sampleCount,
         attemptsPerSample,
         p95Milliseconds: p95,
         wallClockMedianMilliseconds: wallClockMedian,
