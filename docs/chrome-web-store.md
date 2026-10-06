@@ -10,7 +10,7 @@
 
 ## Host permission justification
 
-> Slava uses scripting to inject its packaged page-integration code after user activation and offscreen to parse bounded definition responses away from the web page. The exact host patterns https://en.wiktionary.org/*, https://ru.wiktionary.org/*, https://uk.wiktionary.org/*, https://de.wiktionary.org/*, https://fr.wiktionary.org/*, https://es.wiktionary.org/*, https://pt.wiktionary.org/*, https://zh.wiktionary.org/*, https://ja.wiktionary.org/*, https://ko.wiktionary.org/*, https://ar.wiktionary.org/*, https://hi.wiktionary.org/*, https://he.wiktionary.org/*, https://pl.wiktionary.org/*, https://ro.wiktionary.org/*, https://tr.wiktionary.org/*, https://it.wiktionary.org/*, https://kk.wiktionary.org/*, https://lv.wiktionary.org/*, https://et.wiktionary.org/*, and https://lt.wiktionary.org/* are used to request definitions from the user's selected editions. The optional http://*/* and https://*/* capabilities let a user request persistent activation for a site, but Chrome prompts only for the exact user-selected origin and Slava does not silently gain access to every site.
+> Slava uses scripting to inject its packaged page-integration code after user activation and offscreen to parse bounded definition responses away from the web page. The exact host patterns https://*.wiktionary.org/* are used to request definitions from the user's selected editions. The optional http://*/* and https://*/* capabilities let a user request persistent activation for a site, but Chrome prompts only for the exact user-selected origin and Slava does not silently gain access to every site.
 
 ## Remote code justification
 
